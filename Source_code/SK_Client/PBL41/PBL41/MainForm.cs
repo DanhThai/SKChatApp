@@ -14,14 +14,48 @@ namespace PBL41
 {
     public partial class MainForm : Form
     {
+        private delegate void SafeCallDelegate(string text);
         public MainForm()
         {
             InitializeComponent();
+
             Thread th = new Thread(()=>ReceiveMsg());
             th.IsBackground = true;
             th.Start();
-        }
 
+            List<string> l = ChatClient.instance.getList();
+            DataTable dt = new DataTable();         
+            dt.Columns.Add("Name", typeof(string)); 
+            foreach(string i in l)
+            {
+                DataRow dr = dt.NewRow();
+                dr["Name"] = i;
+                dt.Rows.Add(dr);
+            }                         
+            dgvFriend.DataSource = dt;
+
+        }
+        public void setListview(string msg)
+        {
+            if (LViewMessage.InvokeRequired)
+            {
+                var d = new SafeCallDelegate(setListview);
+                LViewMessage.Invoke(d, new object[] { msg });
+            }
+            else
+            {
+                string[] str= msg.Split(new string[] { " #send: " }, StringSplitOptions.None);
+                for (int i= 0; i< dgvFriend.Rows.Count; i++)
+                {
+                    string s = dgvFriend.Rows[i].Cells["Name"].Value.ToString();
+                    if(str[0].Equals(s))
+                    {
+                        LViewMessage.Items.Add(s+" : "+str[1] + "\n");
+                        break;
+                    }    
+                }                   
+            }
+        }
         private void butSet_Click(object sender, EventArgs e)
         {
             FormCaNhan fc = new FormCaNhan();
@@ -51,15 +85,20 @@ namespace PBL41
 
         private void butSend_Click(object sender, EventArgs e)
         {
-
-            ChatClient.instance.SendMsg(txtMessage.Text);
-            LViewMessage.Items.Add(txtMessage.Text + "\n");
-            
+            if(dgvFriend.SelectedRows.Count==1)
+            {
+                
+                string name = dgvFriend.SelectedRows[0].Cells["Name"].Value.ToString();
+               
+                string s =  "Tôi : " + txtMessage.Text + "\n";
+                LViewMessage.Items.Add(s);
+                //setListview(s);
+                ChatClient.instance.SendMsg(name+" #msg: "+ txtMessage.Text);
+            }                          
         }
         public void ReceiveMsg()
-        {
-            
-            string msg;
+        {          
+            string msg="";
             try
             {
                 while (true)
@@ -67,12 +106,12 @@ namespace PBL41
                     msg = ChatClient.instance.ReceiveMsg();
                     if (msg == null)
                     {
-                        Thread.Sleep(30000);
                         continue;
                     }
                     else
                     {
-                        LViewMessage.Items.Add(msg+"\n");
+                        Console.WriteLine(msg);
+                        setListview(msg);
                     }
                 }
             }
@@ -80,7 +119,9 @@ namespace PBL41
             {
                 Console.WriteLine(e.Message);
             }
-        }   
+        }
+
+ 
     }
     
 }

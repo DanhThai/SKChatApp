@@ -24,3 +24,16 @@ E:\ĐỒ ÁN\SKchatApp\PBL41\PBL41\obj\Debug\PBL41.csproj.GenerateResource.cache
 E:\ĐỒ ÁN\SKchatApp\PBL41\PBL41\obj\Debug\PBL41.csproj.CoreCompileInputs.cache
 E:\ĐỒ ÁN\SKchatApp\PBL41\PBL41\obj\Debug\PBL41.exe
 E:\ĐỒ ÁN\SKchatApp\PBL41\PBL41\obj\Debug\PBL41.pdb
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Client\PBL41\PBL41\bin\Debug\PBL41.exe.config
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Client\PBL41\PBL41\bin\Debug\PBL41.exe
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Client\PBL41\PBL41\bin\Debug\PBL41.pdb
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Client\PBL41\PBL41\obj\Debug\PBL41.csprojAssemblyReference.cache
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Client\PBL41\PBL41\obj\Debug\PBL41.FormCaNhan.resources
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Client\PBL41\PBL41\obj\Debug\PBL41.FormFriend.resources
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Client\PBL41\PBL41\obj\Debug\PBL41.FormLG.resources
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Client\PBL41\PBL41\obj\Debug\PBL41.MainForm.resources
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Client\PBL41\PBL41\obj\Debug\PBL41.Properties.Resources.resources
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Client\PBL41\PBL41\obj\Debug\PBL41.csproj.GenerateResource.cache
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Client\PBL41\PBL41\obj\Debug\PBL41.csproj.CoreCompileInputs.cache
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Client\PBL41\PBL41\obj\Debug\PBL41.exe
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Client\PBL41\PBL41\obj\Debug\PBL41.pdb

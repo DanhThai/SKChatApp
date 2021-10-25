@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net.Sockets;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace PBL41.Client
 {
@@ -14,6 +12,7 @@ namespace PBL41.Client
         private TcpClient client;
         private NetworkStream stream;
         private static ChatClient _Instance;
+        private List<string> list;
         public static ChatClient instance
         {
             get
@@ -66,16 +65,38 @@ namespace PBL41.Client
 
             }
         }
+        public object DeserializeData(byte[] theByteArray)
+        {
+            BinaryFormatter bf1 = new BinaryFormatter();
+            MemoryStream ms = new MemoryStream(theByteArray);      
+            ms.Position = 0;
+            return bf1.Deserialize(ms);
+        }
+        public List<string> getList()
+        {
+            return list;
+        }
         public string ReceiveLogin()
         {
-            var reader = new StreamReader(stream);
-            string msg = reader.ReadLine();
-            return msg;
+            //var reader = new StreamReader(stream);
+            //string msg = reader.ReadLine();
+            //str= Encoding.ASCII.GetBytes(msg);
+
+            byte[] str= new byte[100000];
+            stream.Read(str,0,(int)client.ReceiveBufferSize);           
+            //Console.WriteLine(Encoding.ASCII.GetString(str));
+            if (str != null)
+            {               
+                list = (List<string>)DeserializeData(str);
+                return "true";
+            }
+            return "false";
         }
         public string ReceiveMsg()
         {
             var reader = new StreamReader(stream);
             string msg = reader.ReadLine();
+            
             return msg;
         }
 

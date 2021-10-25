@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\CODELapTrinh\\Chat_vscode\\Server\\Server.csproj": {}
+    "E:\\ĐỒ ÁN\\SKChatApp\\Source_code\\SK_Server\\Server\\Server.csproj": {}
   },
   "projects": {
-    "E:\\CODELapTrinh\\Chat_vscode\\Server\\Server.csproj": {
+    "E:\\ĐỒ ÁN\\SKChatApp\\Source_code\\SK_Server\\Server\\Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\CODELapTrinh\\Chat_vscode\\Server\\Server.csproj",
+        "projectUniqueName": "E:\\ĐỒ ÁN\\SKChatApp\\Source_code\\SK_Server\\Server\\Server.csproj",
         "projectName": "Server",
-        "projectPath": "E:\\CODELapTrinh\\Chat_vscode\\Server\\Server.csproj",
+        "projectPath": "E:\\ĐỒ ÁN\\SKChatApp\\Source_code\\SK_Server\\Server\\Server.csproj",
         "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "E:\\CODELapTrinh\\Chat_vscode\\Server\\obj\\",
+        "outputPath": "E:\\ĐỒ ÁN\\SKChatApp\\Source_code\\SK_Server\\Server\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",

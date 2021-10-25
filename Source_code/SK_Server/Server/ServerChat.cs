@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
+
 
 namespace Server
 {
@@ -14,10 +14,12 @@ namespace Server
     {
         private const int PORT = 2001;
         private List<Socket> ListClient = null;
+        private List<string> list = null;
         TcpListener server;      
         public void ConnectSV()
         {
             ListClient = new List<Socket>();
+            list= new List<string>();
             IPAddress IP = IPAddress.Parse("127.0.0.1");
             server = new TcpListener(IP, PORT);
             server.Start();
@@ -35,11 +37,13 @@ namespace Server
         {
             string ipClient = sk.RemoteEndPoint.ToString();
             ListClient.Add(sk);
+            list.Add(ipClient);
             Console.WriteLine(ipClient + " connect server");
             XuLyMessage(sk);
 
             sk.Close();
             ListClient.Remove(sk);
+            list.Remove(ipClient);
             Console.WriteLine(ipClient + " disconnect server");
         }
         public void XuLyMessage(Socket sk)
@@ -85,9 +89,24 @@ namespace Server
             var writer = new StreamWriter(stream);
             writer.AutoFlush = true;
             if (str[1] == "user" && str[2] == "pass")
-                writer.WriteLine("true");
-            else
-                writer.WriteLine("false");
+            {
+                //writer.WriteLine("true");
+                string s=Encoding.ASCII.GetString(SerializeData());
+                Console.WriteLine(s);
+                writer.WriteLine(s);
+                //stream.Write(SerializeData());
+            }
+                
+            //else
+                //writer.WriteLine("false");
+        }
+
+        public byte[] SerializeData()
+        {
+            MemoryStream ms = new MemoryStream();
+            BinaryFormatter bf1 = new BinaryFormatter();
+            bf1.Serialize(ms, (object)list);
+            return ms.ToArray();
         }
         public void processSendMsg(string msg)
         {
@@ -103,7 +122,7 @@ namespace Server
                         stream = new NetworkStream(i);
                         var writer = new StreamWriter(stream);
                         writer.AutoFlush = true;
-                        writer.WriteLine(i.RemoteEndPoint.ToString() + " send: " + str[1]);
+                        writer.WriteLine(i.RemoteEndPoint.ToString() + " #send: " + str[1]);
                         stream.Close();
                     }
                 }
