@@ -46,3 +46,19 @@ E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Server\Server\obj\Debug\net5.0\Server.dll
 E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Server\Server\obj\Debug\net5.0\ref\Server.dll
 E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Server\Server\obj\Debug\net5.0\Server.pdb
 E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Server\Server\obj\Debug\net5.0\Server.genruntimeconfig.cache
+D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Server\Server\bin\Debug\net5.0\Server.exe
+D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Server\Server\bin\Debug\net5.0\Server.deps.json
+D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Server\Server\bin\Debug\net5.0\Server.runtimeconfig.json
+D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Server\Server\bin\Debug\net5.0\Server.runtimeconfig.dev.json
+D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Server\Server\bin\Debug\net5.0\Server.dll
+D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Server\Server\bin\Debug\net5.0\ref\Server.dll
+D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Server\Server\bin\Debug\net5.0\Server.pdb
+D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Server\Server\obj\Debug\net5.0\Server.csproj.AssemblyReference.cache
+D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Server\Server\obj\Debug\net5.0\Server.GeneratedMSBuildEditorConfig.editorconfig
+D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Server\Server\obj\Debug\net5.0\Server.AssemblyInfoInputs.cache
+D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Server\Server\obj\Debug\net5.0\Server.AssemblyInfo.cs
+D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Server\Server\obj\Debug\net5.0\Server.csproj.CoreCompileInputs.cache
+D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Server\Server\obj\Debug\net5.0\Server.dll
+D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Server\Server\obj\Debug\net5.0\ref\Server.dll
+D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Server\Server\obj\Debug\net5.0\Server.pdb
+D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Server\Server\obj\Debug\net5.0\Server.genruntimeconfig.cache

@@ -25,7 +25,7 @@ namespace PBL41
 
         private void butConfirm_Click(object sender, EventArgs e)
         {
-            if(txtUser.Text == "" || txtPass.Text == "" || txtConfirm.Text == "")
+            if(txtUser2.Text == "" || txtPass2.Text == "" || txtConfirm2.Text == "")
             {
                 MessageBox.Show("Hãy nhập đầy đủ thông tin", "Lỗi thông tin", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
             }
@@ -59,6 +59,54 @@ namespace PBL41
             //dlg.Filter = "All files (*.*)|*.*|All files(*.*) | *.* ";
             //dlg.FilterIndex = 1;
             //dlg.RestoreDirectory = true;
+        }
+        private void txtUser2_Enter(object sender, EventArgs e)
+        {
+            if (txtUser2.Text == "User")
+            {
+                txtUser2.Text = "";
+                txtUser2.ForeColor = Color.Black;
+            }
+        }
+        private void txtUser2_Leave(object sender, EventArgs e)
+        {
+            if (txtUser2.Text == "")
+            {
+                txtUser2.Text = "User";
+                txtUser2.ForeColor = Color.Gray;
+            }
+        }
+        private void txtPass2_Enter(object sender, EventArgs e)
+        {
+            if (txtPass2.Text == "Pass")
+            {
+                txtPass2.Text = "";
+                txtPass2.ForeColor = Color.Gray;
+            }
+        }
+        private void txtPass2_Leave(object sender, EventArgs e)
+        {
+            if (txtPass2.Text == "")
+            {
+                txtPass2.Text = "Pass";
+                txtPass2.ForeColor = Color.Gray;
+            }
+        }
+        private void txtConfirm2_Enter(object sender, EventArgs e)
+        {
+            if (txtConfirm2.Text == "ConfirmPass")
+            {
+                txtConfirm2.Text = "";
+                txtConfirm2.ForeColor = Color.Gray;
+            }
+        }
+        private void txtConfirm2_Leave(object sender, EventArgs e)
+        {
+            if (txtConfirm2.Text == "")
+            {
+                txtConfirm2.Text = "ConfirmPass";
+                txtConfirm2.ForeColor = Color.Gray;
+            }
         }
 
     }

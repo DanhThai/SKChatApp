@@ -162,7 +162,7 @@ namespace PBL41
             this.txtUser2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
             this.txtUser2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtUser2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUser2.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.txtUser2.ForeColor = System.Drawing.Color.Gray;
             this.txtUser2.Location = new System.Drawing.Point(109, 122);
             this.txtUser2.Multiline = true;
             this.txtUser2.Name = "txtUser2";
@@ -170,6 +170,8 @@ namespace PBL41
             this.txtUser2.Size = new System.Drawing.Size(192, 29);
             this.txtUser2.TabIndex = 22;
             this.txtUser2.Text = "User";
+            this.txtUser2.Enter += new System.EventHandler(this.txtUser2_Enter);
+            this.txtUser2.Leave += new System.EventHandler(this.txtUser2_Leave);
             // 
             // pictureBox7
             // 
@@ -228,14 +230,15 @@ namespace PBL41
             this.txtConfirm2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
             this.txtConfirm2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtConfirm2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtConfirm2.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.txtConfirm2.ForeColor = System.Drawing.Color.Gray;
             this.txtConfirm2.Location = new System.Drawing.Point(109, 270);
             this.txtConfirm2.Multiline = true;
             this.txtConfirm2.Name = "txtConfirm2";
-            this.txtConfirm2.PasswordChar = '*';
             this.txtConfirm2.Size = new System.Drawing.Size(192, 29);
             this.txtConfirm2.TabIndex = 15;
             this.txtConfirm2.Text = "ConfirmPass";
+            this.txtConfirm2.Enter += new System.EventHandler(this.txtConfirm2_Enter);
+            this.txtConfirm2.Leave += new System.EventHandler(this.txtConfirm2_Leave);
             // 
             // label9
             // 
@@ -271,14 +274,15 @@ namespace PBL41
             this.txtPass2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
             this.txtPass2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtPass2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPass2.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.txtPass2.ForeColor = System.Drawing.Color.Gray;
             this.txtPass2.Location = new System.Drawing.Point(114, 194);
             this.txtPass2.Multiline = true;
             this.txtPass2.Name = "txtPass2";
-            this.txtPass2.PasswordChar = '*';
             this.txtPass2.Size = new System.Drawing.Size(192, 29);
             this.txtPass2.TabIndex = 5;
             this.txtPass2.Text = "Pass";
+            this.txtPass2.Enter += new System.EventHandler(this.txtPass2_Enter);
+            this.txtPass2.Leave += new System.EventHandler(this.txtPass2_Leave);
             // 
             // label1
             // 
@@ -325,14 +329,14 @@ namespace PBL41
             this.txtPass1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
             this.txtPass1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtPass1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPass1.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.txtPass1.ForeColor = System.Drawing.Color.Gray;
             this.txtPass1.Location = new System.Drawing.Point(117, 242);
             this.txtPass1.Multiline = true;
             this.txtPass1.Name = "txtPass1";
-            this.txtPass1.PasswordChar = '*';
             this.txtPass1.Size = new System.Drawing.Size(192, 29);
-            this.txtPass1.TabIndex = 23;
-            this.txtPass1.Text = "pass";
+            this.txtPass1.TabIndex = 5;
+            this.txtPass1.Text = "Pass";
+            this.txtPass1.Enter += new System.EventHandler(this.textPass_Enter);
             // 
             // butLogin1
             // 
@@ -348,7 +352,7 @@ namespace PBL41
             this.butLogin1.Location = new System.Drawing.Point(92, 307);
             this.butLogin1.Name = "butLogin1";
             this.butLogin1.Size = new System.Drawing.Size(196, 62);
-            this.butLogin1.TabIndex = 22;
+            this.butLogin1.TabIndex = 1;
             this.butLogin1.Text = "Log in";
             this.butLogin1.TextColor = System.Drawing.Color.White;
             this.butLogin1.UseVisualStyleBackColor = false;
@@ -367,14 +371,16 @@ namespace PBL41
             this.txtUser1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
             this.txtUser1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtUser1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUser1.ForeColor = System.Drawing.Color.Black;
+            this.txtUser1.ForeColor = System.Drawing.Color.Gray;
             this.txtUser1.Location = new System.Drawing.Point(116, 155);
             this.txtUser1.Multiline = true;
             this.txtUser1.Name = "txtUser1";
             this.txtUser1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtUser1.Size = new System.Drawing.Size(192, 29);
             this.txtUser1.TabIndex = 4;
-            this.txtUser1.Text = "user";
+            this.txtUser1.Text = "User";
+            this.txtUser1.Enter += new System.EventHandler(this.textUser_Enter);
+            this.txtUser1.Leave += new System.EventHandler(this.textUser_Leave);
             // 
             // pictureBox5
             // 

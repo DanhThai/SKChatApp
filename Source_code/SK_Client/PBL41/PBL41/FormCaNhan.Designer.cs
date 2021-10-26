@@ -33,17 +33,17 @@ namespace PBL41
             this.panelChangePass = new System.Windows.Forms.Panel();
             this.butConfirm = new CustomButton.VBButton();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtUser = new System.Windows.Forms.TextBox();
+            this.txtUser2 = new System.Windows.Forms.TextBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.txtConfirm = new System.Windows.Forms.TextBox();
+            this.txtConfirm2 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.txtPass = new System.Windows.Forms.TextBox();
+            this.txtPass2 = new System.Windows.Forms.TextBox();
             this.butAdd = new System.Windows.Forms.Button();
             this.pictureAvt = new System.Windows.Forms.PictureBox();
             this.butChangePass = new CustomButton.VBButton();
@@ -99,17 +99,17 @@ namespace PBL41
             this.panelChangePass.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
             this.panelChangePass.Controls.Add(this.butConfirm);
             this.panelChangePass.Controls.Add(this.label7);
-            this.panelChangePass.Controls.Add(this.txtUser);
+            this.panelChangePass.Controls.Add(this.txtUser2);
             this.panelChangePass.Controls.Add(this.pictureBox7);
             this.panelChangePass.Controls.Add(this.pictureBox4);
             this.panelChangePass.Controls.Add(this.pictureBox3);
             this.panelChangePass.Controls.Add(this.label14);
             this.panelChangePass.Controls.Add(this.label15);
-            this.panelChangePass.Controls.Add(this.txtConfirm);
+            this.panelChangePass.Controls.Add(this.txtConfirm2);
             this.panelChangePass.Controls.Add(this.label9);
             this.panelChangePass.Controls.Add(this.pictureBox2);
             this.panelChangePass.Controls.Add(this.label13);
-            this.panelChangePass.Controls.Add(this.txtPass);
+            this.panelChangePass.Controls.Add(this.txtPass2);
             this.panelChangePass.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelChangePass.Location = new System.Drawing.Point(188, 0);
             this.panelChangePass.Name = "panelChangePass";
@@ -146,19 +146,21 @@ namespace PBL41
             this.label7.Size = new System.Drawing.Size(200, 2);
             this.label7.TabIndex = 23;
             // 
-            // txtUser
+            // txtUser2
             // 
-            this.txtUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
-            this.txtUser.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUser.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.txtUser.Location = new System.Drawing.Point(109, 122);
-            this.txtUser.Multiline = true;
-            this.txtUser.Name = "txtUser";
-            this.txtUser.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtUser.Size = new System.Drawing.Size(192, 29);
-            this.txtUser.TabIndex = 22;
-            this.txtUser.Text = "User";
+            this.txtUser2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+            this.txtUser2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtUser2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUser2.ForeColor = System.Drawing.Color.Gray;
+            this.txtUser2.Location = new System.Drawing.Point(109, 122);
+            this.txtUser2.Multiline = true;
+            this.txtUser2.Name = "txtUser2";
+            this.txtUser2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtUser2.Size = new System.Drawing.Size(192, 29);
+            this.txtUser2.TabIndex = 22;
+            this.txtUser2.Text = "User";
+            this.txtUser2.Enter += new System.EventHandler(this.txtUser2_Enter);
+            this.txtUser2.Leave += new System.EventHandler(this.txtUser2_Leave);
             // 
             // pictureBox7
             // 
@@ -212,18 +214,20 @@ namespace PBL41
             this.label15.Size = new System.Drawing.Size(0, 32);
             this.label15.TabIndex = 17;
             // 
-            // txtConfirm
+            // txtConfirm2
             // 
-            this.txtConfirm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
-            this.txtConfirm.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtConfirm.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.txtConfirm.Location = new System.Drawing.Point(109, 270);
-            this.txtConfirm.Multiline = true;
-            this.txtConfirm.Name = "txtConfirm";
-            this.txtConfirm.Size = new System.Drawing.Size(192, 29);
-            this.txtConfirm.TabIndex = 15;
-            this.txtConfirm.Text = "ConfirmPass";
+            this.txtConfirm2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+            this.txtConfirm2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtConfirm2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtConfirm2.ForeColor = System.Drawing.Color.Gray;
+            this.txtConfirm2.Location = new System.Drawing.Point(109, 270);
+            this.txtConfirm2.Multiline = true;
+            this.txtConfirm2.Name = "txtConfirm2";
+            this.txtConfirm2.Size = new System.Drawing.Size(192, 29);
+            this.txtConfirm2.TabIndex = 15;
+            this.txtConfirm2.Text = "ConfirmPass";
+            this.txtConfirm2.Enter += new System.EventHandler(this.txtConfirm2_Enter);
+            this.txtConfirm2.Leave += new System.EventHandler(this.txtConfirm2_Leave);
             // 
             // label9
             // 
@@ -254,18 +258,20 @@ namespace PBL41
             this.label13.Size = new System.Drawing.Size(230, 3);
             this.label13.TabIndex = 9;
             // 
-            // txtPass
+            // txtPass2
             // 
-            this.txtPass.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
-            this.txtPass.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPass.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.txtPass.Location = new System.Drawing.Point(114, 194);
-            this.txtPass.Multiline = true;
-            this.txtPass.Name = "txtPass";
-            this.txtPass.Size = new System.Drawing.Size(192, 29);
-            this.txtPass.TabIndex = 5;
-            this.txtPass.Text = "Pass";
+            this.txtPass2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+            this.txtPass2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtPass2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPass2.ForeColor = System.Drawing.Color.Gray;
+            this.txtPass2.Location = new System.Drawing.Point(114, 194);
+            this.txtPass2.Multiline = true;
+            this.txtPass2.Name = "txtPass2";
+            this.txtPass2.Size = new System.Drawing.Size(192, 29);
+            this.txtPass2.TabIndex = 5;
+            this.txtPass2.Text = "Pass";
+            this.txtPass2.Enter += new System.EventHandler(this.txtPass2_Enter);
+            this.txtPass2.Leave += new System.EventHandler(this.txtPass2_Leave);
             // 
             // butAdd
             // 
@@ -503,17 +509,17 @@ namespace PBL41
         private System.Windows.Forms.Panel panelChangePass;
         private CustomButton.VBButton butConfirm;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtUser;
+        private System.Windows.Forms.TextBox txtUser2;
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox txtConfirm;
+        private System.Windows.Forms.TextBox txtConfirm2;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox txtPass;
+        private System.Windows.Forms.TextBox txtPass2;
         private CustomButton.VBButton butChangePass;
         private System.Windows.Forms.PictureBox pictureAvt;
         private System.Windows.Forms.Button butAdd;
