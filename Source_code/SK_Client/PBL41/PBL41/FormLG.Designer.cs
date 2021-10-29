@@ -31,8 +31,6 @@ namespace PBL41
         {
             this.panel = new System.Windows.Forms.Panel();
             this.panelSU = new System.Windows.Forms.Panel();
-            this.butLogin2 = new CustomButton.VBButton();
-            this.butSignUp2 = new CustomButton.VBButton();
             this.label7 = new System.Windows.Forms.Label();
             this.txtUser2 = new System.Windows.Forms.TextBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
@@ -49,7 +47,6 @@ namespace PBL41
             this.panelLG = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.txtPass1 = new System.Windows.Forms.TextBox();
-            this.butLogin1 = new CustomButton.VBButton();
             this.label5 = new System.Windows.Forms.Label();
             this.txtUser1 = new System.Windows.Forms.TextBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
@@ -57,8 +54,11 @@ namespace PBL41
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.butSignUp1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.lbSU = new System.Windows.Forms.Label();
+            this.butLogin2 = new CustomButton.VBButton();
+            this.butSignUp2 = new CustomButton.VBButton();
+            this.butLogin1 = new CustomButton.VBButton();
             this.panel.SuspendLayout();
             this.panelSU.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
@@ -109,45 +109,6 @@ namespace PBL41
             this.panelSU.TabIndex = 4;
             this.panelSU.Visible = false;
             // 
-            // butLogin2
-            // 
-            this.butLogin2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(79)))), ((int)(((byte)(149)))));
-            this.butLogin2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(79)))), ((int)(((byte)(149)))));
-            this.butLogin2.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.butLogin2.BorderRadius = 20;
-            this.butLogin2.BorderSize = 0;
-            this.butLogin2.FlatAppearance.BorderSize = 0;
-            this.butLogin2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.butLogin2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.butLogin2.ForeColor = System.Drawing.Color.White;
-            this.butLogin2.Location = new System.Drawing.Point(108, 427);
-            this.butLogin2.Name = "butLogin2";
-            this.butLogin2.Size = new System.Drawing.Size(156, 43);
-            this.butLogin2.TabIndex = 26;
-            this.butLogin2.Text = "Log in";
-            this.butLogin2.TextColor = System.Drawing.Color.White;
-            this.butLogin2.UseVisualStyleBackColor = false;
-            this.butLogin2.Click += new System.EventHandler(this.butLogin2_Click);
-            // 
-            // butSignUp2
-            // 
-            this.butSignUp2.BackColor = System.Drawing.Color.MidnightBlue;
-            this.butSignUp2.BackgroundColor = System.Drawing.Color.MidnightBlue;
-            this.butSignUp2.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.butSignUp2.BorderRadius = 20;
-            this.butSignUp2.BorderSize = 0;
-            this.butSignUp2.FlatAppearance.BorderSize = 0;
-            this.butSignUp2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.butSignUp2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.butSignUp2.ForeColor = System.Drawing.Color.White;
-            this.butSignUp2.Location = new System.Drawing.Point(87, 333);
-            this.butSignUp2.Name = "butSignUp2";
-            this.butSignUp2.Size = new System.Drawing.Size(196, 62);
-            this.butSignUp2.TabIndex = 25;
-            this.butSignUp2.Text = "Sign Up";
-            this.butSignUp2.TextColor = System.Drawing.Color.White;
-            this.butSignUp2.UseVisualStyleBackColor = false;
-            // 
             // label7
             // 
             this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -170,8 +131,8 @@ namespace PBL41
             this.txtUser2.Size = new System.Drawing.Size(192, 29);
             this.txtUser2.TabIndex = 22;
             this.txtUser2.Text = "User";
-            this.txtUser2.Enter += new System.EventHandler(this.txtUser2_Enter);
-            this.txtUser2.Leave += new System.EventHandler(this.txtUser2_Leave);
+            this.txtUser2.Enter += new System.EventHandler(this.text_Enter);
+            this.txtUser2.Leave += new System.EventHandler(this.text_Leave);
             // 
             // pictureBox7
             // 
@@ -234,11 +195,12 @@ namespace PBL41
             this.txtConfirm2.Location = new System.Drawing.Point(109, 270);
             this.txtConfirm2.Multiline = true;
             this.txtConfirm2.Name = "txtConfirm2";
+            this.txtConfirm2.PasswordChar = '*';
             this.txtConfirm2.Size = new System.Drawing.Size(192, 29);
             this.txtConfirm2.TabIndex = 15;
             this.txtConfirm2.Text = "ConfirmPass";
-            this.txtConfirm2.Enter += new System.EventHandler(this.txtConfirm2_Enter);
-            this.txtConfirm2.Leave += new System.EventHandler(this.txtConfirm2_Leave);
+            this.txtConfirm2.Enter += new System.EventHandler(this.text_Enter);
+            this.txtConfirm2.Leave += new System.EventHandler(this.text_Leave);
             // 
             // label9
             // 
@@ -278,27 +240,29 @@ namespace PBL41
             this.txtPass2.Location = new System.Drawing.Point(114, 194);
             this.txtPass2.Multiline = true;
             this.txtPass2.Name = "txtPass2";
+            this.txtPass2.PasswordChar = '*';
             this.txtPass2.Size = new System.Drawing.Size(192, 29);
             this.txtPass2.TabIndex = 5;
             this.txtPass2.Text = "Pass";
-            this.txtPass2.Enter += new System.EventHandler(this.txtPass2_Enter);
-            this.txtPass2.Leave += new System.EventHandler(this.txtPass2_Leave);
+            this.txtPass2.Enter += new System.EventHandler(this.text_Enter);
+            this.txtPass2.Leave += new System.EventHandler(this.text_Leave);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.MidnightBlue;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Modern No. 20", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label1.Location = new System.Drawing.Point(178, 195);
+            this.label1.Location = new System.Drawing.Point(188, 195);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(187, 29);
+            this.label1.Size = new System.Drawing.Size(175, 25);
             this.label1.TabIndex = 2;
             this.label1.Text = "WELCOME TO";
             // 
             // panelLG
             // 
             this.panelLG.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+            this.panelLG.Controls.Add(this.lbSU);
             this.panelLG.Controls.Add(this.label6);
             this.panelLG.Controls.Add(this.txtPass1);
             this.panelLG.Controls.Add(this.butLogin1);
@@ -309,7 +273,6 @@ namespace PBL41
             this.panelLG.Controls.Add(this.pictureBox1);
             this.panelLG.Controls.Add(this.label4);
             this.panelLG.Controls.Add(this.label3);
-            this.panelLG.Controls.Add(this.butSignUp1);
             this.panelLG.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelLG.Location = new System.Drawing.Point(516, 0);
             this.panelLG.Name = "panelLG";
@@ -333,30 +296,12 @@ namespace PBL41
             this.txtPass1.Location = new System.Drawing.Point(117, 242);
             this.txtPass1.Multiline = true;
             this.txtPass1.Name = "txtPass1";
+            this.txtPass1.PasswordChar = '*';
             this.txtPass1.Size = new System.Drawing.Size(192, 29);
             this.txtPass1.TabIndex = 5;
             this.txtPass1.Text = "Pass";
-            this.txtPass1.Enter += new System.EventHandler(this.textPass_Enter);
-            // 
-            // butLogin1
-            // 
-            this.butLogin1.BackColor = System.Drawing.Color.MidnightBlue;
-            this.butLogin1.BackgroundColor = System.Drawing.Color.MidnightBlue;
-            this.butLogin1.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.butLogin1.BorderRadius = 20;
-            this.butLogin1.BorderSize = 0;
-            this.butLogin1.FlatAppearance.BorderSize = 0;
-            this.butLogin1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.butLogin1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.butLogin1.ForeColor = System.Drawing.Color.White;
-            this.butLogin1.Location = new System.Drawing.Point(92, 307);
-            this.butLogin1.Name = "butLogin1";
-            this.butLogin1.Size = new System.Drawing.Size(196, 62);
-            this.butLogin1.TabIndex = 1;
-            this.butLogin1.Text = "Log in";
-            this.butLogin1.TextColor = System.Drawing.Color.White;
-            this.butLogin1.UseVisualStyleBackColor = false;
-            this.butLogin1.Click += new System.EventHandler(this.butLogin1_Click);
+            this.txtPass1.Enter += new System.EventHandler(this.text_Enter);
+            this.txtPass1.Leave += new System.EventHandler(this.text_Leave);
             // 
             // label5
             // 
@@ -379,8 +324,8 @@ namespace PBL41
             this.txtUser1.Size = new System.Drawing.Size(192, 29);
             this.txtUser1.TabIndex = 4;
             this.txtUser1.Text = "User";
-            this.txtUser1.Enter += new System.EventHandler(this.textUser_Enter);
-            this.txtUser1.Leave += new System.EventHandler(this.textUser_Leave);
+            this.txtUser1.Enter += new System.EventHandler(this.text_Enter);
+            this.txtUser1.Leave += new System.EventHandler(this.text_Leave);
             // 
             // pictureBox5
             // 
@@ -435,32 +380,88 @@ namespace PBL41
             this.label3.TabIndex = 6;
             this.label3.Text = "Don\'t have an account?";
             // 
-            // butSignUp1
-            // 
-            this.butSignUp1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
-            this.butSignUp1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.butSignUp1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
-            this.butSignUp1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.butSignUp1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(79)))), ((int)(((byte)(149)))));
-            this.butSignUp1.Location = new System.Drawing.Point(209, 411);
-            this.butSignUp1.Name = "butSignUp1";
-            this.butSignUp1.Size = new System.Drawing.Size(99, 28);
-            this.butSignUp1.TabIndex = 7;
-            this.butSignUp1.Text = "Sign Up Now";
-            this.butSignUp1.UseVisualStyleBackColor = false;
-            this.butSignUp1.Click += new System.EventHandler(this.butSignUp1_Click);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.MidnightBlue;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Script MT Bold", 36F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Lavender;
-            this.label2.Location = new System.Drawing.Point(150, 224);
+            this.label2.Location = new System.Drawing.Point(162, 220);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(242, 69);
+            this.label2.Size = new System.Drawing.Size(241, 72);
             this.label2.TabIndex = 3;
-            this.label2.Text = "SKChat";
+            this.label2.Text = "SK Chat";
+            // 
+            // lbSU
+            // 
+            this.lbSU.AutoSize = true;
+            this.lbSU.Font = new System.Drawing.Font("Times New Roman", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbSU.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(79)))), ((int)(((byte)(149)))));
+            this.lbSU.Location = new System.Drawing.Point(215, 416);
+            this.lbSU.Name = "lbSU";
+            this.lbSU.Size = new System.Drawing.Size(91, 17);
+            this.lbSU.TabIndex = 22;
+            this.lbSU.Text = "Sign Up Now";
+            this.lbSU.Click += new System.EventHandler(this.butSignUp1_Click);
+            // 
+            // butLogin2
+            // 
+            this.butLogin2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(79)))), ((int)(((byte)(149)))));
+            this.butLogin2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(79)))), ((int)(((byte)(149)))));
+            this.butLogin2.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.butLogin2.BorderRadius = 20;
+            this.butLogin2.BorderSize = 0;
+            this.butLogin2.FlatAppearance.BorderSize = 0;
+            this.butLogin2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.butLogin2.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.butLogin2.ForeColor = System.Drawing.Color.White;
+            this.butLogin2.Location = new System.Drawing.Point(108, 427);
+            this.butLogin2.Name = "butLogin2";
+            this.butLogin2.Size = new System.Drawing.Size(156, 43);
+            this.butLogin2.TabIndex = 26;
+            this.butLogin2.Text = "Log in";
+            this.butLogin2.TextColor = System.Drawing.Color.White;
+            this.butLogin2.UseVisualStyleBackColor = false;
+            this.butLogin2.Click += new System.EventHandler(this.butLogin2_Click);
+            // 
+            // butSignUp2
+            // 
+            this.butSignUp2.BackColor = System.Drawing.Color.MidnightBlue;
+            this.butSignUp2.BackgroundColor = System.Drawing.Color.MidnightBlue;
+            this.butSignUp2.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.butSignUp2.BorderRadius = 20;
+            this.butSignUp2.BorderSize = 0;
+            this.butSignUp2.FlatAppearance.BorderSize = 0;
+            this.butSignUp2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.butSignUp2.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.butSignUp2.ForeColor = System.Drawing.Color.White;
+            this.butSignUp2.Location = new System.Drawing.Point(87, 333);
+            this.butSignUp2.Name = "butSignUp2";
+            this.butSignUp2.Size = new System.Drawing.Size(196, 62);
+            this.butSignUp2.TabIndex = 25;
+            this.butSignUp2.Text = "Sign Up";
+            this.butSignUp2.TextColor = System.Drawing.Color.White;
+            this.butSignUp2.UseVisualStyleBackColor = false;
+            // 
+            // butLogin1
+            // 
+            this.butLogin1.BackColor = System.Drawing.Color.MidnightBlue;
+            this.butLogin1.BackgroundColor = System.Drawing.Color.MidnightBlue;
+            this.butLogin1.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.butLogin1.BorderRadius = 20;
+            this.butLogin1.BorderSize = 0;
+            this.butLogin1.FlatAppearance.BorderSize = 0;
+            this.butLogin1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.butLogin1.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.butLogin1.ForeColor = System.Drawing.Color.White;
+            this.butLogin1.Location = new System.Drawing.Point(92, 307);
+            this.butLogin1.Name = "butLogin1";
+            this.butLogin1.Size = new System.Drawing.Size(196, 62);
+            this.butLogin1.TabIndex = 1;
+            this.butLogin1.Text = "Log in";
+            this.butLogin1.TextColor = System.Drawing.Color.White;
+            this.butLogin1.UseVisualStyleBackColor = false;
+            this.butLogin1.Click += new System.EventHandler(this.butLogin1_Click);
             // 
             // FormLG
             // 
@@ -497,7 +498,6 @@ namespace PBL41
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button butSignUp1;
         private System.Windows.Forms.Panel panel;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label4;
@@ -522,6 +522,7 @@ namespace PBL41
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Label lbSU;
     }
 }
 

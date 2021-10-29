@@ -126,7 +126,7 @@ namespace PBL41
             this.butConfirm.BorderSize = 0;
             this.butConfirm.FlatAppearance.BorderSize = 0;
             this.butConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.butConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.butConfirm.Font = new System.Drawing.Font("Modern No. 20", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.butConfirm.ForeColor = System.Drawing.Color.White;
             this.butConfirm.Location = new System.Drawing.Point(81, 377);
             this.butConfirm.Name = "butConfirm";
@@ -223,6 +223,7 @@ namespace PBL41
             this.txtConfirm2.Location = new System.Drawing.Point(109, 270);
             this.txtConfirm2.Multiline = true;
             this.txtConfirm2.Name = "txtConfirm2";
+            this.txtConfirm2.PasswordChar = '*';
             this.txtConfirm2.Size = new System.Drawing.Size(192, 29);
             this.txtConfirm2.TabIndex = 15;
             this.txtConfirm2.Text = "ConfirmPass";
@@ -267,6 +268,7 @@ namespace PBL41
             this.txtPass2.Location = new System.Drawing.Point(114, 194);
             this.txtPass2.Multiline = true;
             this.txtPass2.Name = "txtPass2";
+            this.txtPass2.PasswordChar = '*';
             this.txtPass2.Size = new System.Drawing.Size(192, 29);
             this.txtPass2.TabIndex = 5;
             this.txtPass2.Text = "Pass";
@@ -277,7 +279,7 @@ namespace PBL41
             // 
             this.butAdd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.butAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.butAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.butAdd.Font = new System.Drawing.Font("Modern No. 20", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.butAdd.ForeColor = System.Drawing.Color.Black;
             this.butAdd.Location = new System.Drawing.Point(168, 164);
             this.butAdd.Name = "butAdd";
@@ -306,7 +308,7 @@ namespace PBL41
             this.butChangePass.BorderSize = 0;
             this.butChangePass.FlatAppearance.BorderSize = 0;
             this.butChangePass.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.butChangePass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.butChangePass.Font = new System.Drawing.Font("Modern No. 20", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.butChangePass.ForeColor = System.Drawing.Color.White;
             this.butChangePass.Location = new System.Drawing.Point(180, 475);
             this.butChangePass.Name = "butChangePass";
@@ -323,6 +325,7 @@ namespace PBL41
             this.groupBox1.Controls.Add(this.butOther);
             this.groupBox1.Controls.Add(this.butFemale);
             this.groupBox1.Controls.Add(this.radioMale);
+            this.groupBox1.Font = new System.Drawing.Font("Mistral", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.Black;
             this.groupBox1.Location = new System.Drawing.Point(203, 372);
             this.groupBox1.Name = "groupBox1";
@@ -333,10 +336,10 @@ namespace PBL41
             // butOther
             // 
             this.butOther.AutoSize = true;
-            this.butOther.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.butOther.Font = new System.Drawing.Font("Modern No. 20", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.butOther.Location = new System.Drawing.Point(162, 30);
             this.butOther.Name = "butOther";
-            this.butOther.Size = new System.Drawing.Size(72, 24);
+            this.butOther.Size = new System.Drawing.Size(69, 24);
             this.butOther.TabIndex = 0;
             this.butOther.TabStop = true;
             this.butOther.Text = "Other";
@@ -345,10 +348,10 @@ namespace PBL41
             // butFemale
             // 
             this.butFemale.AutoSize = true;
-            this.butFemale.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.butFemale.Font = new System.Drawing.Font("Modern No. 20", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.butFemale.Location = new System.Drawing.Point(71, 30);
             this.butFemale.Name = "butFemale";
-            this.butFemale.Size = new System.Drawing.Size(85, 24);
+            this.butFemale.Size = new System.Drawing.Size(83, 24);
             this.butFemale.TabIndex = 0;
             this.butFemale.TabStop = true;
             this.butFemale.Text = "FeMale";
@@ -357,10 +360,10 @@ namespace PBL41
             // radioMale
             // 
             this.radioMale.AutoSize = true;
-            this.radioMale.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioMale.Font = new System.Drawing.Font("Modern No. 20", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioMale.Location = new System.Drawing.Point(6, 30);
             this.radioMale.Name = "radioMale";
-            this.radioMale.Size = new System.Drawing.Size(66, 24);
+            this.radioMale.Size = new System.Drawing.Size(65, 24);
             this.radioMale.TabIndex = 0;
             this.radioMale.TabStop = true;
             this.radioMale.Text = "Male";
@@ -379,7 +382,7 @@ namespace PBL41
             // 
             this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.ForeColor = System.Drawing.Color.Black;
             this.textBox1.Location = new System.Drawing.Point(209, 235);
             this.textBox1.Multiline = true;
@@ -390,41 +393,42 @@ namespace PBL41
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(209, 323);
+            this.dateTimePicker1.Font = new System.Drawing.Font("Modern No. 20", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Location = new System.Drawing.Point(194, 320);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(250, 22);
+            this.dateTimePicker1.Size = new System.Drawing.Size(250, 26);
             this.dateTimePicker1.TabIndex = 31;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(118, 403);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 25);
+            this.label4.Size = new System.Drawing.Size(68, 22);
             this.label4.TabIndex = 30;
             this.label4.Text = "Gender";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(118, 320);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 25);
+            this.label2.Size = new System.Drawing.Size(48, 22);
             this.label2.TabIndex = 30;
             this.label2.Text = "Date";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(118, 235);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 25);
+            this.label1.Size = new System.Drawing.Size(56, 22);
             this.label1.TabIndex = 30;
             this.label1.Text = "Name";
             // 

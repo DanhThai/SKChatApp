@@ -47,6 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client\ChatClient.cs" />
+    <Compile Include="FormCall.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCall.Designer.cs">
+      <DependentUpon>FormCall.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormCaNhan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +87,9 @@
     <Compile Include="VBButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <EmbeddedResource Include="FormCall.resx">
+      <DependentUpon>FormCall.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormCaNhan.resx">
       <DependentUpon>FormCaNhan.cs</DependentUpon>
     </EmbeddedResource>
@@ -150,6 +159,11 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\Add.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Call1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\loop.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

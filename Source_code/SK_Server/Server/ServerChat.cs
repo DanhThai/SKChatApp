@@ -23,8 +23,8 @@ namespace Server
             IPAddress IP = IPAddress.Parse("127.0.0.1");
             server = new TcpListener(IP, PORT);
             server.Start();
-            Console.WriteLine("Server bắt đầu kết nối tới Server là:  " + server.LocalEndpoint);
-            Console.WriteLine("Đang chờ kết nối ...");
+            Console.WriteLine("Server starting : " + server.LocalEndpoint);
+            Console.WriteLine("watting connect  ...");
             while (true)
             {
                 Socket sk = server.AcceptSocket();

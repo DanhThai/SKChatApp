@@ -1,13 +1,9 @@
 ﻿using PBL41.Client;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PBL41
@@ -19,21 +15,31 @@ namespace PBL41
         {
             InitializeComponent();
 
-            Thread th = new Thread(()=>ReceiveMsg());
+            Thread th = new Thread(() => ReceiveMsg());
             th.IsBackground = true;
             th.Start();
 
             List<string> l = ChatClient.instance.getList();
-            DataTable dt = new DataTable();         
-            dt.Columns.Add("Name", typeof(string)); 
-            foreach(string i in l)
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Name", typeof(string));
+            foreach (string i in l)
             {
                 DataRow dr = dt.NewRow();
                 dr["Name"] = i;
                 dt.Rows.Add(dr);
-            }                         
-            dgvFriend.DataSource = dt;
-
+            }
+            dgvMess.DataSource = dt;
+            setDgv();
+        }
+        public void setDgv()
+        { 
+            dgvMess.Columns[0].ReadOnly = true;
+            //dgvMess.Rows.Add("Thảo");
+            //dgvMess.Rows.Add("Minh");
+            //dgvMess.Rows.Add("Băng");
+            //dgvMess.Rows.Add("Tuyên");
+            //dgvMess.Rows.Add("Torres");
+            
         }
         public void setListview(string msg)
         {
@@ -44,16 +50,16 @@ namespace PBL41
             }
             else
             {
-                string[] str= msg.Split(new string[] { " #send: " }, StringSplitOptions.None);
-                for (int i= 0; i< dgvFriend.Rows.Count; i++)
+                string[] str = msg.Split(new string[] { " #send: " }, StringSplitOptions.None);
+                for (int i = 0; i < dgvMess.Rows.Count; i++)
                 {
-                    string s = dgvFriend.Rows[i].Cells["Name"].Value.ToString();
-                    if(str[0].Equals(s))
+                    string s = dgvMess.Rows[i].Cells["Name"].Value.ToString();
+                    if (str[0].Equals(s))
                     {
-                        LViewMessage.Items.Add(s+" : "+str[1] + "\n");
+                        LViewMessage.Items.Add(s + " : " + str[1] + "\n");
                         break;
-                    }    
-                }                   
+                    }
+                }
             }
         }
         private void butSet_Click(object sender, EventArgs e)
@@ -85,20 +91,20 @@ namespace PBL41
 
         private void butSend_Click(object sender, EventArgs e)
         {
-            if(dgvFriend.SelectedRows.Count==1)
+            if (dgvMess.SelectedRows.Count == 1)
             {
-                
-                string name = dgvFriend.SelectedRows[0].Cells["Name"].Value.ToString();
-               
-                string s =  "Tôi : " + txtMessage.Text + "\n";
+
+                string name = dgvMess.SelectedRows[0].Cells["Name"].Value.ToString();
+
+                string s = "Tôi : " + txtMessage.Text + "\n";
                 LViewMessage.Items.Add(s);
                 //setListview(s);
-                ChatClient.instance.SendMsg(name+" #msg: "+ txtMessage.Text);
-            }                          
+                ChatClient.instance.SendMsg(name + " #msg: " + txtMessage.Text);
+            }
         }
         public void ReceiveMsg()
-        {          
-            string msg="";
+        {
+            string msg = "";
             try
             {
                 while (true)
@@ -121,7 +127,27 @@ namespace PBL41
             }
         }
 
- 
+        private void butVideo_Click(object sender, EventArgs e)
+        {
+            FormCall f = new FormCall();
+            f.Show();
+        }
+        private void txtSearch_Enter(object sender, EventArgs e)
+        {
+            if(txtSearch.Text == "Search")
+            {
+                txtSearch.Text = "";
+                txtSearch.ForeColor = Color.Black;
+            }
+        }
+        private void txtSearch_Leave(object sender, EventArgs e)
+        {
+            if(txtSearch.Text == "")
+            {
+                txtSearch.Text = "Search";
+                txtSearch.ForeColor = Color.Gray;
+            }
+        }
+
     }
-    
 }

@@ -44,9 +44,10 @@ D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Client\PBL41\PBL41\o
 D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Client\PBL41\PBL41\obj\Debug\PBL41.FormCaNhan.resources
 D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Client\PBL41\PBL41\obj\Debug\PBL41.FormFriend.resources
 D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Client\PBL41\PBL41\obj\Debug\PBL41.FormLG.resources
-D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Client\PBL41\PBL41\obj\Debug\PBL41.MainForm.resources
 D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Client\PBL41\PBL41\obj\Debug\PBL41.Properties.Resources.resources
 D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Client\PBL41\PBL41\obj\Debug\PBL41.csproj.GenerateResource.cache
 D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Client\PBL41\PBL41\obj\Debug\PBL41.csproj.CoreCompileInputs.cache
 D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Client\PBL41\PBL41\obj\Debug\PBL41.exe
 D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Client\PBL41\PBL41\obj\Debug\PBL41.pdb
+D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Client\PBL41\PBL41\obj\Debug\PBL41.FormCall.resources
+D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Client\PBL41\PBL41\obj\Debug\PBL41.MainForm.resources
