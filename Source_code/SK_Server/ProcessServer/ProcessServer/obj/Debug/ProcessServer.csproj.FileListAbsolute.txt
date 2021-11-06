@@ -1,0 +1,7 @@
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Server\ProcessServer\ProcessServer\bin\Debug\ProcessServer.exe.config
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Server\ProcessServer\ProcessServer\bin\Debug\ProcessServer.exe
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Server\ProcessServer\ProcessServer\bin\Debug\ProcessServer.pdb
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Server\ProcessServer\ProcessServer\obj\Debug\ProcessServer.csprojAssemblyReference.cache
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Server\ProcessServer\ProcessServer\obj\Debug\ProcessServer.csproj.CoreCompileInputs.cache
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Server\ProcessServer\ProcessServer\obj\Debug\ProcessServer.exe
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Server\ProcessServer\ProcessServer\obj\Debug\ProcessServer.pdb

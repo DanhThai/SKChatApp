@@ -83,9 +83,9 @@ namespace PBL41.Client
             //str= Encoding.ASCII.GetBytes(msg);
 
             byte[] str= new byte[100000];
-            stream.Read(str,0,(int)client.ReceiveBufferSize);           
+            int i=stream.Read(str,0,(int)client.ReceiveBufferSize);           
             //Console.WriteLine(Encoding.ASCII.GetString(str));
-            if (str != null)
+            if (i>0)
             {               
                 list = (List<string>)DeserializeData(str);
                 return "true";

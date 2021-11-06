@@ -8,19 +8,19 @@
     "net5.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Admin\\.nuget\\packages\\": {}
+    "C:\\Users\\PC\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\DoAn\\PBL4 HDH và Mang May Tinh\\SKChatApp\\Source_code\\SK_Server\\Server\\Server.csproj",
+      "projectUniqueName": "E:\\ĐỒ ÁN\\SKChatApp\\Source_code\\SK_Server\\Server\\Server.csproj",
       "projectName": "Server",
-      "projectPath": "D:\\DoAn\\PBL4 HDH và Mang May Tinh\\SKChatApp\\Source_code\\SK_Server\\Server\\Server.csproj",
-      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "D:\\DoAn\\PBL4 HDH và Mang May Tinh\\SKChatApp\\Source_code\\SK_Server\\Server\\obj\\",
+      "projectPath": "E:\\ĐỒ ÁN\\SKChatApp\\Source_code\\SK_Server\\Server\\Server.csproj",
+      "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+      "outputPath": "E:\\ĐỒ ÁN\\SKChatApp\\Source_code\\SK_Server\\Server\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -60,7 +60,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

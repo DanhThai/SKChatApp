@@ -1,4 +1,5 @@
-
+create database SKChat
+go
 use SKChat
 go 
 create table Person

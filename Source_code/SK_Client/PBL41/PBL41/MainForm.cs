@@ -11,13 +11,12 @@ namespace PBL41
     public partial class MainForm : Form
     {
         private delegate void SafeCallDelegate(string text);
+        private static List<ListMessage> listMS;
         public MainForm()
         {
             InitializeComponent();
-
-            Thread th = new Thread(() => ReceiveMsg());
-            th.IsBackground = true;
-            th.Start();
+            listMS = new List<ListMessage>();
+            
 
             List<string> l = ChatClient.instance.getList();
             DataTable dt = new DataTable();
@@ -27,20 +26,34 @@ namespace PBL41
                 DataRow dr = dt.NewRow();
                 dr["Name"] = i;
                 dt.Rows.Add(dr);
+                ListMessage lms = new ListMessage(i);
+                listMS.Add(lms);
             }
-            dgvMess.DataSource = dt;
-            setDgv();
+            dgvFriend.DataSource = dt;
+            dgvFriend.Columns[0].ReadOnly = true;
+
+
+            Thread th = new Thread(() => ReceiveMsg());
+            th.IsBackground = true;
+            th.Start();
         }
-        public void setDgv()
-        { 
-            dgvMess.Columns[0].ReadOnly = true;
-            //dgvMess.Rows.Add("Thảo");
-            //dgvMess.Rows.Add("Minh");
-            //dgvMess.Rows.Add("Băng");
-            //dgvMess.Rows.Add("Tuyên");
-            //dgvMess.Rows.Add("Torres");
-            
+        private void txtSearch_Enter(object sender, EventArgs e)
+        {
+            if (txtSearch.Text == "Search")
+            {
+                txtSearch.Text = "";
+                txtSearch.ForeColor = Color.Black;
+            }
         }
+        private void txtSearch_Leave(object sender, EventArgs e)
+        {
+            if (txtSearch.Text == "")
+            {
+                txtSearch.Text = "Search";
+                txtSearch.ForeColor = Color.Gray;
+            }
+        }
+
         public void setListview(string msg)
         {
             if (LViewMessage.InvokeRequired)
@@ -51,16 +64,23 @@ namespace PBL41
             else
             {
                 string[] str = msg.Split(new string[] { " #send: " }, StringSplitOptions.None);
-                for (int i = 0; i < dgvMess.Rows.Count; i++)
+                string name = dgvFriend.SelectedRows[0].Cells["Name"].Value.ToString();
+                if (name.Equals(str[0]))
                 {
-                    string s = dgvMess.Rows[i].Cells["Name"].Value.ToString();
-                    if (str[0].Equals(s))
-                    {
-                        LViewMessage.Items.Add(s + " : " + str[1] + "\n");
-                        break;
-                    }
+                    LViewMessage.Items.Add(str[0] + ": " + str[1]);
                 }
+                foreach (ListMessage i in listMS)
+                {
+                    if(i.Name.Equals(str[0]))
+                    {
+                        i.addMessage(str[0] + ": " + str[1]);
+                        break;
+                    }    
+                       
+                }                                 
             }
+
+
         }
         private void butSet_Click(object sender, EventArgs e)
         {
@@ -91,15 +111,21 @@ namespace PBL41
 
         private void butSend_Click(object sender, EventArgs e)
         {
-            if (dgvMess.SelectedRows.Count == 1)
+            if (dgvFriend.SelectedRows.Count == 1)
             {
-
-                string name = dgvMess.SelectedRows[0].Cells["Name"].Value.ToString();
-
+                string name = dgvFriend.SelectedRows[0].Cells["Name"].Value.ToString();
                 string s = "Tôi : " + txtMessage.Text + "\n";
-                LViewMessage.Items.Add(s);
-                //setListview(s);
+                LViewMessage.Items.Add(s);             
                 ChatClient.instance.SendMsg(name + " #msg: " + txtMessage.Text);
+                // add message into list massage
+                foreach(ListMessage i in listMS)
+                {
+                    if (i.Name == name)
+                    {
+                        i.addMessage(s);
+                        break;
+                    }                       
+                }
             }
         }
         public void ReceiveMsg()
@@ -116,7 +142,6 @@ namespace PBL41
                     }
                     else
                     {
-                        Console.WriteLine(msg);
                         setListview(msg);
                     }
                 }
@@ -131,23 +156,21 @@ namespace PBL41
         {
             FormCall f = new FormCall();
             f.Show();
-        }
-        private void txtSearch_Enter(object sender, EventArgs e)
-        {
-            if(txtSearch.Text == "Search")
-            {
-                txtSearch.Text = "";
-                txtSearch.ForeColor = Color.Black;
-            }
-        }
-        private void txtSearch_Leave(object sender, EventArgs e)
-        {
-            if(txtSearch.Text == "")
-            {
-                txtSearch.Text = "Search";
-                txtSearch.ForeColor = Color.Gray;
-            }
-        }
+        }       
 
+        private void dgvFriend_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string name = dgvFriend.SelectedRows[0].Cells["Name"].Value.ToString();
+            LViewMessage.Items.Clear();
+            foreach (ListMessage i in listMS)
+            {
+                if (i.Name == name)
+                {
+                    foreach (string j in i.getMessage())
+                        LViewMessage.Items.Add(j);
+                    break;
+                }
+            }
+        }
     }
 }

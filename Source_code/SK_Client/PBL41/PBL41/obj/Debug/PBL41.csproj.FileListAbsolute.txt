@@ -51,3 +51,4 @@ D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Client\PBL41\PBL41\o
 D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Client\PBL41\PBL41\obj\Debug\PBL41.pdb
 D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Client\PBL41\PBL41\obj\Debug\PBL41.FormCall.resources
 D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Client\PBL41\PBL41\obj\Debug\PBL41.MainForm.resources
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Client\PBL41\PBL41\obj\Debug\PBL41.FormCall.resources

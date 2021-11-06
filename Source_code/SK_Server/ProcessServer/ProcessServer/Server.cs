@@ -1,25 +1,26 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 
-
-namespace Server
+namespace ProcessServer
 {
-    class ServerChat
+    class Server
     {
         private const int PORT = 2001;
         private List<Socket> ListClient = null;
         private List<string> list = null;
-        TcpListener server;      
-        public void ConnectSV()
+        TcpListener server;
+        public void startServer()
         {
             ListClient = new List<Socket>();
-            list= new List<string>();
+            list = new List<string>();
             IPAddress IP = IPAddress.Parse("127.0.0.1");
             server = new TcpListener(IP, PORT);
             server.Start();
@@ -65,10 +66,10 @@ namespace Server
                         Console.WriteLine(msg);
                         if (msg.Contains("#Login"))
                             processLogin(msg, stream);
-                        else if(msg.Contains("#msg"))
-                        { 
-                            string ipsend=sk.RemoteEndPoint.ToString();                                                  
-                            processSendMsg(msg,ipsend);
+                        else if (msg.Contains("#msg"))
+                        {
+                            string ipsend = sk.RemoteEndPoint.ToString();
+                            processSendMsg(msg, ipsend);
                         }
                         else
                             continue;
@@ -92,16 +93,16 @@ namespace Server
             if (str[1] == "user" && str[2] == "pass")
             {
                 //writer.WriteLine("true");
-                string s=Encoding.ASCII.GetString(SerializeData());
+                string s = Encoding.ASCII.GetString(SerializeData());
                 Console.WriteLine(s);
                 writer.WriteLine(s);
                 //stream.Write(SerializeData());
             }
             else
                 writer.WriteLine("false");
-                
+
             //else
-                //writer.WriteLine("false");
+            //writer.WriteLine("false");
         }
 
         public byte[] SerializeData()
@@ -111,7 +112,7 @@ namespace Server
             bf1.Serialize(ms, (object)list);
             return ms.ToArray();
         }
-        public void processSendMsg(string msg,string ipsend)
+        public void processSendMsg(string msg, string ipsend)
         {
             string[] str = msg.Split(new string[] { " #msg: " }, StringSplitOptions.None);
             string ip = str[0];
