@@ -33,8 +33,8 @@ go
 create table Box_chat
 (
 	Wait_mess Ntext,
-	Id_group int,
-	Id int,
+	Id_group int not null,
+	Id int not null,
 	CONSTRAINT FK_Group foreign key(Id_group) references Group_chat(Id_group),
 	CONSTRAINT FK_Id2 FOREIGN KEY (Id) references Person(Id),
 )
