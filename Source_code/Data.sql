@@ -21,12 +21,12 @@ insert into Group_chat values(4,'Gr4');
 insert into Group_chat values(5,'Gr5');
 
 go
-insert into Box_chat values(null,1,1);
-insert into Box_chat values(null,1,2);
-insert into Box_chat values(null,1,3);
-insert into Box_chat values(null,2,2);
-insert into Box_chat values(null,2,3);
-insert into Box_chat values(null,2,4);
-insert into Box_chat values(null,3,1);
-insert into Box_chat values(null,3,5);
-insert into Box_chat values(null,3,3);
+insert into Box_chat values(1,null,1,1);
+insert into Box_chat values(2,null,1,2);
+insert into Box_chat values(3,null,1,3);
+insert into Box_chat values(4,null,2,2);
+insert into Box_chat values(5,null,2,3);
+insert into Box_chat values(6,null,2,4);
+insert into Box_chat values(7,null,3,1);
+insert into Box_chat values(8,null,3,5);
+insert into Box_chat values(9,null,3,3);
