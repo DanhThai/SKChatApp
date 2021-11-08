@@ -32,6 +32,7 @@ create table Group_chat
 go
 create table Box_chat
 (
+	STT int primary key,
 	Wait_mess Ntext,
 	Id_group int not null,
 	Id int not null,
