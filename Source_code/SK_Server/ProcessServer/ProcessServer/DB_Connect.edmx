@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SKChatModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Name_user" />
+          </Key>
+          <Property Name="Name_user" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Pass" Type="varchar" MaxLength="20" />
+          <Property Name="Id" Type="int" />
+        </EntityType>
+        <EntityType Name="Box_chat">
+          <Key>
+            <PropertyRef Name="STT" />
+          </Key>
+          <Property Name="STT" Type="int" Nullable="false" />
+          <Property Name="Wait_mess" Type="ntext" />
+          <Property Name="Id_group" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Group_chat">
+          <Key>
+            <PropertyRef Name="Id_group" />
+          </Key>
+          <Property Name="Id_group" Type="int" Nullable="false" />
+          <Property Name="Name_group" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Ipaddress" Type="varchar" MaxLength="25" />
+          <Property Name="Full_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gender" Type="bit" />
+          <Property Name="Birthday" Type="date" />
+          <Property Name="Img" Type="image" />
+        </EntityType>
+        <Association Name="FK_Group">
+          <End Role="Group_chat" Type="Self.Group_chat" Multiplicity="1" />
+          <End Role="Box_chat" Type="Self.Box_chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group_chat">
+              <PropertyRef Name="Id_group" />
+            </Principal>
+            <Dependent Role="Box_chat">
+              <PropertyRef Name="Id_group" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Id1">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Id2">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Box_chat" Type="Self.Box_chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Box_chat">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SKChatModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Box_chat" EntityType="Self.Box_chat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Group_chat" EntityType="Self.Group_chat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Group" Association="Self.FK_Group">
+            <End Role="Group_chat" EntitySet="Group_chat" />
+            <End Role="Box_chat" EntitySet="Box_chat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Id1" Association="Self.FK_Id1">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Account" EntitySet="Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Id2" Association="Self.FK_Id2">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Box_chat" EntitySet="Box_chat" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SKChatModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Name_user" />
+          </Key>
+          <Property Name="Name_user" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pass" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Id" Type="Int32" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Id1" FromRole="Account" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Box_chat">
+          <Key>
+            <PropertyRef Name="STT" />
+          </Key>
+          <Property Name="STT" Type="Int32" Nullable="false" />
+          <Property Name="Wait_mess" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Id_group" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Group_chat" Relationship="Self.FK_Group" FromRole="Box_chat" ToRole="Group_chat" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Id2" FromRole="Box_chat" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Group_chat">
+          <Key>
+            <PropertyRef Name="Id_group" />
+          </Key>
+          <Property Name="Id_group" Type="Int32" Nullable="false" />
+          <Property Name="Name_group" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Box_chat" Relationship="Self.FK_Group" FromRole="Group_chat" ToRole="Box_chat" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Ipaddress" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Full_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="Boolean" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="Img" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Accounts" Relationship="Self.FK_Id1" FromRole="Person" ToRole="Account" />
+          <NavigationProperty Name="Box_chat" Relationship="Self.FK_Id2" FromRole="Person" ToRole="Box_chat" />
+        </EntityType>
+        <Association Name="FK_Id1">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Group">
+          <End Role="Group_chat" Type="Self.Group_chat" Multiplicity="1" />
+          <End Role="Box_chat" Type="Self.Box_chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group_chat">
+              <PropertyRef Name="Id_group" />
+            </Principal>
+            <Dependent Role="Box_chat">
+              <PropertyRef Name="Id_group" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Id2">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Box_chat" Type="Self.Box_chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Box_chat">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_Model" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="Self.Account" />
+          <EntitySet Name="Box_chat" EntityType="Self.Box_chat" />
+          <EntitySet Name="Group_chat" EntityType="Self.Group_chat" />
+          <EntitySet Name="People" EntityType="Self.Person" />
+          <AssociationSet Name="FK_Id1" Association="Self.FK_Id1">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Group" Association="Self.FK_Group">
+            <End Role="Group_chat" EntitySet="Group_chat" />
+            <End Role="Box_chat" EntitySet="Box_chat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Id2" Association="Self.FK_Id2">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Box_chat" EntitySet="Box_chat" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SKChatModelStoreContainer" CdmEntityContainer="DB_Model">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="SKChatModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="Name_user" ColumnName="Name_user" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Box_chat">
+            <EntityTypeMapping TypeName="SKChatModel.Box_chat">
+              <MappingFragment StoreEntitySet="Box_chat">
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="Wait_mess" ColumnName="Wait_mess" />
+                <ScalarProperty Name="Id_group" ColumnName="Id_group" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Group_chat">
+            <EntityTypeMapping TypeName="SKChatModel.Group_chat">
+              <MappingFragment StoreEntitySet="Group_chat">
+                <ScalarProperty Name="Id_group" ColumnName="Id_group" />
+                <ScalarProperty Name="Name_group" ColumnName="Name_group" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="SKChatModel.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Ipaddress" ColumnName="Ipaddress" />
+                <ScalarProperty Name="Full_name" ColumnName="Full_name" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Img" ColumnName="Img" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

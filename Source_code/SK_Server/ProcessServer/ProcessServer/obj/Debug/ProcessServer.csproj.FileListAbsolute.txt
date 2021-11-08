@@ -5,3 +5,10 @@ E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Server\ProcessServer\ProcessServer\obj\Deb
 E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Server\ProcessServer\ProcessServer\obj\Debug\ProcessServer.csproj.CoreCompileInputs.cache
 E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Server\ProcessServer\ProcessServer\obj\Debug\ProcessServer.exe
 E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Server\ProcessServer\ProcessServer\obj\Debug\ProcessServer.pdb
+D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Server\ProcessServer\ProcessServer\bin\Debug\ProcessServer.exe.config
+D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Server\ProcessServer\ProcessServer\bin\Debug\ProcessServer.exe
+D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Server\ProcessServer\ProcessServer\bin\Debug\ProcessServer.pdb
+D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Server\ProcessServer\ProcessServer\obj\Debug\ProcessServer.csproj.AssemblyReference.cache
+D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Server\ProcessServer\ProcessServer\obj\Debug\ProcessServer.csproj.CoreCompileInputs.cache
+D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Server\ProcessServer\ProcessServer\obj\Debug\ProcessServer.exe
+D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Server\ProcessServer\ProcessServer\obj\Debug\ProcessServer.pdb
