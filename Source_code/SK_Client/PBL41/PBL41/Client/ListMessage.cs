@@ -8,11 +8,11 @@ namespace PBL41.Client
 {
     class ListMessage
     {
-        public string Name{get; set;}
+        public int ID{get; set;}
         public List<string> Message;
-        public ListMessage(string name)
+        public ListMessage(int id)
         {
-            this.Name = name;
+            this.ID = id;
             this.Message = new List<string>();
         }
 

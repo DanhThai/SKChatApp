@@ -12,3 +12,10 @@ D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Server\ProcessServer
 D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Server\ProcessServer\ProcessServer\obj\Debug\ProcessServer.csproj.CoreCompileInputs.cache
 D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Server\ProcessServer\ProcessServer\obj\Debug\ProcessServer.exe
 D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Server\ProcessServer\ProcessServer\obj\Debug\ProcessServer.pdb
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Server\ProcessServer\ProcessServer\bin\Debug\EntityFramework.dll
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Server\ProcessServer\ProcessServer\bin\Debug\EntityFramework.SqlServer.dll
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Server\ProcessServer\ProcessServer\bin\Debug\EntityFramework.xml
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Server\ProcessServer\ProcessServer\bin\Debug\EntityFramework.SqlServer.xml
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Server\ProcessServer\ProcessServer\obj\Debug\ProcessServer.csproj.CopyComplete
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Server\ProcessServer\ProcessServer\bin\Debug\Friend.dll
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Server\ProcessServer\ProcessServer\bin\Debug\Friend.pdb

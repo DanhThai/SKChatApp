@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Friend;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Sockets;
@@ -12,7 +13,7 @@ namespace PBL41.Client
         private TcpClient client;
         private NetworkStream stream;
         private static ChatClient _Instance;
-        private List<string> list;
+        private List<friend> listFriend;
         public static ChatClient instance
         {
             get
@@ -30,6 +31,7 @@ namespace PBL41.Client
                 client.Connect("127.0.0.1", 2001);
                 stream = client.GetStream();
                 Console.WriteLine("Kết nối tới server");
+                listFriend = new List<friend>();
             }
             catch (Exception e)
             {
@@ -72,31 +74,67 @@ namespace PBL41.Client
             ms.Position = 0;
             return bf1.Deserialize(ms);
         }
-        public List<string> getList()
+        public List<friend> getList()
         {
-            return list;
+            return listFriend;
         }
-        public string ReceiveLogin()
+        public bool ReceiveLogin()
         {
             //var reader = new StreamReader(stream);
             //string msg = reader.ReadLine();
             //str= Encoding.ASCII.GetBytes(msg);
+            bool ck = false;
+            while(true)
+            {
+                byte[] str = new byte[100000];
 
-            byte[] str= new byte[100000];
-            int i=stream.Read(str,0,(int)client.ReceiveBufferSize);           
-            //Console.WriteLine(Encoding.ASCII.GetString(str));
-            if (i>0)
-            {               
-                list = (List<string>)DeserializeData(str);
-                return "true";
+                int i = stream.Read(str, 0, (int)client.ReceiveBufferSize);
+                string s = Encoding.ASCII.GetString(str);
+                //Console.WriteLine(s);
+                if (i > 0)
+                {
+                    ck = true;
+                    
+                    if (s.Contains("#false"))
+                    {
+                        ck = false;
+                        break;
+                    }
+                    else if (s.Contains("#done"))
+                    {
+                        break;
+                    }                         
+                    else
+                    {
+                        friend fr = (friend)DeserializeData(str);
+                        listFriend.Add(fr);                     
+                    }                   
+                }
+                else
+                    break;
             }
-            return "false";
+            return ck;
+
         }
         public string ReceiveMsg()
         {
             var reader = new StreamReader(stream);
             string msg = reader.ReadLine();
-            
+            if (msg.Contains("#UpdateIP"))
+            {
+                // msg= "id #UpdateIP: ipnew"
+                string[] str = msg.Split(new string[] { " #UpdateIP: " }, StringSplitOptions.None);
+                for (int i = 0; i < listFriend.Count; i++)
+                {
+                    
+                    if (listFriend[i].ID ==Convert.ToInt32(str[0]))
+                    {
+                        listFriend[i].IP = str[1];
+                        listFriend[i].UpdateIP = true;
+                        break;
+                    }
+                }
+            }
             return msg;
         }
 

@@ -63,13 +63,13 @@ namespace ProcessServer
                     else
                     {
                         string msg = reader.ReadLine();
+                        string ipsend = sk.RemoteEndPoint.ToString();
                         Console.WriteLine(msg);
                         if (msg.Contains("#Login"))
-                            processLogin(msg, stream);
+                            processLogin(msg, ipsend, stream);
                         else if (msg.Contains("#msg"))
-                        {
-                            string ipsend = sk.RemoteEndPoint.ToString();
-                            processSendMsg(msg, ipsend);
+                        {                         
+                            processSendMsg(msg, sk);
                         }
                         else
                             continue;
@@ -85,24 +85,33 @@ namespace ProcessServer
                 Console.WriteLine(e.Message);
             }
         }
-        public void processLogin(string msg, NetworkStream stream)
+        public void processLogin(string msg,string ip, NetworkStream stream)
         {
             string[] str = msg.Split(' ');
             var writer = new StreamWriter(stream);
             writer.AutoFlush = true;
-            if (str[1] == "user" && str[2] == "pass")
-            {
-                //writer.WriteLine("true");
-                string s = Encoding.ASCII.GetString(SerializeData());
-                Console.WriteLine(s);
-                writer.WriteLine(s);
-                //stream.Write(SerializeData());
-            }
-            else
-                writer.WriteLine("false");
+            List<byte[]> data = CheckAccount.instance.checkLogin(str[1], str[2],ip);
 
-            //else
-            //writer.WriteLine("false");
+            if(data!=null)
+            {
+                foreach(byte[] i in data)
+                {
+                    string ss = Encoding.ASCII.GetString(i);
+                    Console.WriteLine(ss);
+                    //writer.WriteLine(i);
+                    stream.Write(i,0,i.Length);
+                }
+                Thread.Sleep(30);
+                string s= "#done";
+                byte[] bytes = Encoding.ASCII.GetBytes(s);
+                stream.Write(bytes, 0, bytes.Length);
+            }   
+            else
+            {
+                string s = "#false";
+                byte[] bytes = Encoding.ASCII.GetBytes(s);
+                stream.Write(bytes, 0, bytes.Length);
+            }    
         }
 
         public byte[] SerializeData()
@@ -112,10 +121,47 @@ namespace ProcessServer
             bf1.Serialize(ms, (object)list);
             return ms.ToArray();
         }
-        public void processSendMsg(string msg, string ipsend)
+        public void processSendMsg(string msg, Socket sender)
         {
-            string[] str = msg.Split(new string[] { " #msg: " }, StringSplitOptions.None);
-            string ip = str[0];
+            
+            
+            string[] str = msg.Split(new string[] {" #msg: "}, StringSplitOptions.None);
+            //mess is message
+            string mess = str[1];
+            string []check = str[0].Split(new string[] { " " }, StringSplitOptions.None);
+            int id = CheckAccount.instance.getIDbyIP(sender.RemoteEndPoint.ToString());
+            Console.WriteLine(str[1]+check[1]);
+            // msg= "#ID: id #msg: msg"
+            if (msg.Contains("#ID"))
+            {
+                //ip reciever
+                string ip = CheckAccount.instance.checkIPbyID(Convert.ToInt32(check[1]));
+                //update ip for client
+                if(ip!=null)
+                {
+                    var stream = new NetworkStream(sender);
+                    var writer = new StreamWriter(stream);
+                    writer.AutoFlush = true;
+                    writer.WriteLine(check[1] + " #UpdateIP: " + ip);
+                    
+                    foreach (Socket i in ListClient)
+                    {
+                        if (ip.Equals(i.RemoteEndPoint.ToString()))
+                        {
+                            sendMsg(mess, ip, id);
+                        }
+                    }
+                }                                    
+            }
+            // msg= "#IP: ip #msg: msg"
+            else
+            {
+
+                sendMsg(mess, check[1], id);
+            }    
+        }
+        public void sendMsg(string msg,string ip,int id)
+        {
             NetworkStream stream = null;
             foreach (var i in ListClient)
             {
@@ -126,8 +172,9 @@ namespace ProcessServer
                         stream = new NetworkStream(i);
                         var writer = new StreamWriter(stream);
                         writer.AutoFlush = true;
-                        writer.WriteLine(ipsend + " #send: " + str[1]);
+                        writer.WriteLine(id + " #send: " +msg);
                         stream.Close();
+                        break;
                     }
                 }
                 catch (Exception ex)

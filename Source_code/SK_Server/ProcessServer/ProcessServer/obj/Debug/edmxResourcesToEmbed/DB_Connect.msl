@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SKChatModelStoreContainer" CdmEntityContainer="DB_Model">
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="SKChatModel.Account">
+        <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="Name_user" ColumnName="Name_user" />
+          <ScalarProperty Name="Pass" ColumnName="Pass" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Box_chat">
+      <EntityTypeMapping TypeName="SKChatModel.Box_chat">
+        <MappingFragment StoreEntitySet="Box_chat">
+          <ScalarProperty Name="STT" ColumnName="STT" />
+          <ScalarProperty Name="Wait_mess" ColumnName="Wait_mess" />
+          <ScalarProperty Name="Id_group" ColumnName="Id_group" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Group_chat">
+      <EntityTypeMapping TypeName="SKChatModel.Group_chat">
+        <MappingFragment StoreEntitySet="Group_chat">
+          <ScalarProperty Name="Id_group" ColumnName="Id_group" />
+          <ScalarProperty Name="Name_group" ColumnName="Name_group" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="People">
+      <EntityTypeMapping TypeName="SKChatModel.Person">
+        <MappingFragment StoreEntitySet="Person">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Ipaddress" ColumnName="Ipaddress" />
+          <ScalarProperty Name="Full_name" ColumnName="Full_name" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="Img" ColumnName="Img" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,6 @@
+E:\ĐỒ ÁN\SKChatApp\Friend\Friend\bin\Debug\Friend.dll
+E:\ĐỒ ÁN\SKChatApp\Friend\Friend\bin\Debug\Friend.pdb
+E:\ĐỒ ÁN\SKChatApp\Friend\Friend\obj\Debug\Friend.csprojAssemblyReference.cache
+E:\ĐỒ ÁN\SKChatApp\Friend\Friend\obj\Debug\Friend.csproj.CoreCompileInputs.cache
+E:\ĐỒ ÁN\SKChatApp\Friend\Friend\obj\Debug\Friend.dll
+E:\ĐỒ ÁN\SKChatApp\Friend\Friend\obj\Debug\Friend.pdb

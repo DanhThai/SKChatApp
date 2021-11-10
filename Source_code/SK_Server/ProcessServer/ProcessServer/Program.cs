@@ -12,6 +12,15 @@ namespace ProcessServer
         {
             Server pg = new Server();
             pg.startServer();
+            //test();
         }
+        //public static void test()
+        //{
+        //    ListFriend l = new ListFriend();
+        //    l.addFriend(1);
+        //    List<byte[]> data = l.getFriend();
+        //    string s= Encoding.ASCII.GetString(data[1]);
+        //    Console.WriteLine(s);
+        //}
     }
 }

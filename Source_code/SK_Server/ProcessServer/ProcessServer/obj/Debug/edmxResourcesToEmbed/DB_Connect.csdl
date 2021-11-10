@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SKChatModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="Name_user" />
+    </Key>
+    <Property Name="Name_user" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Pass" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Id" Type="Int32" />
+    <NavigationProperty Name="Person" Relationship="Self.FK_Id1" FromRole="Account" ToRole="Person" />
+  </EntityType>
+  <EntityType Name="Box_chat">
+    <Key>
+      <PropertyRef Name="STT" />
+    </Key>
+    <Property Name="STT" Type="Int32" Nullable="false" />
+    <Property Name="Wait_mess" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Id_group" Type="Int32" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Group_chat" Relationship="Self.FK_Group" FromRole="Box_chat" ToRole="Group_chat" />
+    <NavigationProperty Name="Person" Relationship="Self.FK_Id2" FromRole="Box_chat" ToRole="Person" />
+  </EntityType>
+  <EntityType Name="Group_chat">
+    <Key>
+      <PropertyRef Name="Id_group" />
+    </Key>
+    <Property Name="Id_group" Type="Int32" Nullable="false" />
+    <Property Name="Name_group" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Box_chat" Relationship="Self.FK_Group" FromRole="Group_chat" ToRole="Box_chat" />
+  </EntityType>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Ipaddress" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Full_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="Boolean" />
+    <Property Name="Birthday" Type="DateTime" Precision="0" />
+    <Property Name="Img" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Accounts" Relationship="Self.FK_Id1" FromRole="Person" ToRole="Account" />
+    <NavigationProperty Name="Box_chat" Relationship="Self.FK_Id2" FromRole="Person" ToRole="Box_chat" />
+  </EntityType>
+  <Association Name="FK_Id1">
+    <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Group">
+    <End Role="Group_chat" Type="Self.Group_chat" Multiplicity="1" />
+    <End Role="Box_chat" Type="Self.Box_chat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group_chat">
+        <PropertyRef Name="Id_group" />
+      </Principal>
+      <Dependent Role="Box_chat">
+        <PropertyRef Name="Id_group" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Id2">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="Box_chat" Type="Self.Box_chat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Box_chat">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DB_Model" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Accounts" EntityType="Self.Account" />
+    <EntitySet Name="Box_chat" EntityType="Self.Box_chat" />
+    <EntitySet Name="Group_chat" EntityType="Self.Group_chat" />
+    <EntitySet Name="People" EntityType="Self.Person" />
+    <AssociationSet Name="FK_Id1" Association="Self.FK_Id1">
+      <End Role="Person" EntitySet="People" />
+      <End Role="Account" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Group" Association="Self.FK_Group">
+      <End Role="Group_chat" EntitySet="Group_chat" />
+      <End Role="Box_chat" EntitySet="Box_chat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Id2" Association="Self.FK_Id2">
+      <End Role="Person" EntitySet="People" />
+      <End Role="Box_chat" EntitySet="Box_chat" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

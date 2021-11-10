@@ -40,8 +40,8 @@ namespace PBL41
             else 
             {
                 ChatClient.instance.SendLogin(txtUser1.Text, txtPass1.Text);
-                string check = ChatClient.instance.ReceiveLogin();
-                if(check=="true")
+                bool check = ChatClient.instance.ReceiveLogin();
+                if(check)
                 {
                     MainForm mf = new MainForm();
                     mf.FormClosed += new FormClosedEventHandler(MainForm_Closed);

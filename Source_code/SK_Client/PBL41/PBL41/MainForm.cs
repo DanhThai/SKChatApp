@@ -1,4 +1,5 @@
-﻿using PBL41.Client;
+﻿using Friend;
+using PBL41.Client;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -16,26 +17,28 @@ namespace PBL41
         {
             InitializeComponent();
             listMS = new List<ListMessage>();
-            
 
-            List<string> l = ChatClient.instance.getList();
-            DataTable dt = new DataTable();
-            dt.Columns.Add("Name", typeof(string));
-            foreach (string i in l)
-            {
-                DataRow dr = dt.NewRow();
-                dr["Name"] = i;
-                dt.Rows.Add(dr);
-                ListMessage lms = new ListMessage(i);
-                listMS.Add(lms);
-            }
-            dgvFriend.DataSource = dt;
-            dgvFriend.Columns[0].ReadOnly = true;
-
+            setDgv();
 
             Thread th = new Thread(() => ReceiveMsg());
             th.IsBackground = true;
             th.Start();
+        }
+        public void setDgv()
+        {
+            List<friend> l = ChatClient.instance.getList();
+
+            foreach (friend i in l)
+            {
+                ListMessage lms = new ListMessage(i.ID);
+                listMS.Add(lms);
+            }
+            dgvFriend.DataSource = l;
+            dgvFriend.Columns["ID"].Visible = false;
+            dgvFriend.Columns["IP"].Visible = false;
+            dgvFriend.Columns["UpdateIP"].Visible = false;
+            dgvFriend.Columns["Name"].ReadOnly = true;
+            lbName.Text = dgvFriend.Rows[0].Cells["Name"].Value.ToString();
         }
         private void txtSearch_Enter(object sender, EventArgs e)
         {
@@ -64,16 +67,18 @@ namespace PBL41
             else
             {
                 string[] str = msg.Split(new string[] { " #send: " }, StringSplitOptions.None);
+                string id = dgvFriend.SelectedRows[0].Cells["ID"].Value.ToString();
                 string name = dgvFriend.SelectedRows[0].Cells["Name"].Value.ToString();
-                if (name.Equals(str[0]))
+                if (id.Equals(str[0]))
                 {
-                    LViewMessage.Items.Add(str[0] + ": " + str[1]);
+                    LViewMessage.Items.Add(name + ": " + str[1]);
                 }
                 foreach (ListMessage i in listMS)
                 {
-                    if(i.Name.Equals(str[0]))
+                    if(i.ID==Convert.ToInt32( str[0]))
                     {
-                        i.addMessage(str[0] + ": " + str[1]);
+                        Console.WriteLine(str[1]);
+                        i.addMessage(name + ": " + str[1]);
                         break;
                     }    
                        
@@ -113,14 +118,26 @@ namespace PBL41
         {
             if (dgvFriend.SelectedRows.Count == 1)
             {
-                string name = dgvFriend.SelectedRows[0].Cells["Name"].Value.ToString();
+                string msg;
+                bool upIp= (bool)dgvFriend.SelectedRows[0].Cells["UpdateIP"].Value;
+                int id = (int)dgvFriend.SelectedRows[0].Cells["ID"].Value;
+                if (upIp)
+                {
+                    string ip = dgvFriend.SelectedRows[0].Cells["IP"].Value.ToString();
+                    msg = "#IP: " + ip + " #msg: " + txtMessage.Text;
+                }
+                else
+                {
+                    
+                    msg = "#ID: " + id +" #msg: "+ txtMessage.Text;
+                }                                                   
                 string s = "Tôi : " + txtMessage.Text + "\n";
                 LViewMessage.Items.Add(s);             
-                ChatClient.instance.SendMsg(name + " #msg: " + txtMessage.Text);
+                ChatClient.instance.SendMsg(msg);
                 // add message into list massage
                 foreach(ListMessage i in listMS)
                 {
-                    if (i.Name == name)
+                    if (i.ID == id)
                     {
                         i.addMessage(s);
                         break;
@@ -130,9 +147,10 @@ namespace PBL41
         }
         public void ReceiveMsg()
         {
-            string msg = "";
+           
             try
             {
+                string msg = "";
                 while (true)
                 {
                     msg = ChatClient.instance.ReceiveMsg();
@@ -142,7 +160,12 @@ namespace PBL41
                     }
                     else
                     {
-                        setListview(msg);
+                        if(msg.Contains("#UpdateIP"))
+                        {
+                            setDgv();
+                        }   
+                        else
+                            setListview(msg);
                     }
                 }
             }
@@ -160,11 +183,12 @@ namespace PBL41
 
         private void dgvFriend_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            string name = dgvFriend.SelectedRows[0].Cells["Name"].Value.ToString();
+            int id = (int)dgvFriend.SelectedRows[0].Cells["ID"].Value;
+            lbName.Text= dgvFriend.SelectedRows[0].Cells["Name"].Value.ToString();
             LViewMessage.Items.Clear();
             foreach (ListMessage i in listMS)
             {
-                if (i.Name == name)
+                if (i.ID == id)
                 {
                     foreach (string j in i.getMessage())
                         LViewMessage.Items.Add(j);

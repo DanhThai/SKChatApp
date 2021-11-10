@@ -28,6 +28,6 @@ namespace ProcessServer
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<Box_chat> Box_chat { get; set; }
         public virtual DbSet<Group_chat> Group_chat { get; set; }
-        public virtual DbSet<Person> People { get; set; }
+        public virtual DbSet<Person> Person { get; set; }
     }
 }
