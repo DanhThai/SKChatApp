@@ -35,25 +35,26 @@ namespace PBL41
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureAvt = new System.Windows.Forms.PictureBox();
+            this.butFriend = new CustomButton.VBButton();
+            this.butSet = new CustomButton.VBButton();
+            this.butMess = new CustomButton.VBButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
+            this.btnSearch = new CustomButton.VBButton();
             this.panelMes = new System.Windows.Forms.Panel();
+            this.btnCreate = new CustomButton.VBButton();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.dgvFriend = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
             this.LViewMessage = new System.Windows.Forms.ListView();
             this.lbName = new System.Windows.Forms.Label();
-            this.txtMessage = new System.Windows.Forms.TextBox();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.butSend = new CustomButton.VBButton();
             this.butVideo = new CustomButton.VBButton();
+            this.txtMessage = new System.Windows.Forms.TextBox();
             this.vbButton2 = new CustomButton.VBButton();
-            this.vbButton1 = new CustomButton.VBButton();
-            this.butFriend = new CustomButton.VBButton();
-            this.butSet = new CustomButton.VBButton();
-            this.butMess = new CustomButton.VBButton();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureAvt)).BeginInit();
             this.panel2.SuspendLayout();
@@ -89,12 +90,72 @@ namespace PBL41
             this.pictureAvt.TabIndex = 7;
             this.pictureAvt.TabStop = false;
             // 
+            // butFriend
+            // 
+            this.butFriend.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+            this.butFriend.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+            this.butFriend.BackgroundImage = global::PBL41.Properties.Resources.teamuser;
+            this.butFriend.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.butFriend.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.butFriend.BorderRadius = 10;
+            this.butFriend.BorderSize = 0;
+            this.butFriend.FlatAppearance.BorderSize = 0;
+            this.butFriend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.butFriend.ForeColor = System.Drawing.Color.White;
+            this.butFriend.Location = new System.Drawing.Point(30, 255);
+            this.butFriend.Name = "butFriend";
+            this.butFriend.Size = new System.Drawing.Size(51, 52);
+            this.butFriend.TabIndex = 6;
+            this.butFriend.TextColor = System.Drawing.Color.White;
+            this.butFriend.UseVisualStyleBackColor = false;
+            this.butFriend.Click += new System.EventHandler(this.butFriend_Click);
+            // 
+            // butSet
+            // 
+            this.butSet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+            this.butSet.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+            this.butSet.BackgroundImage = global::PBL41.Properties.Resources.setting;
+            this.butSet.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.butSet.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.butSet.BorderRadius = 10;
+            this.butSet.BorderSize = 0;
+            this.butSet.FlatAppearance.BorderSize = 0;
+            this.butSet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.butSet.ForeColor = System.Drawing.Color.Black;
+            this.butSet.Location = new System.Drawing.Point(30, 372);
+            this.butSet.Name = "butSet";
+            this.butSet.Size = new System.Drawing.Size(51, 53);
+            this.butSet.TabIndex = 5;
+            this.butSet.TextColor = System.Drawing.Color.Black;
+            this.butSet.UseVisualStyleBackColor = false;
+            this.butSet.Click += new System.EventHandler(this.butSet_Click);
+            // 
+            // butMess
+            // 
+            this.butMess.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+            this.butMess.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+            this.butMess.BackgroundImage = global::PBL41.Properties.Resources.mes1;
+            this.butMess.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.butMess.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.butMess.BorderRadius = 10;
+            this.butMess.BorderSize = 0;
+            this.butMess.FlatAppearance.BorderSize = 0;
+            this.butMess.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.butMess.ForeColor = System.Drawing.Color.Transparent;
+            this.butMess.Location = new System.Drawing.Point(30, 148);
+            this.butMess.Name = "butMess";
+            this.butMess.Size = new System.Drawing.Size(51, 57);
+            this.butMess.TabIndex = 3;
+            this.butMess.TextColor = System.Drawing.Color.Transparent;
+            this.butMess.UseVisualStyleBackColor = false;
+            this.butMess.Click += new System.EventHandler(this.butMess_Click);
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.txtSearch);
-            this.panel2.Controls.Add(this.vbButton1);
+            this.panel2.Controls.Add(this.btnSearch);
             this.panel2.Controls.Add(this.panelMes);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(126, 0);
@@ -125,9 +186,30 @@ namespace PBL41
             this.txtSearch.Enter += new System.EventHandler(this.txtSearch_Enter);
             this.txtSearch.Leave += new System.EventHandler(this.txtSearch_Leave);
             // 
+            // btnSearch
+            // 
+            this.btnSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+            this.btnSearch.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+            this.btnSearch.BackgroundImage = global::PBL41.Properties.Resources.loop;
+            this.btnSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSearch.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.btnSearch.BorderRadius = 13;
+            this.btnSearch.BorderSize = 0;
+            this.btnSearch.FlatAppearance.BorderSize = 0;
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+            this.btnSearch.Location = new System.Drawing.Point(17, 9);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(46, 47);
+            this.btnSearch.TabIndex = 17;
+            this.btnSearch.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+            this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
             // panelMes
             // 
             this.panelMes.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.panelMes.Controls.Add(this.btnCreate);
             this.panelMes.Controls.Add(this.label2);
             this.panelMes.Controls.Add(this.label4);
             this.panelMes.Controls.Add(this.dgvFriend);
@@ -136,6 +218,27 @@ namespace PBL41
             this.panelMes.Name = "panelMes";
             this.panelMes.Size = new System.Drawing.Size(293, 547);
             this.panelMes.TabIndex = 1;
+            // 
+            // btnCreate
+            // 
+            this.btnCreate.BackColor = System.Drawing.Color.LimeGreen;
+            this.btnCreate.BackgroundColor = System.Drawing.Color.LimeGreen;
+            this.btnCreate.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.btnCreate.BorderRadius = 20;
+            this.btnCreate.BorderSize = 0;
+            this.btnCreate.FlatAppearance.BorderSize = 0;
+            this.btnCreate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCreate.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreate.ForeColor = System.Drawing.Color.White;
+            this.btnCreate.Location = new System.Drawing.Point(60, 484);
+            this.btnCreate.Name = "btnCreate";
+            this.btnCreate.Size = new System.Drawing.Size(144, 58);
+            this.btnCreate.TabIndex = 17;
+            this.btnCreate.Text = "Send Message";
+            this.btnCreate.TextColor = System.Drawing.Color.White;
+            this.btnCreate.UseVisualStyleBackColor = false;
+            this.btnCreate.Visible = false;
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
             // label2
             // 
@@ -207,7 +310,7 @@ namespace PBL41
             this.dgvFriend.RowTemplate.DividerHeight = 1;
             this.dgvFriend.RowTemplate.Height = 100;
             this.dgvFriend.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvFriend.Size = new System.Drawing.Size(290, 486);
+            this.dgvFriend.Size = new System.Drawing.Size(290, 418);
             this.dgvFriend.TabIndex = 0;
             this.dgvFriend.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFriend_CellClick);
             // 
@@ -246,24 +349,6 @@ namespace PBL41
             this.lbName.Size = new System.Drawing.Size(72, 25);
             this.lbName.TabIndex = 6;
             this.lbName.Text = "Name";
-            // 
-            // txtMessage
-            // 
-            this.txtMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMessage.Location = new System.Drawing.Point(0, 556);
-            this.txtMessage.Multiline = true;
-            this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Size = new System.Drawing.Size(458, 59);
-            this.txtMessage.TabIndex = 1;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.panel3);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(419, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(524, 615);
-            this.panel4.TabIndex = 2;
             // 
             // butSend
             // 
@@ -306,6 +391,15 @@ namespace PBL41
             this.butVideo.UseVisualStyleBackColor = false;
             this.butVideo.Click += new System.EventHandler(this.butVideo_Click);
             // 
+            // txtMessage
+            // 
+            this.txtMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMessage.Location = new System.Drawing.Point(0, 556);
+            this.txtMessage.Multiline = true;
+            this.txtMessage.Name = "txtMessage";
+            this.txtMessage.Size = new System.Drawing.Size(458, 59);
+            this.txtMessage.TabIndex = 1;
+            // 
             // vbButton2
             // 
             this.vbButton2.BackColor = System.Drawing.Color.White;
@@ -323,84 +417,14 @@ namespace PBL41
             this.vbButton2.TextColor = System.Drawing.Color.White;
             this.vbButton2.UseVisualStyleBackColor = false;
             // 
-            // vbButton1
+            // panel4
             // 
-            this.vbButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
-            this.vbButton1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
-            this.vbButton1.BackgroundImage = global::PBL41.Properties.Resources.loop;
-            this.vbButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.vbButton1.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.vbButton1.BorderRadius = 13;
-            this.vbButton1.BorderSize = 0;
-            this.vbButton1.FlatAppearance.BorderSize = 0;
-            this.vbButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.vbButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
-            this.vbButton1.Location = new System.Drawing.Point(17, 9);
-            this.vbButton1.Name = "vbButton1";
-            this.vbButton1.Size = new System.Drawing.Size(46, 47);
-            this.vbButton1.TabIndex = 17;
-            this.vbButton1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
-            this.vbButton1.UseVisualStyleBackColor = false;
-            // 
-            // butFriend
-            // 
-            this.butFriend.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
-            this.butFriend.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
-            this.butFriend.BackgroundImage = global::PBL41.Properties.Resources.teamuser;
-            this.butFriend.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.butFriend.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.butFriend.BorderRadius = 10;
-            this.butFriend.BorderSize = 0;
-            this.butFriend.FlatAppearance.BorderSize = 0;
-            this.butFriend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.butFriend.ForeColor = System.Drawing.Color.White;
-            this.butFriend.Location = new System.Drawing.Point(30, 255);
-            this.butFriend.Name = "butFriend";
-            this.butFriend.Size = new System.Drawing.Size(51, 52);
-            this.butFriend.TabIndex = 6;
-            this.butFriend.TextColor = System.Drawing.Color.White;
-            this.butFriend.UseVisualStyleBackColor = false;
-            this.butFriend.Click += new System.EventHandler(this.butFriend_Click);
-            // 
-            // butSet
-            // 
-            this.butSet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
-            this.butSet.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
-            this.butSet.BackgroundImage = global::PBL41.Properties.Resources.setting;
-            this.butSet.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.butSet.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.butSet.BorderRadius = 10;
-            this.butSet.BorderSize = 0;
-            this.butSet.FlatAppearance.BorderSize = 0;
-            this.butSet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.butSet.ForeColor = System.Drawing.Color.Black;
-            this.butSet.Location = new System.Drawing.Point(30, 372);
-            this.butSet.Name = "butSet";
-            this.butSet.Size = new System.Drawing.Size(51, 53);
-            this.butSet.TabIndex = 5;
-            this.butSet.TextColor = System.Drawing.Color.Black;
-            this.butSet.UseVisualStyleBackColor = false;
-            this.butSet.Click += new System.EventHandler(this.butSet_Click);
-            // 
-            // butMess
-            // 
-            this.butMess.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
-            this.butMess.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
-            this.butMess.BackgroundImage = global::PBL41.Properties.Resources.mes1;
-            this.butMess.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.butMess.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.butMess.BorderRadius = 10;
-            this.butMess.BorderSize = 0;
-            this.butMess.FlatAppearance.BorderSize = 0;
-            this.butMess.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.butMess.ForeColor = System.Drawing.Color.Transparent;
-            this.butMess.Location = new System.Drawing.Point(30, 148);
-            this.butMess.Name = "butMess";
-            this.butMess.Size = new System.Drawing.Size(51, 57);
-            this.butMess.TabIndex = 3;
-            this.butMess.TextColor = System.Drawing.Color.Transparent;
-            this.butMess.UseVisualStyleBackColor = false;
-            this.butMess.Click += new System.EventHandler(this.butMess_Click);
+            this.panel4.Controls.Add(this.panel3);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel4.Location = new System.Drawing.Point(419, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(524, 615);
+            this.panel4.TabIndex = 2;
             // 
             // MainForm
             // 
@@ -447,9 +471,10 @@ namespace PBL41
         private System.Windows.Forms.PictureBox pictureAvt;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel4;
-        private CustomButton.VBButton vbButton1;
+        private CustomButton.VBButton btnSearch;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label4;
+        private CustomButton.VBButton btnCreate;
     }
 }

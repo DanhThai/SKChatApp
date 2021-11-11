@@ -20,15 +20,12 @@ namespace ProcessServer
         {
             List<byte[]> data = new List<byte[]>();
             foreach(friend i in listFriend)
-            {
-               
-                data.Add(SerializeData(i));
-
-               
+            {             
+                data.Add(SerializeData(i));               
             }    
             return data;
         }
-        public void addFriend(int id)
+        public void getFriend(int id)
         {         
             DB_Model db = new DB_Model();
             var liststt = from p in db.Box_chat where p.Id == id select new {p.STT };
@@ -40,11 +37,11 @@ namespace ProcessServer
                 listFriend.Add(fr);  
             }    
         }
-        public byte[] SerializeData(friend fr)
+        public byte[] SerializeData(object fr)
         {
             MemoryStream ms = new MemoryStream();
             BinaryFormatter bf1 = new BinaryFormatter();
-            bf1.Serialize(ms, (object)fr);
+            bf1.Serialize(ms,fr);
             return ms.ToArray();
         }
 

@@ -62,7 +62,7 @@
     <Compile Include="Box_chat.cs">
       <DependentUpon>DB_Connect.tt</DependentUpon>
     </Compile>
-    <Compile Include="CheckAccount.cs" />
+    <Compile Include="Client.cs" />
     <Compile Include="DB_Connect.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -23,6 +23,14 @@ namespace PBL41.Client
                 return _Instance;
             }
         }
+        public List<friend> getListFriend()
+        {
+            return listFriend;
+        }
+        public void addFriend(friend fr)
+        {
+            listFriend.Insert(0, fr);
+        }
         public void ConnectSV()
         {
             try
@@ -67,6 +75,19 @@ namespace PBL41.Client
 
             }
         }
+        public void SendSearch(string name)
+        {
+            try
+            {
+                var writer = new StreamWriter(stream);
+                writer.AutoFlush = true;
+                writer.WriteLine("#Search: " + name);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
         public object DeserializeData(byte[] theByteArray)
         {
             BinaryFormatter bf1 = new BinaryFormatter();
@@ -74,30 +95,21 @@ namespace PBL41.Client
             ms.Position = 0;
             return bf1.Deserialize(ms);
         }
-        public List<friend> getList()
+        
+        
+        public List<friend> ReceiveFriend()
         {
-            return listFriend;
-        }
-        public bool ReceiveLogin()
-        {
-            //var reader = new StreamReader(stream);
-            //string msg = reader.ReadLine();
-            //str= Encoding.ASCII.GetBytes(msg);
-            bool ck = false;
-            while(true)
+            List<friend> listFr = new List<friend>();
+            while (true)
             {
                 byte[] str = new byte[100000];
-
                 int i = stream.Read(str, 0, (int)client.ReceiveBufferSize);
                 string s = Encoding.ASCII.GetString(str);
-                //Console.WriteLine(s);
+                Console.WriteLine(s);
                 if (i > 0)
-                {
-                    ck = true;
-                    
+                {                  
                     if (s.Contains("#false"))
                     {
-                        ck = false;
                         break;
                     }
                     else if (s.Contains("#done"))
@@ -107,29 +119,40 @@ namespace PBL41.Client
                     else
                     {
                         friend fr = (friend)DeserializeData(str);
-                        listFriend.Add(fr);                     
+                        listFr.Add(fr);                     
                     }                   
                 }
                 else
                     break;
             }
-            return ck;
-
+            return listFr;
+        }
+        public bool checkLogin()
+        {
+            listFriend=ReceiveFriend();
+            if (listFriend.Count > 0)
+                return true;
+            else return false;
+        }
+        //search friend
+        public List<friend> checkFriend()
+        {
+            List<friend>  list =ReceiveFriend();
+            return list;
         }
         public string ReceiveMsg()
         {
             var reader = new StreamReader(stream);
             string msg = reader.ReadLine();
-            if (msg.Contains("#UpdateIP"))
+            if(msg.Contains("#UpdateIP"))
             {
-                // msg= "id #UpdateIP: ipnew"
-                string[] str = msg.Split(new string[] { " #UpdateIP: " }, StringSplitOptions.None);
+                // msg= "#msg #UpdateIP: ip ipnew"
+                string[] str = msg.Split(new string[] { " " }, StringSplitOptions.None);
                 for (int i = 0; i < listFriend.Count; i++)
-                {
-                    
-                    if (listFriend[i].ID ==Convert.ToInt32(str[0]))
+                {                   
+                    if (listFriend[i].ID ==Convert.ToInt32(str[2]))
                     {
-                        listFriend[i].IP = str[1];
+                        listFriend[i].IP = str[3];
                         listFriend[i].UpdateIP = true;
                         break;
                     }

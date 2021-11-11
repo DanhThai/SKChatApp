@@ -11,11 +11,13 @@ namespace PBL41
 {
     public partial class MainForm : Form
     {
-        private delegate void SafeCallDelegate(string text);
+        private delegate void SafeCallDelegateLV(string text);
+        private delegate void SafeCallDelegateDgv();
         private static List<ListMessage> listMS;
         public MainForm()
         {
             InitializeComponent();
+            txtSearch.ReadOnly = true;
             listMS = new List<ListMessage>();
 
             setDgv();
@@ -26,7 +28,7 @@ namespace PBL41
         }
         public void setDgv()
         {
-            List<friend> l = ChatClient.instance.getList();
+            List<friend> l = ChatClient.instance.getListFriend();
 
             foreach (friend i in l)
             {
@@ -57,16 +59,38 @@ namespace PBL41
             }
         }
 
+        public void setDgvFriend()
+        {
+            if (dgvFriend.InvokeRequired)
+            {
+                var d = new SafeCallDelegateDgv(setDgvFriend);
+                dgvFriend.Invoke(d);
+            }
+            else
+            {
+                List<friend> listFr = ChatClient.instance.checkFriend();
+                
+                if (listFr.Count <1)              
+                    MessageBox.Show("Không tìm thấy bạn bè");
+                dgvFriend.DataSource = listFr;
+                dgvFriend.Columns["ID"].Visible = false;
+                dgvFriend.Columns["IP"].Visible = false;
+                dgvFriend.Columns["UpdateIP"].Visible = false;
+                dgvFriend.Columns["Name"].ReadOnly = true;
+            }    
+
+        }
         public void setListview(string msg)
         {
             if (LViewMessage.InvokeRequired)
             {
-                var d = new SafeCallDelegate(setListview);
+                var d = new SafeCallDelegateLV(setListview);
                 LViewMessage.Invoke(d, new object[] { msg });
             }
             else
             {
                 string[] str = msg.Split(new string[] { " #send: " }, StringSplitOptions.None);
+                Console.WriteLine(str[0]);
                 string id = dgvFriend.SelectedRows[0].Cells["ID"].Value.ToString();
                 string name = dgvFriend.SelectedRows[0].Cells["Name"].Value.ToString();
                 if (id.Equals(str[0]))
@@ -75,17 +99,14 @@ namespace PBL41
                 }
                 foreach (ListMessage i in listMS)
                 {
-                    if(i.ID==Convert.ToInt32( str[0]))
+                    if(i.ID==Convert.ToInt32(str[0]))
                     {
                         Console.WriteLine(str[1]);
                         i.addMessage(name + ": " + str[1]);
                         break;
-                    }    
-                       
+                    }                          
                 }                                 
             }
-
-
         }
         private void butSet_Click(object sender, EventArgs e)
         {
@@ -102,18 +123,11 @@ namespace PBL41
         {
             panel3.Visible = true;
             panelMes.Visible = true;
+            dgvFriend.Height = 484;
+            btnCreate.Visible = false;
+            setDgv();
         }
-        private void butFriend_Click(object sender, EventArgs e)
-        {
-            FormFriend fr = new FormFriend();
-            fr.TopLevel = false;
-            panel2.Controls.Add(fr);
-            fr.Dock = DockStyle.Fill;
-            fr.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            fr.Show();
-            panelMes.Visible = false;
-        }
-
+        
         private void butSend_Click(object sender, EventArgs e)
         {
             if (dgvFriend.SelectedRows.Count == 1)
@@ -145,20 +159,54 @@ namespace PBL41
                 }
             }
         }
-        public void ReceiveMsg()
+        private void butFriend_Click(object sender, EventArgs e)
         {
-           
+            dgvFriend.Height = 418;
+            dgvFriend.DataSource = null;
+            btnCreate.Visible = true;
+            txtSearch.ReadOnly = false;
+        }
+        private void btnCreate_Click(object sender, EventArgs e)
+        {
+            if (dgvFriend.SelectedRows.Count == 1)
+            {
+                dgvFriend.Height = 484;
+                btnCreate.Visible = false;
+                int id = (int)dgvFriend.SelectedRows[0].Cells["ID"].Value;
+                string ip = dgvFriend.SelectedRows[0].Cells["IP"].Value.ToString();
+                string name = dgvFriend.SelectedRows[0].Cells["Name"].Value.ToString();
+
+                friend fr = new friend(id, ip, name);
+                ChatClient.instance.addFriend(fr);
+                setDgv();
+            }
+            else
+                MessageBox.Show("Chỉ được chọn 1 người");
+        }
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            if (txtSearch.Text != null)
+            {
+                ChatClient.instance.SendSearch(txtSearch.Text);                             
+            }
+            else
+                MessageBox.Show("Hãy nhập tên tìm kiếm");
+        }
+        public void ReceiveMsg()
+        {         
             try
             {
                 string msg = "";
                 while (true)
                 {
                     msg = ChatClient.instance.ReceiveMsg();
+                    Console.WriteLine(msg);
                     if (msg == null)
                     {
                         continue;
                     }
-                    else
+                       
+                    else if(msg.Contains("#msg:"))
                     {
                         if(msg.Contains("#UpdateIP"))
                         {
@@ -166,6 +214,11 @@ namespace PBL41
                         }   
                         else
                             setListview(msg);
+                    }
+                    else if(msg.Contains("#Search"))
+                    {
+                        
+                        setDgvFriend();
                     }
                 }
             }
@@ -196,5 +249,7 @@ namespace PBL41
                 }
             }
         }
+
+        
     }
 }
