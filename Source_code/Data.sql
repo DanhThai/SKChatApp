@@ -1,10 +1,10 @@
 use SKChat
 go
-insert into Person values(1,'127.0.0.1:1111','Le A',0,'2001-04-03');
-insert into Person values(2,'127.0.0.1:2222','Le B',1,'2001-05-03');
-insert into Person values(3,'127.0.0.1:3333','Le C',1,'2001-04-02');
-insert into Person values(4,'127.0.0.1:4444','Le D',1,'2001-02-01');
-insert into Person values(5,'127.0.0.1:5555','Le E',1,'2001-01-05');
+insert into Person values(1,'127.0.0.1:1111','Le Van A',0,'2001-04-03');
+insert into Person values(2,'127.0.0.1:2222','Le Van B',1,'2001-05-03');
+insert into Person values(3,'127.0.0.1:3333','Le Van C',1,'2001-04-02');
+insert into Person values(4,'127.0.0.1:4444','Le Van D',1,'2001-02-01');
+insert into Person values(5,'127.0.0.1:5555','Le Van E',1,'2001-01-05');
 
 go
 insert into Account values('user01','user01',1);

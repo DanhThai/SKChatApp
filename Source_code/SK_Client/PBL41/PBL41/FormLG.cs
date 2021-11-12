@@ -41,10 +41,7 @@ namespace PBL41
                 MessageBox.Show("Nhập đầy đủ tài khoản, mật khẩu", "Lỗi đăng nhập", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
-            {
-
-                ChatClient.instance.Disconnect();
-
+            {              
                 ChatClient.instance.ConnectSV();
                 ChatClient.instance.SendLogin(txtUser1.Text, txtPass1.Text);
                 bool check = ChatClient.instance.checkLogin();
@@ -61,6 +58,7 @@ namespace PBL41
         }
         private void MainForm_Closed(Object sender, FormClosedEventArgs e)
         {
+            ChatClient.instance.Disconnect();
             this.Show();
         }
 

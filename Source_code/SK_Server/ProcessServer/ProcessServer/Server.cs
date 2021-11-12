@@ -55,7 +55,6 @@ namespace ProcessServer
                 {
                     if (!sk.Connected)
                     {
-                        Console.WriteLine("Ok");
                         break;
                     }
                         
@@ -64,25 +63,28 @@ namespace ProcessServer
                         string msg = reader.ReadLine();
                         string ipsend = sk.RemoteEndPoint.ToString();
                         Console.WriteLine(msg);
-                        if (msg != null && msg.Contains("#Login"))
+                        if (msg != null && msg.Contains("#Disconnect"))                      
+                            break;
+                        
+                        else if(msg != null && msg.Contains("#Login"))
                             processLogin(msg, ipsend, stream);
-                        else if (msg != null && msg.Contains("#msg"))
-                        {
+
+                        else if (msg != null && msg.Contains("#msg"))                       
                             processSendMsg(msg, sk);
-                        }
-                        else if (msg != null && msg.Contains("#Search") )
-                        {
+                        
+                        else if (msg != null && msg.Contains("#Search") )                       
                             processSearch(msg, stream);
-                        }
+                        
+                            
                         else
                             continue;
                     }
                 }
                 catch (Exception e)
                 {
-                    stream.Close();
-                    ListClient.Remove(sk);
-                    sk.Close();
+                    //stream.Close();
+                    //ListClient.Remove(sk);
+                    //sk.Close();
                     Console.WriteLine(e.Message);
                 }               
             }
@@ -118,11 +120,12 @@ namespace ProcessServer
             {
                 foreach (byte[] i in data)
                 {
-                    string ss = Encoding.ASCII.GetString(i);
-                    Console.WriteLine(ss);                   
+                    string msg = Encoding.ASCII.GetString(i);
+                    Console.WriteLine(msg);                   
                     stream.Write(i, 0, i.Length);
+                    Thread.Sleep(1);
                 }
-                Thread.Sleep(5);
+                Thread.Sleep(3);
                 string s = "#done";
                 byte[] bytes = Encoding.ASCII.GetBytes(s);
                 stream.Write(bytes, 0, bytes.Length);

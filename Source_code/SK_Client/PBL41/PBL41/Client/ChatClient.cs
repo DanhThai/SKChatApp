@@ -52,8 +52,12 @@ namespace PBL41.Client
         {
             if (client != null)
             {
+                var writer = new StreamWriter(stream);
+                writer.AutoFlush = true;
+                writer.WriteLine("#Disconnect");
                 stream.Close();
                 client.Close();
+                listFriend.Clear();
             }
         }
         public void Create()
@@ -116,8 +120,8 @@ namespace PBL41.Client
             listFr.Clear();
             while (true)
             {
-                byte[] str = new byte[100000];
-                int i = stream.Read(str, 0, (int)client.ReceiveBufferSize);
+                byte[] str = new byte[1024];
+                int i = stream.Read(str, 0,1024);
                 string s = Encoding.ASCII.GetString(str);
                 Console.WriteLine(s);
                 if (i > 0)
