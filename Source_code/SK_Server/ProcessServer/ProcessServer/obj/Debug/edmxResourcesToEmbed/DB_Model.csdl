@@ -75,7 +75,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="DB_Model" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="SKChatEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Accounts" EntityType="Self.Account" />
     <EntitySet Name="Box_chat" EntityType="Self.Box_chat" />
     <EntitySet Name="Group_chat" EntityType="Self.Group_chat" />

@@ -18,7 +18,6 @@
             <PropertyRef Name="STT" />
           </Key>
           <Property Name="STT" Type="int" Nullable="false" />
-          <Property Name="Wait_mess" Type="ntext" />
           <Property Name="Id_group" Type="int" Nullable="false" />
           <Property Name="Id" Type="int" Nullable="false" />
         </EntityType>
@@ -38,7 +37,6 @@
           <Property Name="Full_name" Type="nvarchar" MaxLength="50" />
           <Property Name="Gender" Type="bit" />
           <Property Name="Birthday" Type="date" />
-          <Property Name="Img" Type="image" />
         </EntityType>
         <Association Name="FK_Group">
           <End Role="Group_chat" Type="Self.Group_chat" Multiplicity="1" />
@@ -113,7 +111,6 @@
             <PropertyRef Name="STT" />
           </Key>
           <Property Name="STT" Type="Int32" Nullable="false" />
-          <Property Name="Wait_mess" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Id_group" Type="Int32" Nullable="false" />
           <Property Name="Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Group_chat" Relationship="Self.FK_Group" FromRole="Box_chat" ToRole="Group_chat" />
@@ -136,7 +133,6 @@
           <Property Name="Full_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Gender" Type="Boolean" />
           <Property Name="Birthday" Type="DateTime" Precision="0" />
-          <Property Name="Img" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Accounts" Relationship="Self.FK_Id1" FromRole="Person" ToRole="Account" />
           <NavigationProperty Name="Box_chat" Relationship="Self.FK_Id2" FromRole="Person" ToRole="Box_chat" />
         </EntityType>
@@ -213,7 +209,6 @@
             <EntityTypeMapping TypeName="SKChatModel.Box_chat">
               <MappingFragment StoreEntitySet="Box_chat">
                 <ScalarProperty Name="STT" ColumnName="STT" />
-                <ScalarProperty Name="Wait_mess" ColumnName="Wait_mess" />
                 <ScalarProperty Name="Id_group" ColumnName="Id_group" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -235,7 +230,6 @@
                 <ScalarProperty Name="Full_name" ColumnName="Full_name" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="Birthday" ColumnName="Birthday" />
-                <ScalarProperty Name="Img" ColumnName="Img" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

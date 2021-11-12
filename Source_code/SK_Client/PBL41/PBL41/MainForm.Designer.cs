@@ -34,20 +34,23 @@ namespace PBL41
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureAvt = new System.Windows.Forms.PictureBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lbMyName = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.butFriend = new CustomButton.VBButton();
             this.butSet = new CustomButton.VBButton();
             this.butMess = new CustomButton.VBButton();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.pnMain = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new CustomButton.VBButton();
             this.panelMes = new System.Windows.Forms.Panel();
-            this.btnCreate = new CustomButton.VBButton();
+            this.btnAdd = new CustomButton.VBButton();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.dgvFriend = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
             this.LViewMessage = new System.Windows.Forms.ListView();
             this.lbName = new System.Windows.Forms.Label();
             this.butSend = new CustomButton.VBButton();
@@ -56,8 +59,8 @@ namespace PBL41
             this.vbButton2 = new CustomButton.VBButton();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureAvt)).BeginInit();
-            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.pnMain.SuspendLayout();
             this.panelMes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFriend)).BeginInit();
             this.panel3.SuspendLayout();
@@ -67,7 +70,9 @@ namespace PBL41
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
-            this.panel1.Controls.Add(this.pictureAvt);
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.lbMyName);
+            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.butFriend);
             this.panel1.Controls.Add(this.butSet);
             this.panel1.Controls.Add(this.butMess);
@@ -78,17 +83,35 @@ namespace PBL41
             this.panel1.Size = new System.Drawing.Size(126, 615);
             this.panel1.TabIndex = 0;
             // 
-            // pictureAvt
+            // label7
             // 
-            this.pictureAvt.BackgroundImage = global::PBL41.Properties.Resources.Uchiha_Sasuke1;
-            this.pictureAvt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureAvt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureAvt.Location = new System.Drawing.Point(1, 0);
-            this.pictureAvt.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureAvt.Name = "pictureAvt";
-            this.pictureAvt.Size = new System.Drawing.Size(127, 106);
-            this.pictureAvt.TabIndex = 7;
-            this.pictureAvt.TabStop = false;
+            this.label7.BackColor = System.Drawing.Color.Black;
+            this.label7.ForeColor = System.Drawing.Color.Black;
+            this.label7.Location = new System.Drawing.Point(123, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(1, 615);
+            this.label7.TabIndex = 43;
+            // 
+            // lbMyName
+            // 
+            this.lbMyName.AutoSize = true;
+            this.lbMyName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.lbMyName.Font = new System.Drawing.Font("Modern No. 20", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbMyName.ForeColor = System.Drawing.Color.Snow;
+            this.lbMyName.Location = new System.Drawing.Point(24, 31);
+            this.lbMyName.Name = "lbMyName";
+            this.lbMyName.Size = new System.Drawing.Size(86, 34);
+            this.lbMyName.TabIndex = 7;
+            this.lbMyName.Text = "Le A";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(123, 100);
+            this.pictureBox1.TabIndex = 8;
+            this.pictureBox1.TabStop = false;
             // 
             // butFriend
             // 
@@ -150,18 +173,18 @@ namespace PBL41
             this.butMess.UseVisualStyleBackColor = false;
             this.butMess.Click += new System.EventHandler(this.butMess_Click);
             // 
-            // panel2
+            // pnMain
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
-            this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.txtSearch);
-            this.panel2.Controls.Add(this.btnSearch);
-            this.panel2.Controls.Add(this.panelMes);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(126, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(293, 615);
-            this.panel2.TabIndex = 1;
+            this.pnMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+            this.pnMain.Controls.Add(this.label5);
+            this.pnMain.Controls.Add(this.txtSearch);
+            this.pnMain.Controls.Add(this.btnSearch);
+            this.pnMain.Controls.Add(this.panelMes);
+            this.pnMain.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnMain.Location = new System.Drawing.Point(126, 0);
+            this.pnMain.Name = "pnMain";
+            this.pnMain.Size = new System.Drawing.Size(293, 615);
+            this.pnMain.TabIndex = 1;
             // 
             // label5
             // 
@@ -209,7 +232,7 @@ namespace PBL41
             // panelMes
             // 
             this.panelMes.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.panelMes.Controls.Add(this.btnCreate);
+            this.panelMes.Controls.Add(this.btnAdd);
             this.panelMes.Controls.Add(this.label2);
             this.panelMes.Controls.Add(this.label4);
             this.panelMes.Controls.Add(this.dgvFriend);
@@ -219,26 +242,26 @@ namespace PBL41
             this.panelMes.Size = new System.Drawing.Size(293, 547);
             this.panelMes.TabIndex = 1;
             // 
-            // btnCreate
+            // btnAdd
             // 
-            this.btnCreate.BackColor = System.Drawing.Color.LimeGreen;
-            this.btnCreate.BackgroundColor = System.Drawing.Color.LimeGreen;
-            this.btnCreate.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.btnCreate.BorderRadius = 20;
-            this.btnCreate.BorderSize = 0;
-            this.btnCreate.FlatAppearance.BorderSize = 0;
-            this.btnCreate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCreate.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCreate.ForeColor = System.Drawing.Color.White;
-            this.btnCreate.Location = new System.Drawing.Point(60, 484);
-            this.btnCreate.Name = "btnCreate";
-            this.btnCreate.Size = new System.Drawing.Size(144, 58);
-            this.btnCreate.TabIndex = 17;
-            this.btnCreate.Text = "Send Message";
-            this.btnCreate.TextColor = System.Drawing.Color.White;
-            this.btnCreate.UseVisualStyleBackColor = false;
-            this.btnCreate.Visible = false;
-            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
+            this.btnAdd.BackColor = System.Drawing.Color.MidnightBlue;
+            this.btnAdd.BackgroundColor = System.Drawing.Color.MidnightBlue;
+            this.btnAdd.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.btnAdd.BorderRadius = 20;
+            this.btnAdd.BorderSize = 0;
+            this.btnAdd.FlatAppearance.BorderSize = 0;
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.ForeColor = System.Drawing.Color.White;
+            this.btnAdd.Location = new System.Drawing.Point(60, 484);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(144, 58);
+            this.btnAdd.TabIndex = 17;
+            this.btnAdd.Text = "Add Friend";
+            this.btnAdd.TextColor = System.Drawing.Color.White;
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Visible = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnCreate_Click);
             // 
             // label2
             // 
@@ -284,7 +307,7 @@ namespace PBL41
             this.dgvFriend.Cursor = System.Windows.Forms.Cursors.Hand;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.OldLace;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
@@ -305,7 +328,7 @@ namespace PBL41
             this.dgvFriend.RowHeadersVisible = false;
             this.dgvFriend.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Modern No. 20", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvFriend.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvFriend.RowTemplate.DividerHeight = 1;
             this.dgvFriend.RowTemplate.Height = 100;
@@ -317,6 +340,7 @@ namespace PBL41
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.panel3.Controls.Add(this.label11);
             this.panel3.Controls.Add(this.LViewMessage);
             this.panel3.Controls.Add(this.lbName);
             this.panel3.Controls.Add(this.butSend);
@@ -328,13 +352,23 @@ namespace PBL41
             this.panel3.Size = new System.Drawing.Size(524, 615);
             this.panel3.TabIndex = 2;
             // 
+            // label11
+            // 
+            this.label11.BackColor = System.Drawing.Color.Black;
+            this.label11.ForeColor = System.Drawing.Color.Black;
+            this.label11.Location = new System.Drawing.Point(1, 1);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(1, 613);
+            this.label11.TabIndex = 42;
+            // 
             // LViewMessage
             // 
             this.LViewMessage.BackColor = System.Drawing.Color.White;
+            this.LViewMessage.Font = new System.Drawing.Font("Modern No. 20", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LViewMessage.HideSelection = false;
-            this.LViewMessage.Location = new System.Drawing.Point(-2, 68);
+            this.LViewMessage.Location = new System.Drawing.Point(0, 68);
             this.LViewMessage.Name = "LViewMessage";
-            this.LViewMessage.Size = new System.Drawing.Size(526, 487);
+            this.LViewMessage.Size = new System.Drawing.Size(524, 487);
             this.LViewMessage.TabIndex = 2;
             this.LViewMessage.UseCompatibleStateImageBehavior = false;
             this.LViewMessage.View = System.Windows.Forms.View.List;
@@ -394,10 +428,10 @@ namespace PBL41
             // txtMessage
             // 
             this.txtMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMessage.Location = new System.Drawing.Point(0, 556);
+            this.txtMessage.Location = new System.Drawing.Point(4, 556);
             this.txtMessage.Multiline = true;
             this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Size = new System.Drawing.Size(458, 59);
+            this.txtMessage.Size = new System.Drawing.Size(453, 59);
             this.txtMessage.TabIndex = 1;
             // 
             // vbButton2
@@ -432,16 +466,18 @@ namespace PBL41
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(943, 615);
             this.Controls.Add(this.panel4);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.pnMain);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureAvt)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.pnMain.ResumeLayout(false);
+            this.pnMain.PerformLayout();
             this.panelMes.ResumeLayout(false);
             this.panelMes.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFriend)).EndInit();
@@ -455,7 +491,7 @@ namespace PBL41
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel pnMain;
         private System.Windows.Forms.Panel panel3;
         private CustomButton.VBButton butMess;
         private CustomButton.VBButton butSet;
@@ -463,18 +499,21 @@ namespace PBL41
         private System.Windows.Forms.Panel panelMes;
         private System.Windows.Forms.DataGridView dgvFriend;
         private System.Windows.Forms.TextBox txtMessage;
-        private System.Windows.Forms.ListView LViewMessage;
         private CustomButton.VBButton vbButton2;
         private CustomButton.VBButton butVideo;
         private CustomButton.VBButton butSend;
         private System.Windows.Forms.Label lbName;
-        private System.Windows.Forms.PictureBox pictureAvt;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel4;
         private CustomButton.VBButton btnSearch;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label4;
-        private CustomButton.VBButton btnCreate;
+        private CustomButton.VBButton btnAdd;
+        private System.Windows.Forms.Label lbMyName;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ListView LViewMessage;
+        private System.Windows.Forms.Label label7;
     }
 }

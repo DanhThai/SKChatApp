@@ -90,30 +90,30 @@
     <Compile Include="Server.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <EntityDeploy Include="DB_Connect.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DB_Connect.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="App.Config" />
     <None Include="DB_Connect.edmx.diagram">
       <DependentUpon>DB_Connect.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="DB_Connect.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DB_Connect.Context.cs</LastGenOutput>
       <DependentUpon>DB_Connect.edmx</DependentUpon>
+      <LastGenOutput>DB_Connect.Context.cs</LastGenOutput>
     </Content>
     <Content Include="DB_Connect.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DB_Connect.edmx</DependentUpon>
       <LastGenOutput>DB_Connect.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

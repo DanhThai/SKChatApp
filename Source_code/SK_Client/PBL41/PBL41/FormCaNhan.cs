@@ -16,7 +16,7 @@ namespace PBL41
         {
             InitializeComponent();
             // Cài đặt thuộc tính pictureBox
-            pictureAvt.SizeMode = PictureBoxSizeMode.Zoom;    
+            //pictureAvt.SizeMode = PictureBoxSizeMode.Zoom;
         }
         private void butChangePass_Click(object sender, EventArgs e)
         {
@@ -35,8 +35,8 @@ namespace PBL41
             }     
         }
 
-        private void butAdd_Click(object sender, EventArgs e)
-        {
+        //private void butAdd_Click(object sender, EventArgs e)
+        //{
             //if (result == DialogResult.OK)
             //{
             //    Lấy hình ảnh
@@ -45,21 +45,21 @@ namespace PBL41
             //    pictureAvt.Image = img;
             //}
 
-            OpenFileDialog dlg = new OpenFileDialog();
-            if (dlg.ShowDialog() == DialogResult.OK)
-            {
-                //string fileName;
-                //fileName = dlg.FileName;
-                //MessageBox.Show(fileName);
-                Image img = Image.FromFile(dlg.FileName);
-                pictureAvt.Image = img;
-            }
+            //OpenFileDialog dlg = new OpenFileDialog();
+            //if (dlg.ShowDialog() == DialogResult.OK)
+            //{
+            //    //string fileName;
+            //    //fileName = dlg.FileName;
+            //    //MessageBox.Show(fileName);
+            //    Image img = Image.FromFile(dlg.FileName);
+            //    pictureAvt.Image = img;
+            //}
             //dlg.Title = "C# Căn bản chấm Com";
             //dlg.InitialDirectory = @"C:pathtofile";
             //dlg.Filter = "All files (*.*)|*.*|All files(*.*) | *.* ";
             //dlg.FilterIndex = 1;
             //dlg.RestoreDirectory = true;
-        }
+        //}
         private void txtUser2_Enter(object sender, EventArgs e)
         {
             if (txtUser2.Text == "User")
@@ -109,5 +109,9 @@ namespace PBL41
             }
         }
 
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

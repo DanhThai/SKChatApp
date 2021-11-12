@@ -63,12 +63,6 @@
     <Compile Include="FormCaNhan.Designer.cs">
       <DependentUpon>FormCaNhan.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormFriend.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormFriend.Designer.cs">
-      <DependentUpon>FormFriend.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormLG.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,9 +90,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCaNhan.resx">
       <DependentUpon>FormCaNhan.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormFriend.resx">
-      <DependentUpon>FormFriend.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormLG.resx">
       <DependentUpon>FormLG.cs</DependentUpon>

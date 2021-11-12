@@ -26,7 +26,6 @@ namespace ProcessServer
         public string Full_name { get; set; }
         public Nullable<bool> Gender { get; set; }
         public Nullable<System.DateTime> Birthday { get; set; }
-        public byte[] Img { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Account> Accounts { get; set; }

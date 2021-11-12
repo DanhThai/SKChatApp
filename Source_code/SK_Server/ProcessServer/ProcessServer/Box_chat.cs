@@ -15,7 +15,6 @@ namespace ProcessServer
     public partial class Box_chat
     {
         public int STT { get; set; }
-        public string Wait_mess { get; set; }
         public int Id_group { get; set; }
         public int Id { get; set; }
     

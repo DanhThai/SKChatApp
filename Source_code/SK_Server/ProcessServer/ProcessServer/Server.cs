@@ -54,7 +54,11 @@ namespace ProcessServer
                 try
                 {
                     if (!sk.Connected)
+                    {
+                        Console.WriteLine("Ok");
                         break;
+                    }
+                        
                     else
                     {
                         string msg = reader.ReadLine();
@@ -118,10 +122,11 @@ namespace ProcessServer
                     Console.WriteLine(ss);                   
                     stream.Write(i, 0, i.Length);
                 }
-                Thread.Sleep(1);
+                Thread.Sleep(5);
                 string s = "#done";
                 byte[] bytes = Encoding.ASCII.GetBytes(s);
                 stream.Write(bytes, 0, bytes.Length);
+
             }
             else
             {
@@ -184,8 +189,9 @@ namespace ProcessServer
             var writer = new StreamWriter(stream);
             writer.AutoFlush = true;
             writer.WriteLine("#Search");
-            string[] str = msg.Split(new string[] { " " }, StringSplitOptions.None);
+            string[] str = msg.Split(new string[] { "#Search: " }, StringSplitOptions.None);
             List<byte[]> data = Client.instance.searchFriend(str[1]);
+            Console.WriteLine(str[1]);
             sendFriend(data, stream);
         }
 

@@ -124,12 +124,13 @@ namespace PBL41
             panel3.Visible = true;
             panelMes.Visible = true;
             dgvFriend.Height = 484;
-            btnCreate.Visible = false;
+            btnAdd.Visible = false;
             setDgv();
         }
         
         private void butSend_Click(object sender, EventArgs e)
         {
+            txtMessage.Text = "";
             if (dgvFriend.SelectedRows.Count == 1)
             {
                 string msg;
@@ -163,7 +164,7 @@ namespace PBL41
         {
             dgvFriend.Height = 418;
             dgvFriend.DataSource = null;
-            btnCreate.Visible = true;
+            btnAdd.Visible = true;
             txtSearch.ReadOnly = false;
         }
         private void btnCreate_Click(object sender, EventArgs e)
@@ -171,7 +172,7 @@ namespace PBL41
             if (dgvFriend.SelectedRows.Count == 1)
             {
                 dgvFriend.Height = 484;
-                btnCreate.Visible = false;
+                btnAdd.Visible = false;
                 int id = (int)dgvFriend.SelectedRows[0].Cells["ID"].Value;
                 string ip = dgvFriend.SelectedRows[0].Cells["IP"].Value.ToString();
                 string name = dgvFriend.SelectedRows[0].Cells["Name"].Value.ToString();
@@ -250,6 +251,10 @@ namespace PBL41
             }
         }
 
-        
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //.instance.Disconnect();
+            
+        }
     }
 }

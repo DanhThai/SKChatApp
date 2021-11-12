@@ -9,7 +9,6 @@ create table Person
 	Full_name nvarchar(50),
 	Gender bit,
 	Birthday date,
-	Img Image,
 )
 
 go
@@ -33,7 +32,6 @@ go
 create table Box_chat
 (
 	STT int primary key,
-	Wait_mess Ntext,
 	Id_group int not null,
 	Id int not null,
 	CONSTRAINT FK_Group foreign key(Id_group) references Group_chat(Id_group),

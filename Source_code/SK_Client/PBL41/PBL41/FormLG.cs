@@ -15,33 +15,40 @@ namespace PBL41
     {
         public FormLG()
         {
-            InitializeComponent(); 
+            InitializeComponent();
+
         }
 
         private void butSignUp1_Click(object sender, EventArgs e)
         {
             panelLG.Visible = false;
-            panelSU.Visible = true;
+            pnSignUp1.Visible = true;
+            pnSignUp2.Visible = false;
         }
 
         private void butLogin2_Click(object sender, EventArgs e)
         {
             panelLG.Visible = true;
-            panelSU.Visible = false;
+            pnSignUp1.Visible = false;
+
         }
         //an form login, dong mainform -> form login hien
         private void butLogin1_Click(object sender, EventArgs e)
         {
-            
-            if(txtUser1.Text == "User" || txtPass1.Text == "Pass")
+
+            if (txtUser1.Text == "User" || txtPass1.Text == "Pass")
             {
                 MessageBox.Show("Nhập đầy đủ tài khoản, mật khẩu", "Lỗi đăng nhập", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else 
+            else
             {
+
+                ChatClient.instance.Disconnect();
+
+                ChatClient.instance.ConnectSV();
                 ChatClient.instance.SendLogin(txtUser1.Text, txtPass1.Text);
                 bool check = ChatClient.instance.checkLogin();
-                if(check)
+                if (check)
                 {
                     MainForm mf = new MainForm();
                     mf.FormClosed += new FormClosedEventHandler(MainForm_Closed);
@@ -74,7 +81,7 @@ namespace PBL41
                     {
                         txtPass1.Text = "";
                         txtPass1.ForeColor = Color.Black;
-                    }    
+                    }
                     break;
                 case "txtUser2":
                     if (txtUser2.Text == "User")
@@ -97,7 +104,7 @@ namespace PBL41
                         txtConfirm2.ForeColor = Color.Black;
                     }
                     break;
-                default:break;
+                default: break;
             }
         }
         private void text_Leave(object sender, EventArgs e)
@@ -142,6 +149,28 @@ namespace PBL41
                     break;
                 default: break;
             }
+        }
+
+        private void lbBack1_Click(object sender, EventArgs e)
+        {
+            panelLG.Visible = true;
+            pnSignUp1.Visible = false;
+            pnSignUp2.Visible = false;
+        }
+
+        private void lbBack2_Click(object sender, EventArgs e)
+        {
+            panelLG.Visible = false;
+            pnSignUp1.Visible = true;
+            pnSignUp2.Visible = false;
+
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            panelLG.Visible = false;
+            pnSignUp1.Visible = false;
+            pnSignUp2.Visible = true;
         }
     }
 }

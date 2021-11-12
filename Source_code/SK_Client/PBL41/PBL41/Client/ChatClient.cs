@@ -48,6 +48,19 @@ namespace PBL41.Client
                 stream = client.GetStream();
             }
         }
+        public void Disconnect()
+        {
+            if (client != null)
+            {
+                stream.Close();
+                client.Close();
+            }
+        }
+        public void Create()
+        {
+            _Instance = new ChatClient();
+            client = new TcpClient();
+        }
         public void SendMsg(string msg)
         {
             try
@@ -100,6 +113,7 @@ namespace PBL41.Client
         public List<friend> ReceiveFriend()
         {
             List<friend> listFr = new List<friend>();
+            listFr.Clear();
             while (true)
             {
                 byte[] str = new byte[100000];

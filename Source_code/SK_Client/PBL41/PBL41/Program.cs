@@ -17,7 +17,7 @@ namespace PBL41
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            ChatClient.instance.ConnectSV();
+            
             Application.Run(new FormLG());
         }
     }
