@@ -41,7 +41,7 @@ namespace ProcessServer
                 addClient(id, ip);
 
                 ListFriend list = new ListFriend();                    
-                list.getFriend(id);              
+                list.addFriend(id);              
                 // convert object to byte array
                 List<byte[]> listfriend = list.getFriend();
                 //listfr.Add(getInfor((int)acc.Id,ip));

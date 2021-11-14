@@ -37,17 +37,17 @@ namespace PBL41
             this.label11 = new System.Windows.Forms.Label();
             this.butConfirm = new CustomButton.VBButton();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtUser2 = new System.Windows.Forms.TextBox();
+            this.txtUser = new System.Windows.Forms.TextBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.txtConfirm2 = new System.Windows.Forms.TextBox();
+            this.txtNewPass = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.txtPass2 = new System.Windows.Forms.TextBox();
+            this.txtOldPass = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.lbTieuDe = new System.Windows.Forms.Label();
             this.btnLogout = new CustomButton.VBButton();
@@ -130,17 +130,17 @@ namespace PBL41
             this.panelChangePass.Controls.Add(this.label11);
             this.panelChangePass.Controls.Add(this.butConfirm);
             this.panelChangePass.Controls.Add(this.label7);
-            this.panelChangePass.Controls.Add(this.txtUser2);
+            this.panelChangePass.Controls.Add(this.txtUser);
             this.panelChangePass.Controls.Add(this.pictureBox7);
             this.panelChangePass.Controls.Add(this.pictureBox4);
             this.panelChangePass.Controls.Add(this.pictureBox3);
             this.panelChangePass.Controls.Add(this.label14);
             this.panelChangePass.Controls.Add(this.label15);
-            this.panelChangePass.Controls.Add(this.txtConfirm2);
+            this.panelChangePass.Controls.Add(this.txtNewPass);
             this.panelChangePass.Controls.Add(this.label9);
             this.panelChangePass.Controls.Add(this.pictureBox2);
             this.panelChangePass.Controls.Add(this.label13);
-            this.panelChangePass.Controls.Add(this.txtPass2);
+            this.panelChangePass.Controls.Add(this.txtOldPass);
             this.panelChangePass.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelChangePass.Location = new System.Drawing.Point(188, 0);
             this.panelChangePass.Name = "panelChangePass";
@@ -186,21 +186,20 @@ namespace PBL41
             this.label7.Size = new System.Drawing.Size(200, 2);
             this.label7.TabIndex = 23;
             // 
-            // txtUser2
+            // txtUser
             // 
-            this.txtUser2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
-            this.txtUser2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtUser2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUser2.ForeColor = System.Drawing.Color.Gray;
-            this.txtUser2.Location = new System.Drawing.Point(107, 134);
-            this.txtUser2.Multiline = true;
-            this.txtUser2.Name = "txtUser2";
-            this.txtUser2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtUser2.Size = new System.Drawing.Size(192, 29);
-            this.txtUser2.TabIndex = 22;
-            this.txtUser2.Text = "User";
-            this.txtUser2.Enter += new System.EventHandler(this.txtUser2_Enter);
-            this.txtUser2.Leave += new System.EventHandler(this.txtUser2_Leave);
+            this.txtUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+            this.txtUser.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUser.ForeColor = System.Drawing.Color.Black;
+            this.txtUser.Location = new System.Drawing.Point(107, 134);
+            this.txtUser.Multiline = true;
+            this.txtUser.Name = "txtUser";
+            this.txtUser.ReadOnly = true;
+            this.txtUser.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtUser.Size = new System.Drawing.Size(192, 29);
+            this.txtUser.TabIndex = 22;
+            this.txtUser.Text = "User";
             // 
             // pictureBox7
             // 
@@ -254,21 +253,20 @@ namespace PBL41
             this.label15.Size = new System.Drawing.Size(0, 32);
             this.label15.TabIndex = 17;
             // 
-            // txtConfirm2
+            // txtNewPass
             // 
-            this.txtConfirm2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
-            this.txtConfirm2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtConfirm2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtConfirm2.ForeColor = System.Drawing.Color.Gray;
-            this.txtConfirm2.Location = new System.Drawing.Point(107, 349);
-            this.txtConfirm2.Multiline = true;
-            this.txtConfirm2.Name = "txtConfirm2";
-            this.txtConfirm2.PasswordChar = '*';
-            this.txtConfirm2.Size = new System.Drawing.Size(192, 29);
-            this.txtConfirm2.TabIndex = 15;
-            this.txtConfirm2.Text = "ConfirmPass";
-            this.txtConfirm2.Enter += new System.EventHandler(this.txtConfirm2_Enter);
-            this.txtConfirm2.Leave += new System.EventHandler(this.txtConfirm2_Leave);
+            this.txtNewPass.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+            this.txtNewPass.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtNewPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNewPass.ForeColor = System.Drawing.Color.Gray;
+            this.txtNewPass.Location = new System.Drawing.Point(107, 349);
+            this.txtNewPass.Multiline = true;
+            this.txtNewPass.Name = "txtNewPass";
+            this.txtNewPass.Size = new System.Drawing.Size(192, 29);
+            this.txtNewPass.TabIndex = 15;
+            this.txtNewPass.Text = "New Pass";
+            this.txtNewPass.Enter += new System.EventHandler(this.txtNewPass_Enter);
+            this.txtNewPass.Leave += new System.EventHandler(this.txtNewPass_Leave);
             // 
             // label9
             // 
@@ -299,21 +297,20 @@ namespace PBL41
             this.label13.Size = new System.Drawing.Size(230, 3);
             this.label13.TabIndex = 9;
             // 
-            // txtPass2
+            // txtOldPass
             // 
-            this.txtPass2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
-            this.txtPass2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtPass2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPass2.ForeColor = System.Drawing.Color.Gray;
-            this.txtPass2.Location = new System.Drawing.Point(112, 241);
-            this.txtPass2.Multiline = true;
-            this.txtPass2.Name = "txtPass2";
-            this.txtPass2.PasswordChar = '*';
-            this.txtPass2.Size = new System.Drawing.Size(192, 29);
-            this.txtPass2.TabIndex = 5;
-            this.txtPass2.Text = "Pass";
-            this.txtPass2.Enter += new System.EventHandler(this.txtPass2_Enter);
-            this.txtPass2.Leave += new System.EventHandler(this.txtPass2_Leave);
+            this.txtOldPass.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+            this.txtOldPass.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtOldPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOldPass.ForeColor = System.Drawing.Color.Gray;
+            this.txtOldPass.Location = new System.Drawing.Point(112, 241);
+            this.txtOldPass.Multiline = true;
+            this.txtOldPass.Name = "txtOldPass";
+            this.txtOldPass.Size = new System.Drawing.Size(187, 29);
+            this.txtOldPass.TabIndex = 5;
+            this.txtOldPass.Text = "Old Pass";
+            this.txtOldPass.Enter += new System.EventHandler(this.txtOldPass_Enter);
+            this.txtOldPass.Leave += new System.EventHandler(this.txtOldPass_Leave);
             // 
             // label6
             // 
@@ -540,17 +537,17 @@ namespace PBL41
         private System.Windows.Forms.Panel panelChangePass;
         private CustomButton.VBButton butConfirm;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtUser2;
+        private System.Windows.Forms.TextBox txtUser;
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox txtConfirm2;
+        private System.Windows.Forms.TextBox txtNewPass;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox txtPass2;
+        private System.Windows.Forms.TextBox txtOldPass;
         private System.Windows.Forms.Label label11;
     }
 }

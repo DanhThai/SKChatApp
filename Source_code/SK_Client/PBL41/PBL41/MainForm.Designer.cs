@@ -34,6 +34,7 @@ namespace PBL41
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lbLogout = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.lbMyName = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -70,6 +71,7 @@ namespace PBL41
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+            this.panel1.Controls.Add(this.lbLogout);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.lbMyName);
             this.panel1.Controls.Add(this.pictureBox1);
@@ -82,6 +84,19 @@ namespace PBL41
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(126, 615);
             this.panel1.TabIndex = 0;
+            // 
+            // lbLogout
+            // 
+            this.lbLogout.AutoSize = true;
+            this.lbLogout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+            this.lbLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbLogout.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lbLogout.Location = new System.Drawing.Point(21, 485);
+            this.lbLogout.Name = "lbLogout";
+            this.lbLogout.Size = new System.Drawing.Size(76, 20);
+            this.lbLogout.TabIndex = 44;
+            this.lbLogout.Text = "Log Out";
+            this.lbLogout.Click += new System.EventHandler(this.lbLogOut_Click);
             // 
             // label7
             // 
@@ -253,7 +268,7 @@ namespace PBL41
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(60, 484);
+            this.btnAdd.Location = new System.Drawing.Point(60, 477);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(144, 58);
             this.btnAdd.TabIndex = 17;
@@ -290,7 +305,7 @@ namespace PBL41
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvFriend.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvFriend.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvFriend.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dgvFriend.BackgroundColor = System.Drawing.Color.CornflowerBlue;
             this.dgvFriend.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvFriend.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
@@ -364,14 +379,16 @@ namespace PBL41
             // LViewMessage
             // 
             this.LViewMessage.BackColor = System.Drawing.Color.White;
-            this.LViewMessage.Font = new System.Drawing.Font("Modern No. 20", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LViewMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LViewMessage.HideSelection = false;
             this.LViewMessage.Location = new System.Drawing.Point(0, 68);
             this.LViewMessage.Name = "LViewMessage";
+            this.LViewMessage.ShowItemToolTips = true;
             this.LViewMessage.Size = new System.Drawing.Size(524, 487);
             this.LViewMessage.TabIndex = 2;
+            this.LViewMessage.TileSize = new System.Drawing.Size(380, 40);
             this.LViewMessage.UseCompatibleStateImageBehavior = false;
-            this.LViewMessage.View = System.Windows.Forms.View.List;
+            this.LViewMessage.View = System.Windows.Forms.View.Tile;
             // 
             // lbName
             // 
@@ -431,6 +448,7 @@ namespace PBL41
             this.txtMessage.Location = new System.Drawing.Point(4, 556);
             this.txtMessage.Multiline = true;
             this.txtMessage.Name = "txtMessage";
+            this.txtMessage.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtMessage.Size = new System.Drawing.Size(453, 59);
             this.txtMessage.TabIndex = 1;
             // 
@@ -472,7 +490,6 @@ namespace PBL41
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -515,5 +532,6 @@ namespace PBL41
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ListView LViewMessage;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lbLogout;
     }
 }

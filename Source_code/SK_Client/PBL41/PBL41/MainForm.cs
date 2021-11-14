@@ -17,6 +17,7 @@ namespace PBL41
         public MainForm()
         {
             InitializeComponent();
+            dgvFriend.Height = 380;
             txtSearch.ReadOnly = true;
             listMS = new List<ListMessage>();
 
@@ -121,16 +122,13 @@ namespace PBL41
 
         private void butMess_Click(object sender, EventArgs e)
         {
-            panel3.Visible = true;
-            panelMes.Visible = true;
-            dgvFriend.Height = 484;
+            dgvFriend.Height = 380;
             btnAdd.Visible = false;
             setDgv();
         }
         
         private void butSend_Click(object sender, EventArgs e)
         {
-            txtMessage.Text = "";
             if (dgvFriend.SelectedRows.Count == 1)
             {
                 string msg;
@@ -143,7 +141,6 @@ namespace PBL41
                 }
                 else
                 {
-                    
                     msg = "#ID: " + id +" #msg: "+ txtMessage.Text;
                 }                                                   
                 string s = "Tôi : " + txtMessage.Text + "\n";
@@ -159,10 +156,11 @@ namespace PBL41
                     }                       
                 }
             }
+            txtMessage.Text = "";
         }
         private void butFriend_Click(object sender, EventArgs e)
         {
-            dgvFriend.Height = 418;
+            dgvFriend.Height = 320;
             dgvFriend.DataSource = null;
             btnAdd.Visible = true;
             txtSearch.ReadOnly = false;
@@ -207,20 +205,19 @@ namespace PBL41
                         continue;
                     }
                        
-                    else if(msg.Contains("#msg:"))
+                    else if(msg.Contains("#UpdateIP:"))
                     {
-                        if(msg.Contains("#UpdateIP"))
-                        {
-                            setDgv();
-                        }   
-                        else
-                            setListview(msg);
+                        
+                        setDgv();  
+                        
                     }
                     else if(msg.Contains("#Search"))
                     {
                         
                         setDgvFriend();
                     }
+                    else
+                        setListview(msg);
                 }
             }
             catch (Exception e)
@@ -250,11 +247,11 @@ namespace PBL41
                 }
             }
         }
-
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void lbLogOut_Click(object sender, EventArgs e)
         {
-            //.instance.Disconnect();
-            
+            this.Close();
         }
+
+ 
     }
 }

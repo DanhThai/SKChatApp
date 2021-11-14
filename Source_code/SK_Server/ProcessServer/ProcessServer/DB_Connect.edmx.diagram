@@ -5,10 +5,10 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="8ffb72efd6db4817aeb97a884e2d8063" Name="Diagram1">
-        <EntityTypeShape EntityType="SKChatModel.Account" Width="1.5" PointX="4.875" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="SKChatModel.Box_chat" Width="1.5" PointX="4.125" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SKChatModel.Account" Width="1.5" PointX="6.875" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SKChatModel.Box_chat" Width="1.5" PointX="4.375" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="SKChatModel.Group_chat" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SKChatModel.Person" Width="1.5" PointX="1.375" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SKChatModel.Person" Width="1.5" PointX="2.75" PointY="2.75" IsExpanded="true" />
         <AssociationConnector Association="SKChatModel.FK_Id1" ManuallyRouted="false" />
         <AssociationConnector Association="SKChatModel.FK_Group" ManuallyRouted="false" />
         <AssociationConnector Association="SKChatModel.FK_Id2" ManuallyRouted="false" />

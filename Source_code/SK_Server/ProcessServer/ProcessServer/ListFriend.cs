@@ -25,7 +25,7 @@ namespace ProcessServer
             }    
             return data;
         }
-        public void getFriend(int id)
+        public void addFriend(int id)
         {         
             DB_Model db = new DB_Model();
             var liststt = from p in db.Box_chat where p.Id == id select new {p.STT };

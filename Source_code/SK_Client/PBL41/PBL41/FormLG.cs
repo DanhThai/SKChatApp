@@ -47,8 +47,10 @@ namespace PBL41
                 bool check = ChatClient.instance.checkLogin();
                 if (check)
                 {
+                    InfUser.instance.SetAcc(txtUser1.Text, txtPass1.Text);
                     MainForm mf = new MainForm();
                     mf.FormClosed += new FormClosedEventHandler(MainForm_Closed);
+
                     mf.Show();
                     this.Hide();
                 }
@@ -169,6 +171,10 @@ namespace PBL41
             panelLG.Visible = false;
             pnSignUp1.Visible = false;
             pnSignUp2.Visible = true;
+            if(txtPass2.Text != txtConfirm2.Text)
+            {
+                MessageBox.Show("Mat khau k hop le");
+            }
         }
     }
 }

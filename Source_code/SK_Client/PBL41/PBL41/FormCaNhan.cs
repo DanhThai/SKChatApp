@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PBL41.Client;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,7 @@ namespace PBL41
 {
     public partial class FormCaNhan : Form
     {
+        bool isCancel = true;
         public FormCaNhan()
         {
             InitializeComponent();
@@ -21,97 +23,107 @@ namespace PBL41
         private void butChangePass_Click(object sender, EventArgs e)
         {
             panelChangePass.Visible = true;
+            txtUser.Text = InfUser.instance.User;
         }
 
         private void butConfirm_Click(object sender, EventArgs e)
         {
-            if(txtUser2.Text == "" || txtPass2.Text == "" || txtConfirm2.Text == "")
+
+            if ((txtOldPass.Text != InfUser.instance.PassWord) || (txtOldPass.Text == "") || (txtNewPass.Text == ""))
             {
-                MessageBox.Show("Hãy nhập đầy đủ thông tin", "Lỗi thông tin", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                MessageBox.Show("Thông tin chua chinh xac", "Lỗi thông tin", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
             }
             else
             {
+                ChatClient.instance.SendAcc(txtUser.Text, txtNewPass.Text);
                 panelChangePass.Visible = false;
-            }     
+
+            }
+        }
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            FormLG lg = new FormLG();
+            lg.Show();
         }
 
         //private void butAdd_Click(object sender, EventArgs e)
         //{
-            //if (result == DialogResult.OK)
-            //{
-            //    Lấy hình ảnh
-            //   Image img = Image.FromFile(openFileDialog1.FileName);
-            //    Gán ảnh
-            //    pictureAvt.Image = img;
-            //}
+        //if (result == DialogResult.OK)
+        //{
+        //    Lấy hình ảnh
+        //   Image img = Image.FromFile(openFileDialog1.FileName);
+        //    Gán ảnh
+        //    pictureAvt.Image = img;
+        //}
 
-            //OpenFileDialog dlg = new OpenFileDialog();
-            //if (dlg.ShowDialog() == DialogResult.OK)
-            //{
-            //    //string fileName;
-            //    //fileName = dlg.FileName;
-            //    //MessageBox.Show(fileName);
-            //    Image img = Image.FromFile(dlg.FileName);
-            //    pictureAvt.Image = img;
-            //}
-            //dlg.Title = "C# Căn bản chấm Com";
-            //dlg.InitialDirectory = @"C:pathtofile";
-            //dlg.Filter = "All files (*.*)|*.*|All files(*.*) | *.* ";
-            //dlg.FilterIndex = 1;
-            //dlg.RestoreDirectory = true;
+        //OpenFileDialog dlg = new OpenFileDialog();
+        //if (dlg.ShowDialog() == DialogResult.OK)
+        //{
+        //    //string fileName;
+        //    //fileName = dlg.FileName;
+        //    //MessageBox.Show(fileName);
+        //    Image img = Image.FromFile(dlg.FileName);
+        //    pictureAvt.Image = img;
+        //}
+        //dlg.Title = "C# Căn bản chấm Com";
+        //dlg.InitialDirectory = @"C:pathtofile";
+        //dlg.Filter = "All files (*.*)|*.*|All files(*.*) | *.* ";
+        //dlg.FilterIndex = 1;
+        //dlg.RestoreDirectory = true;
         //}
         private void txtUser2_Enter(object sender, EventArgs e)
         {
-            if (txtUser2.Text == "User")
+            if (txtUser.Text == "User")
             {
-                txtUser2.Text = "";
-                txtUser2.ForeColor = Color.Black;
+                txtUser.Text = "";
+                txtUser.ForeColor = Color.Black;
             }
         }
         private void txtUser2_Leave(object sender, EventArgs e)
         {
-            if (txtUser2.Text == "")
+            if (txtUser.Text == "")
             {
-                txtUser2.Text = "User";
-                txtUser2.ForeColor = Color.Gray;
-            }
-        }
-        private void txtPass2_Enter(object sender, EventArgs e)
-        {
-            if (txtPass2.Text == "Pass")
-            {
-                txtPass2.Text = "";
-                txtPass2.ForeColor = Color.Gray;
-            }
-        }
-        private void txtPass2_Leave(object sender, EventArgs e)
-        {
-            if (txtPass2.Text == "")
-            {
-                txtPass2.Text = "Pass";
-                txtPass2.ForeColor = Color.Gray;
-            }
-        }
-        private void txtConfirm2_Enter(object sender, EventArgs e)
-        {
-            if (txtConfirm2.Text == "ConfirmPass")
-            {
-                txtConfirm2.Text = "";
-                txtConfirm2.ForeColor = Color.Gray;
-            }
-        }
-        private void txtConfirm2_Leave(object sender, EventArgs e)
-        {
-            if (txtConfirm2.Text == "")
-            {
-                txtConfirm2.Text = "ConfirmPass";
-                txtConfirm2.ForeColor = Color.Gray;
+                txtUser.Text = "User";
+                txtUser.ForeColor = Color.Gray;
             }
         }
 
-        private void btnLogout_Click(object sender, EventArgs e)
-        {
 
+        private void txtOldPass_Leave(object sender, EventArgs e)
+        {
+            if (txtOldPass.Text == "")
+            {
+                txtOldPass.Text = "Old Pass";
+                txtOldPass.ForeColor = Color.Gray;
+            }
+        }
+
+        private void txtOldPass_Enter(object sender, EventArgs e)
+        {
+            if (txtOldPass.Text == "Old Pass")
+            {
+                txtOldPass.Text = "";
+                txtOldPass.ForeColor = Color.Black;
+            }
+        }
+
+        private void txtNewPass_Leave(object sender, EventArgs e)
+        {
+            if (txtNewPass.Text == "")
+            {
+                txtNewPass.Text = "New Pass";
+                txtNewPass.ForeColor = Color.Gray;
+            }
+        }
+
+        private void txtNewPass_Enter(object sender, EventArgs e)
+        {
+            if (txtNewPass.Text == "New Pass")
+            {
+                txtNewPass.Text = "";
+                txtNewPass.ForeColor = Color.Black;
+            }
         }
     }
 }

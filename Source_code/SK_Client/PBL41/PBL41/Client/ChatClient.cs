@@ -105,6 +105,19 @@ namespace PBL41.Client
 
             }
         }
+        public void SendAcc(String user, String pass)
+        {
+            try
+            {
+                var writer = new StreamWriter(stream);
+                writer.AutoFlush = true;
+                writer.WriteLine("#ChangePass: " + user + " " + pass);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
         public object DeserializeData(byte[] theByteArray)
         {
             BinaryFormatter bf1 = new BinaryFormatter();
@@ -155,22 +168,24 @@ namespace PBL41.Client
         //search friend
         public List<friend> checkFriend()
         {
-            List<friend>  list =ReceiveFriend();
+            List<friend>  list = ReceiveFriend();
             return list;
         }
         public string ReceiveMsg()
         {
             var reader = new StreamReader(stream);
             string msg = reader.ReadLine();
+            Console.WriteLine("msg:" + msg);
             if(msg.Contains("#UpdateIP"))
             {
-                // msg= "#msg #UpdateIP: ip ipnew"
+                // msg= "#UpdateIP: id ipnew"
                 string[] str = msg.Split(new string[] { " " }, StringSplitOptions.None);
+                Console.WriteLine("ok:" + str[1] + " | " + str[2]);
                 for (int i = 0; i < listFriend.Count; i++)
                 {                   
-                    if (listFriend[i].ID ==Convert.ToInt32(str[2]))
+                    if (listFriend[i].ID ==Convert.ToInt32(str[1]))
                     {
-                        listFriend[i].IP = str[3];
+                        listFriend[i].IP = str[2];
                         listFriend[i].UpdateIP = true;
                         break;
                     }

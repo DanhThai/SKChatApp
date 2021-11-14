@@ -63,19 +63,19 @@ namespace ProcessServer
                         string msg = reader.ReadLine();
                         string ipsend = sk.RemoteEndPoint.ToString();
                         Console.WriteLine(msg);
-                        if (msg != null && msg.Contains("#Disconnect"))                      
+                        if (msg != null && msg.Contains("#Disconnect"))
                             break;
-                        
-                        else if(msg != null && msg.Contains("#Login"))
+
+                        else if (msg != null && msg.Contains("#Login"))
                             processLogin(msg, ipsend, stream);
 
-                        else if (msg != null && msg.Contains("#msg"))                       
+                        else if (msg != null && msg.Contains("#msg"))
                             processSendMsg(msg, sk);
-                        
-                        else if (msg != null && msg.Contains("#Search") )                       
+
+                        else if (msg != null && msg.Contains("#Search"))
                             processSearch(msg, stream);
-                        
-                            
+                        else if (msg != null && msg.Contains("#ChangePass"))
+                            Console.WriteLine(msg);
                         else
                             continue;
                     }
@@ -99,6 +99,7 @@ namespace ProcessServer
                 {
                     if (ip.Contains(i.RemoteEndPoint.ToString()))
                     {
+                        Console.WriteLine("msg:" + msg);
                         stream = new NetworkStream(i);
                         var writer = new StreamWriter(stream);
                         writer.AutoFlush = true;
@@ -154,8 +155,9 @@ namespace ProcessServer
             //mess is message
             string mess = str[1];
             string[] check = str[0].Split(new string[] { " " }, StringSplitOptions.None);
+            //id sender
             int id = Client.instance.getIDbyIP(sender.RemoteEndPoint.ToString());
-            //Console.WriteLine(str[1] + check[1]);
+            Console.WriteLine(str[1] );
             // msg= "#ID: id #msg: msg"
             if (msg.Contains("#ID"))
             {
@@ -167,7 +169,8 @@ namespace ProcessServer
                     var stream = new NetworkStream(sender);
                     var writer = new StreamWriter(stream);
                     writer.AutoFlush = true;
-                    writer.WriteLine("#msg #UpdateIP: "+check[1] + ip);
+                    //msg = "#UpdateIP: id ipnew"
+                    writer.WriteLine("#UpdateIP: "+check[1] +" "+ ip);
 
                     foreach (Socket i in ListClient)
                     {
