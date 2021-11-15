@@ -12,6 +12,7 @@ namespace ProcessServer
     class ListFriend
     {
         private List<friend> listFriend;
+        public string Name { get; set; }
         public ListFriend()
         {
             listFriend = new List<friend>();
@@ -25,16 +26,27 @@ namespace ProcessServer
             }    
             return data;
         }
-        public void addFriend(int id)
+        public void setFriend(int id)
         {         
             DB_Model db = new DB_Model();
             var liststt = from p in db.Box_chat where p.Id == id select new {p.STT };
+
             foreach(var i in liststt)
             {
-                Box_chat bc = db.Box_chat.Find(i.STT + 1);
-                Person FR = db.Person.Find(bc.Id);
-                friend fr = new friend(FR.Id,FR.Ipaddress,FR.Full_name);                   
-                listFriend.Add(fr);  
+                if(i.STT %2 !=0)
+                {
+                    Box_chat bc = db.Box_chat.Find(i.STT + 1);
+                    Person FR = db.Person.Find(bc.Id);
+                    friend fr = new friend(FR.Id, FR.Ipaddress, FR.Full_name);
+                    listFriend.Add(fr);
+                }
+                else
+                {
+                    Box_chat bc = db.Box_chat.Find(i.STT - 1);
+                    Person FR = db.Person.Find(bc.Id);
+                    friend fr = new friend(FR.Id, FR.Ipaddress, FR.Full_name);
+                    listFriend.Add(fr);
+                }                                 
             }    
         }
         public byte[] SerializeData(object fr)

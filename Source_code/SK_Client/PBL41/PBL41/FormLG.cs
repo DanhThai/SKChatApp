@@ -47,7 +47,7 @@ namespace PBL41
                 bool check = ChatClient.instance.checkLogin();
                 if (check)
                 {
-                    InfUser.instance.SetAcc(txtUser1.Text, txtPass1.Text);
+                    InforUser.instance.SetAcc(txtUser1.Text, txtPass1.Text);
                     MainForm mf = new MainForm();
                     mf.FormClosed += new FormClosedEventHandler(MainForm_Closed);
 

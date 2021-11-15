@@ -13,7 +13,7 @@ namespace ProcessServer
     {
         private List<friend> listClient = new List<friend>();
         private static Client _Instance;
-        
+        private int ID;
         public static Client instance
         {
             get
@@ -23,11 +23,11 @@ namespace ProcessServer
                 return _Instance;
             }
         }
-        public byte[] SerializeData(object list)
+        public byte[] SerializeData(object ob)
         {
             MemoryStream ms = new MemoryStream();
             BinaryFormatter bf1 = new BinaryFormatter();
-            bf1.Serialize(ms, (object)list);
+            bf1.Serialize(ms, ob);
             return ms.ToArray();
         }
         public List<byte[]> checkLogin(string user,string pass,string ip)
@@ -37,28 +37,23 @@ namespace ProcessServer
 
             if (acc!=null && acc.Pass == pass)
             {
-                int id=(int)acc.Id;
-                addClient(id, ip);
-
+                ID = (int)acc.Id;
                 ListFriend list = new ListFriend();                    
-                list.addFriend(id);              
+                list.setFriend(ID);              
                 // convert object to byte array
                 List<byte[]> listfriend = list.getFriend();
-                //listfr.Add(getInfor((int)acc.Id,ip));
                 return listfriend;
             }                   
             return null;
         }
-        public byte[] getInfor(int id,string ip)
+        public byte[] getInformation(string ip)
         {
             DB_Model db = new DB_Model();
-            Person ps = db.Person.Find(id);
+            Person ps = db.Person.Find(ID);
             ps.Ipaddress = ip;
+            addClient(ID, ip,ps.Full_name);
             db.SaveChanges();
-            Information infor = new Information(ps.Id, ip, ps.Full_name, (bool)ps.Gender, Convert.ToDateTime( ps.Birthday));
-            //MemoryStream ms = new MemoryStream();
-            //BinaryFormatter bf1 = new BinaryFormatter();
-            //bf1.Serialize(ms, (object)infor);
+            Information infor = new Information(ps.Full_name, (bool)ps.Gender, Convert.ToDateTime( ps.Birthday));
             return SerializeData(infor).ToArray();
         }
         public List<byte[]> searchFriend(string name)
@@ -74,9 +69,9 @@ namespace ProcessServer
             return listFriend;
         }
         // add client connected to server
-        public void addClient(int id, string ip)
+        public void addClient(int id, string ip,string name)
         {
-            friend fr = new friend(id, ip);
+            friend fr = new friend(id, ip,name);
             listClient.Add(fr);
         }
 
@@ -107,6 +102,19 @@ namespace ProcessServer
                 }    
             }
             return 0;
+        }
+        public byte[] getClientByIP(string ip)
+        {
+            byte[] client = null;
+            for (int i = 0; i < listClient.Count; i++)
+            {
+                if (listClient[i].IP.Equals(ip))
+                {
+
+                    client=SerializeData(listClient[i]);
+                }
+            }
+            return client;
         }
     }
 }

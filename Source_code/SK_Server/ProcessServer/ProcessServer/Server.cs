@@ -76,6 +76,10 @@ namespace ProcessServer
                             processSearch(msg, stream);
                         else if (msg != null && msg.Contains("#ChangePass"))
                             Console.WriteLine(msg);
+                        else if(msg != null && msg.Contains("#AddFriend"))
+                            processAddFriend(msg, sk);
+                        else if (msg != null && msg.Contains("#AcceptFriend"))
+                            processAcceptFriend(msg, sk);
                         else
                             continue;
                     }
@@ -124,7 +128,7 @@ namespace ProcessServer
                     string msg = Encoding.ASCII.GetString(i);
                     Console.WriteLine(msg);                   
                     stream.Write(i, 0, i.Length);
-                    Thread.Sleep(1);
+                    Thread.Sleep(3);
                 }
                 Thread.Sleep(3);
                 string s = "#done";
@@ -142,10 +146,16 @@ namespace ProcessServer
         // send friend list, info to client 
         public void processLogin(string msg, string ip, NetworkStream stream)
         {
+            //msg="#Login: user pass"
             string[] str = msg.Split(' ');
 
             List<byte[]> data = Client.instance.checkLogin(str[1], str[2], ip);
             sendFriend(data, stream);
+
+            Thread.Sleep(3);
+            byte[] info = Client.instance.getInformation(ip);
+            stream.Write(info, 0, info.Length);
+            Thread.Sleep(1);
         }
 
         // send massage to client 
@@ -177,6 +187,7 @@ namespace ProcessServer
                         if (ip.Equals(i.RemoteEndPoint.ToString()))
                         {
                             sendMsg(mess, ip, id);
+                            break;
                         }
                     }
                 }
@@ -184,7 +195,6 @@ namespace ProcessServer
             // msg= "#IP: ip #msg: msg"
             else
             {
-
                 sendMsg(mess, check[1], id);
             }
         }
@@ -200,6 +210,58 @@ namespace ProcessServer
             Console.WriteLine(str[1]);
             sendFriend(data, stream);
         }
-
+        public void processAddFriend(string msg, Socket sender)
+        {
+            // msg= "#AddFriend: id ip"
+            string[] str = msg.Split(' ');
+            //ip of online receiver 
+            string ip = Client.instance.checkIPbyID((Convert.ToInt32(str[1])));
+            // data of sended client 
+            byte[] datasender= Client.instance.getClientByIP(sender.RemoteEndPoint.ToString());
+            if (ip!=null)
+            {               
+                foreach (Socket i in ListClient)
+                {
+                    if (ip.Equals(i.RemoteEndPoint.ToString()))
+                    {
+                        var stream = new NetworkStream(i);
+                        var writer = new StreamWriter(stream);
+                        writer.AutoFlush = true;
+                        // msg= "#MakeFriend: id ip"
+                        writer.WriteLine("#MakeFriend:");
+                        Thread.Sleep(2);
+                        stream.Write(datasender, 0, datasender.Length);
+                        stream.Close();                       
+                        break;
+                    }
+                }
+            }    
+        }
+        public void processAcceptFriend(string msg, Socket sender)
+        {
+            string[] str = msg.Split(' ');
+            //ip of online receiver 
+            string ip = Client.instance.checkIPbyID((Convert.ToInt32(str[1])));
+            // data of sended client
+            byte[] datasender = Client.instance.getClientByIP(sender.RemoteEndPoint.ToString());
+            if (ip != null)
+            {
+                foreach (Socket i in ListClient)
+                {
+                    if (ip.Equals(i.RemoteEndPoint.ToString()))
+                    {
+                        var stream = new NetworkStream(i);
+                        var writer = new StreamWriter(stream);
+                        writer.AutoFlush = true;
+                        // msg= "#MakeFriend: id ip"
+                        writer.WriteLine("#AcceptFriend:");
+                        Thread.Sleep(2);
+                        stream.Write(datasender, 0, datasender.Length);
+                        stream.Close();
+                        break;
+                    }
+                }
+            }
+        }
     }
 }

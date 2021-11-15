@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client\ChatClient.cs" />
-    <Compile Include="Client\InfUser.cs" />
+    <Compile Include="Client\InforUser.cs" />
     <Compile Include="Client\ListMessage.cs" />
     <Compile Include="FormCall.cs">
       <SubType>Form</SubType>

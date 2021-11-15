@@ -20,7 +20,7 @@ namespace PBL41
             dgvFriend.Height = 380;
             txtSearch.ReadOnly = true;
             listMS = new List<ListMessage>();
-
+            lbMyName.Text = InforUser.instance.getName();
             setDgv();
 
             Thread th = new Thread(() => ReceiveMsg());
@@ -165,19 +165,19 @@ namespace PBL41
             btnAdd.Visible = true;
             txtSearch.ReadOnly = false;
         }
-        private void btnCreate_Click(object sender, EventArgs e)
+        private void btnAddFriend_Click(object sender, EventArgs e)
         {
             if (dgvFriend.SelectedRows.Count == 1)
             {
                 dgvFriend.Height = 484;
                 btnAdd.Visible = false;
-                int id = (int)dgvFriend.SelectedRows[0].Cells["ID"].Value;
-                string ip = dgvFriend.SelectedRows[0].Cells["IP"].Value.ToString();
-                string name = dgvFriend.SelectedRows[0].Cells["Name"].Value.ToString();
+                string id = dgvFriend.SelectedRows[0].Cells["ID"].Value.ToString();
+                string ip = dgvFriend.SelectedRows[0].Cells["IP"].Value.ToString();              
 
-                friend fr = new friend(id, ip, name);
-                ChatClient.instance.addFriend(fr);
-                setDgv();
+                //friend fr = new friend(id, ip, name);
+                //ChatClient.instance.addFriend(fr);
+                //setDgv();
+                ChatClient.instance.SendAddFriend(id,ip);
             }
             else
                 MessageBox.Show("Chỉ được chọn 1 người");
@@ -206,16 +206,30 @@ namespace PBL41
                     }
                        
                     else if(msg.Contains("#UpdateIP:"))
-                    {
-                        
-                        setDgv();  
-                        
+                    {                       
+                        setDgv();                        
                     }
                     else if(msg.Contains("#Search"))
-                    {
-                        
+                    {                       
                         setDgvFriend();
                     }
+                    else if(msg.Contains("#MakeFriend"))
+                    {
+                        friend fr = ChatClient.instance.makeFriend();
+                        DialogResult rs = MessageBox.Show("Make Friend", fr.Name + " want to make friend", MessageBoxButtons.YesNo);
+                        if(rs==DialogResult.Yes)
+                        {
+                            ChatClient.instance.addFriend(fr);
+                            setDgv();
+                        }    
+                    }
+                    else if (msg.Contains("#AcceptFriend"))
+                    {                       
+                        friend fr = ChatClient.instance.makeFriend();
+                        MessageBox.Show("Accept Friend", fr.Name + " accepted friend");
+                        ChatClient.instance.addFriend(fr);
+                        setDgv();                      
+                    }    
                     else
                         setListview(msg);
                 }

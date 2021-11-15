@@ -276,7 +276,7 @@ namespace PBL41
             this.btnAdd.TextColor = System.Drawing.Color.White;
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Visible = false;
-            this.btnAdd.Click += new System.EventHandler(this.btnCreate_Click);
+            this.btnAdd.Click += new System.EventHandler(this.btnAddFriend_Click);
             // 
             // label2
             // 

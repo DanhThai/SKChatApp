@@ -30,6 +30,7 @@ namespace PBL41.Client
         public void addFriend(friend fr)
         {
             listFriend.Insert(0, fr);
+
         }
         public void ConnectSV()
         {
@@ -105,6 +106,34 @@ namespace PBL41.Client
 
             }
         }
+        public void SendAddFriend(string id, string ip)
+        {
+            try
+            {
+                var writer = new StreamWriter(stream);
+                writer.AutoFlush = true;
+                // msg= "#AddFriend: id ip"
+                writer.WriteLine("#AddFriend: " + id + " " + ip);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+        public void SendAcceptFriend(string ip)
+        {
+            try
+            {
+                var writer = new StreamWriter(stream);
+                writer.AutoFlush = true;
+                //msg="#AcceptFriend: ip"
+                writer.WriteLine("#AcceptFriend: " + ip);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
         public void SendAcc(String user, String pass)
         {
             try
@@ -162,7 +191,17 @@ namespace PBL41.Client
         {
             listFriend=ReceiveFriend();
             if (listFriend.Count > 0)
+            {
+                byte[] str = new byte[1024];
+                stream.Read(str, 0, 1024);
+                string s = Encoding.ASCII.GetString(str);
+                Console.WriteLine(s);
+                Information info= (Information)DeserializeData(str);
+                InforUser.instance.SetInformation(info.Full_name, info.Gender, info.Birthday);
+
                 return true;
+            }    
+                
             else return false;
         }
         //search friend
@@ -170,6 +209,15 @@ namespace PBL41.Client
         {
             List<friend>  list = ReceiveFriend();
             return list;
+        }
+        public friend makeFriend()
+        {
+            byte[] str = new byte[1024];
+            int i = stream.Read(str, 0, 1024);
+            string s = Encoding.ASCII.GetString(str);
+            Console.WriteLine(s);
+            friend fr = (friend)DeserializeData(str);
+            return fr;
         }
         public string ReceiveMsg()
         {

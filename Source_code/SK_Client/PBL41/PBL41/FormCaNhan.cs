@@ -23,13 +23,13 @@ namespace PBL41
         private void butChangePass_Click(object sender, EventArgs e)
         {
             panelChangePass.Visible = true;
-            txtUser.Text = InfUser.instance.User;
+            txtUser.Text = InforUser.instance.User;
         }
 
         private void butConfirm_Click(object sender, EventArgs e)
         {
 
-            if ((txtOldPass.Text != InfUser.instance.PassWord) || (txtOldPass.Text == "") || (txtNewPass.Text == ""))
+            if ((txtOldPass.Text != InforUser.instance.PassWord) || (txtOldPass.Text == "") || (txtNewPass.Text == ""))
             {
                 MessageBox.Show("Thông tin chua chinh xac", "Lỗi thông tin", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
             }
