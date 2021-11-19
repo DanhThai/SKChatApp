@@ -57,7 +57,7 @@ namespace ProcessServer
                     {
                         break;
                     }
-                        
+
                     else
                     {
                         string msg = reader.ReadLine();
@@ -76,7 +76,7 @@ namespace ProcessServer
                             processSearch(msg, stream);
                         else if (msg != null && msg.Contains("#ChangePass"))
                             Console.WriteLine(msg);
-                        else if(msg != null && msg.Contains("#AddFriend"))
+                        else if (msg != null && msg.Contains("#AddFriend"))
                             processAddFriend(msg, sk);
                         else if (msg != null && msg.Contains("#AcceptFriend"))
                             processAcceptFriend(msg, sk);
@@ -86,25 +86,25 @@ namespace ProcessServer
                 }
                 catch (Exception e)
                 {
-                    //stream.Close();
+                    stream.Close();
                     //ListClient.Remove(sk);
                     //sk.Close();
                     Console.WriteLine(e.Message);
-                }               
+                }
             }
             stream.Close();
         }
         public void sendMsg(string msg, string ip, int id)
         {
-            NetworkStream stream = null;
+
             foreach (var i in ListClient)
             {
                 try
                 {
                     if (ip.Contains(i.RemoteEndPoint.ToString()))
                     {
-                        Console.WriteLine("msg:" + msg);
-                        stream = new NetworkStream(i);
+                        Console.WriteLine("msg send to:"+ i.RemoteEndPoint.ToString()+" " + msg);
+                        NetworkStream stream = new NetworkStream(i);
                         var writer = new StreamWriter(stream);
                         writer.AutoFlush = true;
                         writer.WriteLine(id + " #send: " + msg);
@@ -113,20 +113,19 @@ namespace ProcessServer
                     }
                 }
                 catch (Exception ex)
-                {
-                    stream.Close();
+                {                 
                     Console.WriteLine(ex.Message);
                 }
             }
         }
         public void sendFriend(List<byte[]> data, NetworkStream stream)
         {
-            if (data.Count>0)
+            if (data.Count > 0)
             {
                 foreach (byte[] i in data)
                 {
                     string msg = Encoding.ASCII.GetString(i);
-                    Console.WriteLine(msg);                   
+                    Console.WriteLine(msg);
                     stream.Write(i, 0, i.Length);
                     Thread.Sleep(3);
                 }
@@ -134,7 +133,6 @@ namespace ProcessServer
                 string s = "#done";
                 byte[] bytes = Encoding.ASCII.GetBytes(s);
                 stream.Write(bytes, 0, bytes.Length);
-
             }
             else
             {
@@ -167,12 +165,13 @@ namespace ProcessServer
             string[] check = str[0].Split(new string[] { " " }, StringSplitOptions.None);
             //id sender
             int id = Client.instance.getIDbyIP(sender.RemoteEndPoint.ToString());
-            Console.WriteLine(str[1] );
-            // msg= "#ID: id #msg: msg"
+            //Console.WriteLine(str[1]);
+            // msg= "#ID: id #msg: msg", check[1]=id
             if (msg.Contains("#ID"))
             {
                 //ip reciever
                 string ip = Client.instance.checkIPbyID(Convert.ToInt32(check[1]));
+                Console.WriteLine("ip send:" + sender.RemoteEndPoint.ToString()+"ip receiev:"+ip);
                 //update ip for client
                 if (ip != null)
                 {
@@ -180,21 +179,15 @@ namespace ProcessServer
                     var writer = new StreamWriter(stream);
                     writer.AutoFlush = true;
                     //msg = "#UpdateIP: id ipnew"
-                    writer.WriteLine("#UpdateIP: "+check[1] +" "+ ip);
-
-                    foreach (Socket i in ListClient)
-                    {
-                        if (ip.Equals(i.RemoteEndPoint.ToString()))
-                        {
-                            sendMsg(mess, ip, id);
-                            break;
-                        }
-                    }
+                    writer.WriteLine("#UpdateIP: " + check[1] + " " + ip);
+                    sendMsg(mess, ip, id);
+                    
                 }
             }
-            // msg= "#IP: ip #msg: msg"
+            // msg= "#IP: ip #msg: msg",check[1]=ip
             else
             {
+                Console.WriteLine("send to ip: "+check[1]);
                 sendMsg(mess, check[1], id);
             }
         }
@@ -217,32 +210,6 @@ namespace ProcessServer
             //ip of online receiver 
             string ip = Client.instance.checkIPbyID((Convert.ToInt32(str[1])));
             // data of sended client 
-            byte[] datasender= Client.instance.getClientByIP(sender.RemoteEndPoint.ToString());
-            if (ip!=null)
-            {               
-                foreach (Socket i in ListClient)
-                {
-                    if (ip.Equals(i.RemoteEndPoint.ToString()))
-                    {
-                        var stream = new NetworkStream(i);
-                        var writer = new StreamWriter(stream);
-                        writer.AutoFlush = true;
-                        // msg= "#MakeFriend: id ip"
-                        writer.WriteLine("#MakeFriend:");
-                        Thread.Sleep(2);
-                        stream.Write(datasender, 0, datasender.Length);
-                        stream.Close();                       
-                        break;
-                    }
-                }
-            }    
-        }
-        public void processAcceptFriend(string msg, Socket sender)
-        {
-            string[] str = msg.Split(' ');
-            //ip of online receiver 
-            string ip = Client.instance.checkIPbyID((Convert.ToInt32(str[1])));
-            // data of sended client
             byte[] datasender = Client.instance.getClientByIP(sender.RemoteEndPoint.ToString());
             if (ip != null)
             {
@@ -254,7 +221,7 @@ namespace ProcessServer
                         var writer = new StreamWriter(stream);
                         writer.AutoFlush = true;
                         // msg= "#MakeFriend: id ip"
-                        writer.WriteLine("#AcceptFriend:");
+                        writer.WriteLine("#MakeFriend:");
                         Thread.Sleep(2);
                         stream.Write(datasender, 0, datasender.Length);
                         stream.Close();
@@ -262,6 +229,33 @@ namespace ProcessServer
                     }
                 }
             }
+        }
+        public void processAcceptFriend(string msg, Socket sender)
+        {
+            // masg="#AcceptFriend: ip"
+            string[] str = msg.Split(' ');
+
+            //ip of online receiver 
+            //string ip = Client.instance.checkIPbyID((Convert.ToInt32(str[1])));
+            // data of sended client
+            byte[] datasender = Client.instance.getClientByIP(sender.RemoteEndPoint.ToString());
+
+            foreach (Socket i in ListClient)
+            {
+                if (str[1].Equals(i.RemoteEndPoint.ToString()))
+                {
+                    var stream = new NetworkStream(i);
+                    var writer = new StreamWriter(stream);
+                    writer.AutoFlush = true;
+                    // msg= "#AcceptFriend:"
+                    writer.WriteLine("#AcceptFriend:");
+                    Thread.Sleep(2);
+                    stream.Write(datasender, 0, datasender.Length);
+                    stream.Close();
+                    break;
+                }
+            }
+
         }
     }
 }

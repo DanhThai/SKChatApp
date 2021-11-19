@@ -14,6 +14,7 @@ namespace PBL41.Client
         private NetworkStream stream;
         private static ChatClient _Instance;
         private List<friend> listFriend;
+        private List<ListMessage> listMS=new List<ListMessage>();
         public static ChatClient instance
         {
             get
@@ -27,10 +28,26 @@ namespace PBL41.Client
         {
             return listFriend;
         }
+        public List<ListMessage> getListMessage()
+        {
+            return listMS;
+        }
+        public void addMessage(string msg,int id)
+        {
+            foreach (ListMessage i in listMS)
+            {
+                if (i.ID == id)
+                {
+                    i.addMessage(msg);
+                    break;
+                }
+            }
+        }
         public void addFriend(friend fr)
         {
             listFriend.Insert(0, fr);
-
+            ListMessage lms = new ListMessage(fr.ID);
+            listMS.Add(lms);
         }
         public void ConnectSV()
         {
@@ -60,11 +77,6 @@ namespace PBL41.Client
                 client.Close();
                 listFriend.Clear();
             }
-        }
-        public void Create()
-        {
-            _Instance = new ChatClient();
-            client = new TcpClient();
         }
         public void SendMsg(string msg)
         {
@@ -190,6 +202,11 @@ namespace PBL41.Client
         public bool checkLogin()
         {
             listFriend=ReceiveFriend();
+            foreach (friend i in listFriend)
+            {
+                ListMessage lms = new ListMessage(i.ID);
+                listMS.Add(lms);
+            }
             if (listFriend.Count > 0)
             {
                 byte[] str = new byte[1024];
@@ -228,7 +245,7 @@ namespace PBL41.Client
             {
                 // msg= "#UpdateIP: id ipnew"
                 string[] str = msg.Split(new string[] { " " }, StringSplitOptions.None);
-                Console.WriteLine("ok:" + str[1] + " | " + str[2]);
+                //Console.WriteLine("ok:" + str[1] + " | " + str[2]);
                 for (int i = 0; i < listFriend.Count; i++)
                 {                   
                     if (listFriend[i].ID ==Convert.ToInt32(str[1]))

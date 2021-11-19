@@ -29,19 +29,68 @@ namespace PBL41
         }
         public void setDgv()
         {
-            List<friend> l = ChatClient.instance.getListFriend();
 
-            foreach (friend i in l)
-            {
-                ListMessage lms = new ListMessage(i.ID);
-                listMS.Add(lms);
-            }
+            List<friend> l = ChatClient.instance.getListFriend();         
+            
             dgvFriend.DataSource = l;
             dgvFriend.Columns["ID"].Visible = false;
             dgvFriend.Columns["IP"].Visible = false;
             dgvFriend.Columns["UpdateIP"].Visible = false;
             dgvFriend.Columns["Name"].ReadOnly = true;
+            
+            //setLabel(dgvFriend.Rows[0].Cells["Name"].Value.ToString());
             lbName.Text = dgvFriend.Rows[0].Cells["Name"].Value.ToString();
+        }
+       
+        public void setDgvFriend()
+        {
+            if (dgvFriend.InvokeRequired)
+            {
+                var d = new SafeCallDelegateDgv(setDgvFriend);
+                dgvFriend.Invoke(d);
+            }
+            else
+            {
+                List<friend> listFr = ChatClient.instance.checkFriend();
+
+                if (listFr.Count < 1)
+                    MessageBox.Show("Không tìm thấy bạn bè");
+                dgvFriend.DataSource = listFr;
+                dgvFriend.Columns["ID"].Visible = false;
+                dgvFriend.Columns["IP"].Visible = false;
+                dgvFriend.Columns["UpdateIP"].Visible = false;
+                dgvFriend.Columns["Name"].ReadOnly = true;
+            }
+
+        }
+        public void setListview(string msg)
+        {
+            if (LViewMessage.InvokeRequired)
+            {
+                var d = new SafeCallDelegateLV(setListview);
+                LViewMessage.Invoke(d, new object[] { msg });
+            }
+            else
+            {
+                // msg="id #send: msg"
+                string[] str = msg.Split(new string[] { " #send: " }, StringSplitOptions.None);
+                //Console.WriteLine(str[0]);
+                string id = dgvFriend.SelectedRows[0].Cells["ID"].Value.ToString();
+                string name = dgvFriend.SelectedRows[0].Cells["Name"].Value.ToString();
+                if (id.Equals(str[0]))
+                {
+                    LViewMessage.Items.Add(name + ": " + str[1]);
+                }
+                foreach (ListMessage i in ChatClient.instance.getListMessage())
+                {
+                    if (i.ID == Convert.ToInt32(str[0]))
+                    {
+                        
+                        i.addMessage(name + ": " + str[1]);
+                        break;
+                    }
+                }
+            }
         }
         private void txtSearch_Enter(object sender, EventArgs e)
         {
@@ -60,55 +109,7 @@ namespace PBL41
             }
         }
 
-        public void setDgvFriend()
-        {
-            if (dgvFriend.InvokeRequired)
-            {
-                var d = new SafeCallDelegateDgv(setDgvFriend);
-                dgvFriend.Invoke(d);
-            }
-            else
-            {
-                List<friend> listFr = ChatClient.instance.checkFriend();
-                
-                if (listFr.Count <1)              
-                    MessageBox.Show("Không tìm thấy bạn bè");
-                dgvFriend.DataSource = listFr;
-                dgvFriend.Columns["ID"].Visible = false;
-                dgvFriend.Columns["IP"].Visible = false;
-                dgvFriend.Columns["UpdateIP"].Visible = false;
-                dgvFriend.Columns["Name"].ReadOnly = true;
-            }    
 
-        }
-        public void setListview(string msg)
-        {
-            if (LViewMessage.InvokeRequired)
-            {
-                var d = new SafeCallDelegateLV(setListview);
-                LViewMessage.Invoke(d, new object[] { msg });
-            }
-            else
-            {
-                string[] str = msg.Split(new string[] { " #send: " }, StringSplitOptions.None);
-                Console.WriteLine(str[0]);
-                string id = dgvFriend.SelectedRows[0].Cells["ID"].Value.ToString();
-                string name = dgvFriend.SelectedRows[0].Cells["Name"].Value.ToString();
-                if (id.Equals(str[0]))
-                {
-                    LViewMessage.Items.Add(name + ": " + str[1]);
-                }
-                foreach (ListMessage i in listMS)
-                {
-                    if(i.ID==Convert.ToInt32(str[0]))
-                    {
-                        Console.WriteLine(str[1]);
-                        i.addMessage(name + ": " + str[1]);
-                        break;
-                    }                          
-                }                                 
-            }
-        }
         private void butSet_Click(object sender, EventArgs e)
         {
             FormCaNhan fc = new FormCaNhan();
@@ -126,13 +127,13 @@ namespace PBL41
             btnAdd.Visible = false;
             setDgv();
         }
-        
+
         private void butSend_Click(object sender, EventArgs e)
         {
             if (dgvFriend.SelectedRows.Count == 1)
             {
                 string msg;
-                bool upIp= (bool)dgvFriend.SelectedRows[0].Cells["UpdateIP"].Value;
+                bool upIp = (bool)dgvFriend.SelectedRows[0].Cells["UpdateIP"].Value;
                 int id = (int)dgvFriend.SelectedRows[0].Cells["ID"].Value;
                 if (upIp)
                 {
@@ -141,20 +142,13 @@ namespace PBL41
                 }
                 else
                 {
-                    msg = "#ID: " + id +" #msg: "+ txtMessage.Text;
-                }                                                   
+                    msg = "#ID: " + id + " #msg: " + txtMessage.Text;
+                }
                 string s = "Tôi : " + txtMessage.Text + "\n";
-                LViewMessage.Items.Add(s);             
+                LViewMessage.Items.Add(s);
                 ChatClient.instance.SendMsg(msg);
                 // add message into list massage
-                foreach(ListMessage i in listMS)
-                {
-                    if (i.ID == id)
-                    {
-                        i.addMessage(s);
-                        break;
-                    }                       
-                }
+                ChatClient.instance.addMessage(s, id);
             }
             txtMessage.Text = "";
         }
@@ -172,12 +166,12 @@ namespace PBL41
                 dgvFriend.Height = 484;
                 btnAdd.Visible = false;
                 string id = dgvFriend.SelectedRows[0].Cells["ID"].Value.ToString();
-                string ip = dgvFriend.SelectedRows[0].Cells["IP"].Value.ToString();              
+                string ip = dgvFriend.SelectedRows[0].Cells["IP"].Value.ToString();
 
                 //friend fr = new friend(id, ip, name);
                 //ChatClient.instance.addFriend(fr);
                 //setDgv();
-                ChatClient.instance.SendAddFriend(id,ip);
+                ChatClient.instance.SendAddFriend(id, ip);
             }
             else
                 MessageBox.Show("Chỉ được chọn 1 người");
@@ -186,50 +180,52 @@ namespace PBL41
         {
             if (txtSearch.Text != null)
             {
-                ChatClient.instance.SendSearch(txtSearch.Text);                             
+                ChatClient.instance.SendSearch(txtSearch.Text);
             }
             else
                 MessageBox.Show("Hãy nhập tên tìm kiếm");
         }
         public void ReceiveMsg()
-        {         
+        {
             try
             {
                 string msg = "";
                 while (true)
                 {
                     msg = ChatClient.instance.ReceiveMsg();
-                    Console.WriteLine(msg);
+                    
                     if (msg == null)
                     {
                         continue;
                     }
-                       
-                    else if(msg.Contains("#UpdateIP:"))
-                    {                       
-                        setDgv();                        
+
+                    else if (msg.Contains("#UpdateIP:"))
+                    {
+                        setDgv();
                     }
-                    else if(msg.Contains("#Search"))
-                    {                       
+                    else if (msg.Contains("#Search"))
+                    {
                         setDgvFriend();
                     }
-                    else if(msg.Contains("#MakeFriend"))
+                    else if (msg.Contains("#MakeFriend"))
                     {
                         friend fr = ChatClient.instance.makeFriend();
                         DialogResult rs = MessageBox.Show("Make Friend", fr.Name + " want to make friend", MessageBoxButtons.YesNo);
-                        if(rs==DialogResult.Yes)
+                        if (rs == DialogResult.Yes)
                         {
                             ChatClient.instance.addFriend(fr);
-                            setDgv();
-                        }    
+                           
+                            ChatClient.instance.SendAcceptFriend(fr.IP);
+                            //setDgv();
+                        }
                     }
                     else if (msg.Contains("#AcceptFriend"))
-                    {                       
+                    {
                         friend fr = ChatClient.instance.makeFriend();
-                        MessageBox.Show("Accept Friend", fr.Name + " accepted friend");
+                        //MessageBox.Show("Accept Friend", fr.Name + " accepted friend", MessageBoxButtons.OK);
                         ChatClient.instance.addFriend(fr);
-                        setDgv();                      
-                    }    
+                        //setDgv();
+                    }
                     else
                         setListview(msg);
                 }
@@ -244,14 +240,14 @@ namespace PBL41
         {
             FormCall f = new FormCall();
             f.Show();
-        }       
+        }
 
         private void dgvFriend_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int id = (int)dgvFriend.SelectedRows[0].Cells["ID"].Value;
-            lbName.Text= dgvFriend.SelectedRows[0].Cells["Name"].Value.ToString();
+            lbName.Text = dgvFriend.SelectedRows[0].Cells["Name"].Value.ToString();
             LViewMessage.Items.Clear();
-            foreach (ListMessage i in listMS)
+            foreach (ListMessage i in ChatClient.instance.getListMessage())
             {
                 if (i.ID == id)
                 {
@@ -266,6 +262,6 @@ namespace PBL41
             this.Close();
         }
 
- 
+
     }
 }
