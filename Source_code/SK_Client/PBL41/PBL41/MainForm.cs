@@ -31,15 +31,17 @@ namespace PBL41
         {
 
             List<friend> l = ChatClient.instance.getListFriend();         
-            
-            dgvFriend.DataSource = l;
-            dgvFriend.Columns["ID"].Visible = false;
-            dgvFriend.Columns["IP"].Visible = false;
-            dgvFriend.Columns["UpdateIP"].Visible = false;
-            dgvFriend.Columns["Name"].ReadOnly = true;
-            
-            //setLabel(dgvFriend.Rows[0].Cells["Name"].Value.ToString());
-            lbName.Text = dgvFriend.Rows[0].Cells["Name"].Value.ToString();
+            if(l.Count > 0)
+            {
+                dgvFriend.DataSource = l;
+                dgvFriend.Columns["ID"].Visible = false;
+                dgvFriend.Columns["IP"].Visible = false;
+                dgvFriend.Columns["UpdateIP"].Visible = false;
+                dgvFriend.Columns["Name"].ReadOnly = true;
+
+                //setLabel(dgvFriend.Rows[0].Cells["Name"].Value.ToString());
+                lbName.Text = dgvFriend.Rows[0].Cells["Name"].Value.ToString();
+            }           
         }
        
         public void setDgvFriend()
@@ -61,7 +63,6 @@ namespace PBL41
                 dgvFriend.Columns["UpdateIP"].Visible = false;
                 dgvFriend.Columns["Name"].ReadOnly = true;
             }
-
         }
         public void setListview(string msg)
         {
@@ -108,8 +109,6 @@ namespace PBL41
                 txtSearch.ForeColor = Color.Gray;
             }
         }
-
-
         private void butSet_Click(object sender, EventArgs e)
         {
             FormCaNhan fc = new FormCaNhan();
@@ -119,6 +118,7 @@ namespace PBL41
             fc.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             fc.Show();
             panel3.Visible = false;
+            txtSearch.ReadOnly = false;
         }
 
         private void butMess_Click(object sender, EventArgs e)
@@ -126,6 +126,10 @@ namespace PBL41
             dgvFriend.Height = 380;
             btnAdd.Visible = false;
             setDgv();
+            panel3.Visible = true;
+            txtSearch.ReadOnly = true;
+            txtSearch.Text = "Search";
+            txtSearch.ForeColor = Color.Gray;
         }
 
         private void butSend_Click(object sender, EventArgs e)
@@ -261,7 +265,5 @@ namespace PBL41
         {
             this.Close();
         }
-
-
     }
 }

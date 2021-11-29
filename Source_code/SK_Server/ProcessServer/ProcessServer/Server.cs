@@ -19,7 +19,7 @@ namespace ProcessServer
         public void startServer()
         {
             ListClient = new List<Socket>();
-            IPAddress IP = IPAddress.Parse("127.0.0.1");
+            IPAddress IP = IPAddress.Parse("192.168.1.201");
             server = new TcpListener(IP, PORT);
             server.Start();
             Console.WriteLine("Server starting : " + server.LocalEndpoint);
@@ -80,6 +80,9 @@ namespace ProcessServer
                             processAddFriend(msg, sk);
                         else if (msg != null && msg.Contains("#AcceptFriend"))
                             processAcceptFriend(msg, sk);
+
+                        else if (msg != null && msg.Contains("#SignUp"))
+                            Console.WriteLine("OK");
                         else
                             continue;
                     }
@@ -127,9 +130,9 @@ namespace ProcessServer
                     string msg = Encoding.ASCII.GetString(i);
                     Console.WriteLine(msg);
                     stream.Write(i, 0, i.Length);
-                    Thread.Sleep(3);
+                    //Thread.Sleep(3);
                 }
-                Thread.Sleep(3);
+                //Thread.Sleep(1);
                 string s = "#done";
                 byte[] bytes = Encoding.ASCII.GetBytes(s);
                 stream.Write(bytes, 0, bytes.Length);
@@ -150,10 +153,14 @@ namespace ProcessServer
             List<byte[]> data = Client.instance.checkLogin(str[1], str[2], ip);
             sendFriend(data, stream);
 
-            Thread.Sleep(3);
+            //Thread.Sleep(3);
             byte[] info = Client.instance.getInformation(ip);
+
+            string msgs = Encoding.ASCII.GetString(info);
+            Console.WriteLine(msgs);
+
             stream.Write(info, 0, info.Length);
-            Thread.Sleep(1);
+            //Thread.Sleep(1);
         }
 
         // send massage to client 

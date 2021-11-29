@@ -50,7 +50,7 @@ namespace PBL41
             this.pnSignUp2 = new System.Windows.Forms.Panel();
             this.lbBack2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.butFemale = new System.Windows.Forms.RadioButton();
+            this.radioFemale = new System.Windows.Forms.RadioButton();
             this.radioMale = new System.Windows.Forms.RadioButton();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label17 = new System.Windows.Forms.Label();
@@ -58,7 +58,7 @@ namespace PBL41
             this.label12 = new System.Windows.Forms.Label();
             this.btnLogin2 = new CustomButton.VBButton();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -333,7 +333,7 @@ namespace PBL41
             this.pnSignUp2.Controls.Add(this.label12);
             this.pnSignUp2.Controls.Add(this.btnLogin2);
             this.pnSignUp2.Controls.Add(this.label1);
-            this.pnSignUp2.Controls.Add(this.textBox1);
+            this.pnSignUp2.Controls.Add(this.txtName);
             this.pnSignUp2.Controls.Add(this.label8);
             this.pnSignUp2.Controls.Add(this.pictureBox11);
             this.pnSignUp2.Controls.Add(this.label11);
@@ -360,7 +360,7 @@ namespace PBL41
             // groupBox1
             // 
             this.groupBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.groupBox1.Controls.Add(this.butFemale);
+            this.groupBox1.Controls.Add(this.radioFemale);
             this.groupBox1.Controls.Add(this.radioMale);
             this.groupBox1.Font = new System.Drawing.Font("Mistral", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.Black;
@@ -372,17 +372,17 @@ namespace PBL41
             this.groupBox1.TabIndex = 36;
             this.groupBox1.TabStop = false;
             // 
-            // butFemale
+            // radioFemale
             // 
-            this.butFemale.AutoSize = true;
-            this.butFemale.Font = new System.Drawing.Font("Modern No. 20", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.butFemale.Location = new System.Drawing.Point(77, 10);
-            this.butFemale.Name = "butFemale";
-            this.butFemale.Size = new System.Drawing.Size(83, 24);
-            this.butFemale.TabIndex = 0;
-            this.butFemale.TabStop = true;
-            this.butFemale.Text = "FeMale";
-            this.butFemale.UseVisualStyleBackColor = true;
+            this.radioFemale.AutoSize = true;
+            this.radioFemale.Font = new System.Drawing.Font("Modern No. 20", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioFemale.Location = new System.Drawing.Point(77, 10);
+            this.radioFemale.Name = "radioFemale";
+            this.radioFemale.Size = new System.Drawing.Size(83, 24);
+            this.radioFemale.TabIndex = 0;
+            this.radioFemale.TabStop = true;
+            this.radioFemale.Text = "FeMale";
+            this.radioFemale.UseVisualStyleBackColor = true;
             // 
             // radioMale
             // 
@@ -457,6 +457,7 @@ namespace PBL41
             this.btnLogin2.Text = "Log in";
             this.btnLogin2.TextColor = System.Drawing.Color.White;
             this.btnLogin2.UseVisualStyleBackColor = false;
+            this.btnLogin2.Click += new System.EventHandler(this.btnLogin2_Click);
             // 
             // label1
             // 
@@ -467,19 +468,20 @@ namespace PBL41
             this.label1.Size = new System.Drawing.Size(145, 2);
             this.label1.TabIndex = 23;
             // 
-            // textBox1
+            // txtName
             // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.ForeColor = System.Drawing.Color.Black;
-            this.textBox1.Location = new System.Drawing.Point(184, 148);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.textBox1.Size = new System.Drawing.Size(141, 29);
-            this.textBox1.TabIndex = 22;
-            this.textBox1.Text = "Name";
+            this.txtName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+            this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtName.ForeColor = System.Drawing.Color.Black;
+            this.txtName.Location = new System.Drawing.Point(184, 148);
+            this.txtName.Multiline = true;
+            this.txtName.Name = "txtName";
+            this.txtName.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtName.Size = new System.Drawing.Size(141, 29);
+            this.txtName.TabIndex = 22;
+            this.txtName.Text = "Name";
+            this.txtName.Enter += new System.EventHandler(this.txtName_Enter);
             // 
             // label8
             // 
@@ -731,7 +733,7 @@ namespace PBL41
         private System.Windows.Forms.Panel pnSignUp2;
         private CustomButton.VBButton btnLogin2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox pictureBox11;
         private System.Windows.Forms.Label label11;
@@ -740,7 +742,7 @@ namespace PBL41
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton butFemale;
+        private System.Windows.Forms.RadioButton radioFemale;
         private System.Windows.Forms.RadioButton radioMale;
         private System.Windows.Forms.Label lbBack1;
         private System.Windows.Forms.Label lbBack2;

@@ -4,7 +4,7 @@ use SKChat
 go 
 create table Person
 (
-	Id int primary key,
+	Id int identity primary key,
 	Ipaddress varchar(25),
 	Full_name nvarchar(50),
 	Gender bit,
@@ -17,23 +17,22 @@ create table Account
 	Name_user varchar(30) primary key,
 	Pass varchar(20),
 	Id int,
-	CONSTRAINT FK_Id1 FOREIGN KEY (Id)
-    REFERENCES Person(Id)
+	CONSTRAINT FK_Id1 FOREIGN KEY (Id) REFERENCES Person(Id)
 );
-
 go
-create table Group_chat
+create table Conversations
 (
-	Id_group int primary key,
-	Name_group nvarchar(50),
+	Id_group int identity primary key,
+	User_one int,
+	User_two int,
+	CONSTRAINT FK_Id3 FOREIGN KEY (User_one) references Person(Id),
+	CONSTRAINT FK_Id4 FOREIGN KEY (User_two) references Person(Id),
 );
-
 go
-create table Box_chat
+create table Conversation_reply
 (
-	STT int primary key,
 	Id_group int not null,
+	Reply Text,
 	Id int not null,
-	CONSTRAINT FK_Group foreign key(Id_group) references Group_chat(Id_group),
-	CONSTRAINT FK_Id2 FOREIGN KEY (Id) references Person(Id),
-)
+	CONSTRAINT FK_Id5 FOREIGN KEY (Id_group) references Conversations(Id_group),
+);

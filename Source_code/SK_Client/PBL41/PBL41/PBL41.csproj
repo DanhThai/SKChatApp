@@ -33,8 +33,32 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AForge">
+      <HintPath>E:\AForge.NET Framework2.2.5\Release\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Controls">
+      <HintPath>E:\AForge.NET Framework2.2.5\Release\AForge.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Imaging.Formats">
+      <HintPath>E:\AForge.NET Framework2.2.5\Release\AForge.Imaging.Formats.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video">
+      <HintPath>E:\AForge.NET Framework2.2.5\Release\AForge.Video.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.DirectShow">
+      <HintPath>E:\AForge.NET Framework2.2.5\Release\AForge.Video.DirectShow.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.FFMPEG">
+      <HintPath>E:\AForge.NET Framework2.2.5\Release\AForge.Video.FFMPEG.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.VFW">
+      <HintPath>E:\AForge.NET Framework2.2.5\Release\AForge.Video.VFW.dll</HintPath>
+    </Reference>
     <Reference Include="Friend">
       <HintPath>..\..\..\..\Friend\Friend\bin\Debug\Friend.dll</HintPath>
+    </Reference>
+    <Reference Include="NAudio">
+      <HintPath>E:\naudio\NAudio.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -160,6 +184,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\loop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\camera.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\micro.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\StopMicro.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\StopCam.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

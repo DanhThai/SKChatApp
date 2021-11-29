@@ -83,6 +83,16 @@ namespace PBL41.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap camera {
+            get {
+                object obj = ResourceManager.GetObject("camera", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap loop {
             get {
                 object obj = ResourceManager.GetObject("loop", resourceCulture);
@@ -96,6 +106,16 @@ namespace PBL41.Properties {
         internal static System.Drawing.Bitmap mes1 {
             get {
                 object obj = ResourceManager.GetObject("mes1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap micro {
+            get {
+                object obj = ResourceManager.GetObject("micro", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -146,6 +166,26 @@ namespace PBL41.Properties {
         internal static System.Drawing.Bitmap setting {
             get {
                 object obj = ResourceManager.GetObject("setting", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap StopCam {
+            get {
+                object obj = ResourceManager.GetObject("StopCam", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap StopMicro {
+            get {
+                object obj = ResourceManager.GetObject("StopMicro", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

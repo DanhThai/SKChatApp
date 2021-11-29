@@ -25,13 +25,6 @@ namespace PBL41
             pnSignUp1.Visible = true;
             pnSignUp2.Visible = false;
         }
-
-        private void butLogin2_Click(object sender, EventArgs e)
-        {
-            panelLG.Visible = true;
-            pnSignUp1.Visible = false;
-
-        }
         //an form login, dong mainform -> form login hien
         private void butLogin1_Click(object sender, EventArgs e)
         {
@@ -56,6 +49,67 @@ namespace PBL41
                 }
                 else
                     MessageBox.Show("Sai tài khoản hoặc mật khẩu", "Lỗi đăng nhập", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            if ((txtPass2.Text != txtConfirm2.Text) || (txtUser2.Text == "User" || txtPass2.Text == "Pass" || txtConfirm2.Text == "ConfirmPass"))
+            {
+                panelLG.Visible = false;
+                pnSignUp1.Visible = true;
+                pnSignUp2.Visible = false;
+                MessageBox.Show("Vui long nhap day du thong tin", "Loi xac minh", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                //ktra tk signup
+                ChatClient.instance.ConnectSV();
+                bool gender = radioMale.Checked?true:false;
+                InforUser.instance.SetAcc(txtUser2.Text, txtPass2.Text);
+                InforUser.instance.SetInformation(txtName.Text, gender, dateTimePicker1.Value);
+                if (true)
+                {
+                    panelLG.Visible = false;
+                    pnSignUp1.Visible = false;
+                    pnSignUp2.Visible = true;
+                    radioMale.Checked = true;
+                   }
+                else
+                {
+                    panelLG.Visible = false;
+                    pnSignUp1.Visible = true;
+                    pnSignUp2.Visible = false;
+                    MessageBox.Show("Tai Khoan da ton tai", "Loi xac minh", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+        private void btnLogin2_Click(object sender, EventArgs e)
+        {
+            if (txtName.Text != "")
+            {
+                bool gender;
+                if (radioMale.Checked == true)
+                {
+                    gender = true;
+                    radioFemale.Checked = false;
+                }
+                else
+                {
+                    gender = false;
+                    radioFemale.Checked = true;
+                }
+                ChatClient.instance.SendSignUp(txtUser2.Text, txtPass2.Text, txtName.Text, gender, dateTimePicker1.Value);
+                //vao mainform
+                InforUser.instance.SetAcc(txtUser2.Text, txtPass2.Text);
+                MainForm mf = new MainForm();
+                mf.FormClosed += new FormClosedEventHandler(MainForm_Closed);
+
+                mf.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nhap day du thong tin", "Loi thong tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void MainForm_Closed(Object sender, FormClosedEventArgs e)
@@ -166,14 +220,11 @@ namespace PBL41
 
         }
 
-        private void btnNext_Click(object sender, EventArgs e)
+        private void txtName_Enter(object sender, EventArgs e)
         {
-            panelLG.Visible = false;
-            pnSignUp1.Visible = false;
-            pnSignUp2.Visible = true;
-            if(txtPass2.Text != txtConfirm2.Text)
+            if(txtName.Text == "Name")
             {
-                MessageBox.Show("Mat khau k hop le");
+
             }
         }
     }

@@ -54,7 +54,7 @@ namespace PBL41.Client
             try
             {
                 client = new TcpClient();
-                client.Connect("127.0.0.1", 2001);
+                client.Connect("192.168.1.201", 2001);
                 stream = client.GetStream();
                 Console.WriteLine("Kết nối tới server");
                 listFriend = new List<friend>();
@@ -62,7 +62,7 @@ namespace PBL41.Client
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                client.Connect("127.0.0.1", 2001);
+                client.Connect("192.168.1.201", 2001);
                 stream = client.GetStream();
             }
         }
@@ -159,6 +159,17 @@ namespace PBL41.Client
 
             }
         }
+
+        public void SendSignUp(string user, string pass, string name, Boolean gender, DateTime date)
+        {
+            try
+            {
+                var writer = new StreamWriter(stream);
+                writer.AutoFlush = true;
+                writer.WriteLine("#SignUp: " + user + " " + pass + " " + name + " " + gender + " " + date);
+            }
+            catch (Exception ex) { }
+        }
         public object DeserializeData(byte[] theByteArray)
         {
             BinaryFormatter bf1 = new BinaryFormatter();
@@ -174,8 +185,8 @@ namespace PBL41.Client
             listFr.Clear();
             while (true)
             {
-                byte[] str = new byte[1024];
-                int i = stream.Read(str, 0,1024);
+                byte[] str = new byte[2048];
+                int i = stream.Read(str, 0, 2048);
                 string s = Encoding.ASCII.GetString(str);
                 Console.WriteLine(s);
                 if (i > 0)
