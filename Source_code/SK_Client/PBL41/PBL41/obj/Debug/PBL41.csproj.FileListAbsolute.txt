@@ -74,3 +74,14 @@ D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Client\PBL41\PBL41\b
 D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Client\PBL41\PBL41\bin\Debug\AForge.Video.VFW.xml
 D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Client\PBL41\PBL41\bin\Debug\AForge.Imaging.xml
 D:\DoAn\PBL4 HDH và Mang May Tinh\SKChatApp\Source_code\SK_Client\PBL41\PBL41\bin\Debug\AForge.Math.xml
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Client\PBL41\PBL41\bin\Debug\AForge.Imaging.dll
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Client\PBL41\PBL41\bin\Debug\AForge.Math.dll
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Client\PBL41\PBL41\bin\Debug\AForge.xml
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Client\PBL41\PBL41\bin\Debug\AForge.Controls.xml
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Client\PBL41\PBL41\bin\Debug\AForge.Imaging.Formats.xml
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Client\PBL41\PBL41\bin\Debug\AForge.Video.xml
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Client\PBL41\PBL41\bin\Debug\AForge.Video.DirectShow.xml
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Client\PBL41\PBL41\bin\Debug\AForge.Video.FFMPEG.xml
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Client\PBL41\PBL41\bin\Debug\AForge.Video.VFW.xml
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Client\PBL41\PBL41\bin\Debug\AForge.Imaging.xml
+E:\ĐỒ ÁN\SKChatApp\Source_code\SK_Client\PBL41\PBL41\bin\Debug\AForge.Math.xml

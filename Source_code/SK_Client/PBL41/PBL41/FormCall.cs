@@ -2,6 +2,7 @@
 using AForge.Video.DirectShow;
 using AForge.Video.FFMPEG;
 using NAudio.Wave;
+using PBL41.Client;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,6 +12,7 @@ using System.Drawing.Imaging;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -32,6 +34,7 @@ namespace PBL41
             InitializeComponent();
             btnStartCam.Visible = false;
             btnStartMicro.Visible = false;
+
         }
 
         private void butCancel_Click(object sender, EventArgs e)
@@ -47,7 +50,6 @@ namespace PBL41
             {
                 videoCaptureDevice.Stop();
                 pictureBoxMe.Image = null;
-
             }
         }
 
@@ -70,12 +72,13 @@ namespace PBL41
         {
             btnStartMicro.Visible = false;
             btnStopMicro.Visible = true;
-
+            waveIn.DataAvailable += waveIn_DataAvailable;
             waveIn.StartRecording();
         }
 
         private void FormCall_Load(object sender, EventArgs e)
         {
+            Thread.Sleep(5000);
             VideoCaptureDevices = new FilterInfoCollection(FilterCategory.VideoInputDevice);
             videoCaptureDevice = new VideoCaptureDevice(VideoCaptureDevices[0].MonikerString);
             videoCaptureDevice.NewFrame += FinalVideo_NewFrame;
@@ -92,15 +95,40 @@ namespace PBL41
             waveIn.WaveFormat = new WaveFormat(sampleRate, channels);
             waveIn.DataAvailable += waveIn_DataAvailable;
             waveIn.StartRecording();
-            bufferedWaveProvider = new BufferedWaveProvider(waveIn.WaveFormat);
 
+            bufferedWaveProvider = new BufferedWaveProvider(waveIn.WaveFormat);            
             waveOut.Init(bufferedWaveProvider);
             waveOut.Play();
+            Thread th1 = new Thread(() => {
+                while (true)
+                {
+                    byte[] data = CallClient.instance.receiveData();
+                    if (data != null)
+                    {
+                        bufferedWaveProvider.AddSamples(data, 0, data.Length);
+                        if (bufferedWaveProvider.BufferedDuration.Milliseconds > 500)
+                            bufferedWaveProvider.ClearBuffer();                       
+                    }    
+                        
+                    else continue;
+                }
+            });
+            th1.IsBackground = true;
+            th1.Start();
+            //while (true)
+            //{
+            //    byte[] data=CallClient.instance.receiveData();
+            //    if (data != null)
+            //        bufferedWaveProvider.AddSamples(data, 0, data.Length);
+            //    else continue;
+            //}    
+
         }
         void waveIn_DataAvailable(object sender, WaveInEventArgs e)
         {
-            byte[] bytes = e.Buffer;
-            bufferedWaveProvider.AddSamples(bytes, 0, bytes.Length);
+            byte[] data = e.Buffer;
+            CallClient.instance.sendData(data);
+            //bufferedWaveProvider.AddSamples(bytes, 0, bytes.Length);
         }
         void FinalVideo_NewFrame(object sender, NewFrameEventArgs eventArgs)
         {

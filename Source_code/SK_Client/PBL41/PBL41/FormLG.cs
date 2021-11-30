@@ -36,6 +36,7 @@ namespace PBL41
             else
             {              
                 ChatClient.instance.ConnectSV();
+                CallClient.instance.ConnectSV();
                 ChatClient.instance.SendLogin(txtUser1.Text, txtPass1.Text);
                 bool check = ChatClient.instance.checkLogin();
                 if (check)
@@ -64,9 +65,10 @@ namespace PBL41
             {
                 //ktra tk signup
                 ChatClient.instance.ConnectSV();
+               
                 bool gender = radioMale.Checked?true:false;
                 InforUser.instance.SetAcc(txtUser2.Text, txtPass2.Text);
-                InforUser.instance.SetInformation(txtName.Text, gender, dateTimePicker1.Value);
+                InforUser.instance.SetInformation("1",txtName.Text, gender, dateTimePicker1.Value);
                 if (true)
                 {
                     panelLG.Visible = false;

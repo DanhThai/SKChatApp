@@ -118,7 +118,7 @@
             this.btnStopMicro.FlatAppearance.BorderSize = 0;
             this.btnStopMicro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStopMicro.ForeColor = System.Drawing.Color.White;
-            this.btnStopMicro.Location = new System.Drawing.Point(482, 534);
+            this.btnStopMicro.Location = new System.Drawing.Point(483, 534);
             this.btnStopMicro.Margin = new System.Windows.Forms.Padding(25);
             this.btnStopMicro.Name = "btnStopMicro";
             this.btnStopMicro.Size = new System.Drawing.Size(64, 65);
@@ -139,7 +139,7 @@
             this.btnStartMicro.FlatAppearance.BorderSize = 0;
             this.btnStartMicro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStartMicro.ForeColor = System.Drawing.Color.White;
-            this.btnStartMicro.Location = new System.Drawing.Point(482, 534);
+            this.btnStartMicro.Location = new System.Drawing.Point(483, 534);
             this.btnStartMicro.Margin = new System.Windows.Forms.Padding(25);
             this.btnStartMicro.Name = "btnStartMicro";
             this.btnStartMicro.Size = new System.Drawing.Size(64, 65);
@@ -160,7 +160,7 @@
             this.butCancel.FlatAppearance.BorderSize = 0;
             this.butCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.butCancel.ForeColor = System.Drawing.Color.White;
-            this.butCancel.Location = new System.Drawing.Point(583, 534);
+            this.butCancel.Location = new System.Drawing.Point(597, 534);
             this.butCancel.Margin = new System.Windows.Forms.Padding(25);
             this.butCancel.Name = "butCancel";
             this.butCancel.Size = new System.Drawing.Size(64, 65);
@@ -175,6 +175,7 @@
             this.pictureBoxMe.Location = new System.Drawing.Point(12, 12);
             this.pictureBoxMe.Name = "pictureBoxMe";
             this.pictureBoxMe.Size = new System.Drawing.Size(483, 481);
+            this.pictureBoxMe.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxMe.TabIndex = 0;
             this.pictureBoxMe.TabStop = false;
             // 
@@ -184,6 +185,7 @@
             this.pictureBoxFriend.Location = new System.Drawing.Point(535, 12);
             this.pictureBoxFriend.Name = "pictureBoxFriend";
             this.pictureBoxFriend.Size = new System.Drawing.Size(483, 481);
+            this.pictureBoxFriend.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxFriend.TabIndex = 0;
             this.pictureBoxFriend.TabStop = false;
             // 
@@ -202,7 +204,7 @@
             this.Controls.Add(this.butCancel);
             this.Controls.Add(this.pictureBoxMe);
             this.Controls.Add(this.pictureBoxFriend);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "FormCall";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormCall";

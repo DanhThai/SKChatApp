@@ -73,6 +73,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client\CallClient.cs" />
     <Compile Include="Client\ChatClient.cs" />
     <Compile Include="Client\InforUser.cs" />
     <Compile Include="Client\ListMessage.cs" />

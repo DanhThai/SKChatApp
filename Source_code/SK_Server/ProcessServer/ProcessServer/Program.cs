@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ProcessServer
@@ -11,16 +12,15 @@ namespace ProcessServer
         static void Main(string[] args)
         {
             Server pg = new Server();
-            pg.startServer();
-            //test();
+            //pg.startServer();
+            Thread thread = new Thread(() => pg.startServer());
+            thread.Start();
+            thread.IsBackground = true;
+            ServerCall svcall = new ServerCall();
+            svcall.startServer();
+            
+            
         }
-        //public static void test()
-        //{
-        //    ListFriend l = new ListFriend();
-        //    l.addFriend(1);
-        //    List<byte[]> data = l.getFriend();
-        //    string s= Encoding.ASCII.GetString(data[1]);
-        //    Console.WriteLine(s);
-        //}
+       
     }
 }

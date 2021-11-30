@@ -13,19 +13,22 @@ namespace PBL41
     {
         private delegate void SafeCallDelegateLV(string text);
         private delegate void SafeCallDelegateDgv();
-        private static List<ListMessage> listMS;
         public MainForm()
         {
             InitializeComponent();
             dgvFriend.Height = 380;
             txtSearch.ReadOnly = true;
-            listMS = new List<ListMessage>();
+            //listMS = new List<ListMessage>();
             lbMyName.Text = InforUser.instance.getName();
             setDgv();
 
-            Thread th = new Thread(() => ReceiveMsg());
-            th.IsBackground = true;
-            th.Start();
+            Thread th1 = new Thread(() => ReceiveMsg());
+            th1.IsBackground = true;
+            th1.Start();
+
+            Thread th2 = new Thread(() => ReceiveCall());
+            th2.IsBackground = true;
+            th2.Start();
         }
         public void setDgv()
         {
@@ -240,10 +243,39 @@ namespace PBL41
             }
         }
 
+        public void ReceiveCall()
+        {
+            try
+            {
+                //FormCall f = new FormCall();
+                string msg = "";
+                while(true)
+                {
+                    msg = CallClient.instance.receiveMsgCall();
+                    //Console.WriteLine(msg);
+                    if (msg.Contains("MakeCall"))
+                    {
+                        string[] str = msg.Split(' ');
+                        CallClient.instance.sendAcceptCall(str[2]);
+                        //MessageBox.Show("call oke");
+                        Application.Run(new FormCall());                    
+                    }
+                    else
+                    {
+                        //FormCall f = new FormCall();
+                        //MessageBox.Show("call oke");
+                        Application.Run(new FormCall());
+                    }   
+                }    
+            }
+            catch(Exception ex) { }
+        }
         private void butVideo_Click(object sender, EventArgs e)
         {
-            FormCall f = new FormCall();
-            f.Show();
+            string id = dgvFriend.SelectedRows[0].Cells["ID"].Value.ToString();
+            CallClient.instance.sendCallToID(id);
+            //FormCall f = new FormCall();
+            //f.Show();
         }
 
         private void dgvFriend_CellClick(object sender, DataGridViewCellEventArgs e)

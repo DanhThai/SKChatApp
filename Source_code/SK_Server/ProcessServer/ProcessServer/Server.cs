@@ -130,9 +130,9 @@ namespace ProcessServer
                     string msg = Encoding.ASCII.GetString(i);
                     Console.WriteLine(msg);
                     stream.Write(i, 0, i.Length);
-                    //Thread.Sleep(3);
+                    Thread.Sleep(1);
                 }
-                //Thread.Sleep(1);
+                Thread.Sleep(1);
                 string s = "#done";
                 byte[] bytes = Encoding.ASCII.GetBytes(s);
                 stream.Write(bytes, 0, bytes.Length);

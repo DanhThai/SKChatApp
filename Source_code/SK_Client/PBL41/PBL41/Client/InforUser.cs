@@ -10,9 +10,10 @@ namespace PBL41.Client
     class InforUser
     {
         private static InforUser _Instance;
-        public String User { get; set; }
-        public String PassWord { get; set; }
-        public String Name { get; set; }
+        public string User { get; set; }
+        public string PassWord { get; set; }
+        public string ID { get; set; }
+        public string Name { get; set; }
         public bool Gender { get; set; }
         public DateTime Birthday { get; set; }
         public static InforUser instance
@@ -30,8 +31,9 @@ namespace PBL41.Client
             User = user;
             PassWord = pass;
         }
-        public void SetInformation(string name,bool gd, DateTime bth)
+        public void SetInformation(string id, string name,bool gd, DateTime bth)
         {
+            ID=id;
             Name = name;
             Gender = gd;
             Birthday = bth;

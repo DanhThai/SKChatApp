@@ -53,7 +53,7 @@ namespace ProcessServer
             ps.Ipaddress = ip;
             addClient(ID, ip,ps.Full_name);
             db.SaveChanges();
-            Information infor = new Information(ps.Full_name, (bool)ps.Gender, Convert.ToDateTime( ps.Birthday));
+            Information infor = new Information(ps.Id.ToString(),ps.Full_name, (bool)ps.Gender, Convert.ToDateTime( ps.Birthday));
             return SerializeData(infor).ToArray();
         }
         public List<byte[]> searchFriend(string name)

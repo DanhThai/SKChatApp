@@ -12,7 +12,12 @@ namespace PBL41.Client
     {
         private TcpClient client;
         private NetworkStream stream;
+        private TcpClient client2;
+        private NetworkStream stream2;
+        private TcpClient client3;
+        private NetworkStream stream3;
         private static ChatClient _Instance;
+        private string ipcall;
         private List<friend> listFriend;
         private List<ListMessage> listMS=new List<ListMessage>();
         public static ChatClient instance
@@ -56,7 +61,9 @@ namespace PBL41.Client
                 client = new TcpClient();
                 client.Connect("192.168.1.201", 2001);
                 stream = client.GetStream();
-                Console.WriteLine("Kết nối tới server");
+
+               
+
                 listFriend = new List<friend>();
             }
             catch (Exception e)
@@ -78,6 +85,12 @@ namespace PBL41.Client
                 listFriend.Clear();
             }
         }
+        
+
+        /// <summary>
+        ///  CHAT
+        /// </summary>
+
         public void SendMsg(string msg)
         {
             try
@@ -92,10 +105,11 @@ namespace PBL41.Client
                 Console.WriteLine(e.Message);
             }
         }
+        
         public void SendLogin(string user, string pass)
         {
             try
-            {
+            {              
                 var writer = new StreamWriter(stream);
                 writer.AutoFlush = true;
                 writer.WriteLine("#Login: " + user + " " + pass);
@@ -225,8 +239,9 @@ namespace PBL41.Client
                 string s = Encoding.ASCII.GetString(str);
                 Console.WriteLine(s);
                 Information info= (Information)DeserializeData(str);
-                InforUser.instance.SetInformation(info.Full_name, info.Gender, info.Birthday);
+                InforUser.instance.SetInformation(info.ID,info.Full_name, info.Gender, info.Birthday);
 
+                CallClient.instance.sendID();
                 return true;
             }    
                 
