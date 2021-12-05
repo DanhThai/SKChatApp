@@ -15,6 +15,7 @@ namespace PBL41.Client
         private TcpClient client3;
         private NetworkStream stream3;
         private string ipcall;
+        public string ipgroup=null;
         private static CallClient _Instance;
 
         public static CallClient instance
@@ -64,24 +65,24 @@ namespace PBL41.Client
             catch (Exception ex)
             { }
         }
-        public void sendAcceptCall(string ip)
+        public void sendAcceptCall(string ip,string ipgroup)
         {
             try
             {
                 var writer = new StreamWriter(stream2);
                 writer.AutoFlush = true;
-                writer.WriteLine("#AcceptCall: " + ip);
+                writer.WriteLine("#AcceptCall: " + ip+" "+ipgroup);
             }
             catch (Exception ex)
             { }
         }
-        public void sendAcceptFinal(string ip)
+        public void sendAcceptFinal(string ip,string ipgroup)
         {
             try
             {
                 var writer = new StreamWriter(stream2);
                 writer.AutoFlush = true;
-                writer.WriteLine("#AcceptFinal: " + ip);
+                writer.WriteLine("#AcceptFinal: " + ip+" "+ipgroup);
             }
             catch (Exception ex)
             { }
@@ -95,15 +96,17 @@ namespace PBL41.Client
             {
                 string[] str = msg.Split(' ');
                 ipcall = str[2];
-
+                ipgroup = str[3];
                 return msg;
             }
-            //#AcceptCall
+            //#AcceptCall: ip
             else
             {
                 string[] str = msg.Split(' ');
                 ipcall = str[1];
-                sendAcceptFinal(ipcall);
+                ipgroup = str[2];
+               
+                sendAcceptFinal(ipcall, ipgroup);
                 return "#done";
             }
         }
@@ -118,15 +121,15 @@ namespace PBL41.Client
         }
         public byte[] receiveData()
         {
-            byte[] buffer = new byte[4048];
+            byte[] buffer =new byte[2024];
             try
-            {
-                
-                stream2.Read(buffer, 0, 4048);
-                
+            {               
+                stream2.Read(buffer, 0, 2024);                              
             }
             catch (Exception ex)
-            { }
+            {
+                return null;
+            }
             return buffer;
         }
     }

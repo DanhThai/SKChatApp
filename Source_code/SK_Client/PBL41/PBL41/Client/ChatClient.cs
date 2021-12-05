@@ -12,12 +12,7 @@ namespace PBL41.Client
     {
         private TcpClient client;
         private NetworkStream stream;
-        private TcpClient client2;
-        private NetworkStream stream2;
-        private TcpClient client3;
-        private NetworkStream stream3;
         private static ChatClient _Instance;
-        private string ipcall;
         private List<friend> listFriend;
         private List<ListMessage> listMS=new List<ListMessage>();
         public static ChatClient instance
@@ -109,69 +104,74 @@ namespace PBL41.Client
         public void SendLogin(string user, string pass)
         {
             try
-            {              
-                var writer = new StreamWriter(stream);
-                writer.AutoFlush = true;
-                writer.WriteLine("#Login: " + user + " " + pass);
+            {
+                //var writer = new StreamWriter(stream);
+                //writer.AutoFlush = true;
+                //writer.WriteLine("#Login: " + user + " " + pass);
+                string msg = "#Login: " + user + " " + pass;
+                byte[] bytes = Encoding.ASCII.GetBytes(msg);
+                stream.Write(bytes, 0, bytes.Length);
             }
             catch (Exception ex)
-            {
-
-            }
+            {}
         }
         public void SendSearch(string name)
         {
             try
             {
-                var writer = new StreamWriter(stream);
-                writer.AutoFlush = true;
-                writer.WriteLine("#Search: " + name);
+                //var writer = new StreamWriter(stream);
+                //writer.AutoFlush = true;
+                //writer.WriteLine("#Search: " + name);
+                string msg = "#Search: " + name;
+                byte[] bytes = Encoding.ASCII.GetBytes(msg);
+                stream.Write(bytes, 0, bytes.Length);
             }
             catch (Exception ex)
-            {
-
-            }
+            {}
         }
         public void SendAddFriend(string id, string ip)
         {
             try
             {
-                var writer = new StreamWriter(stream);
-                writer.AutoFlush = true;
-                // msg= "#AddFriend: id ip"
-                writer.WriteLine("#AddFriend: " + id + " " + ip);
+                //var writer = new StreamWriter(stream);
+                //writer.AutoFlush = true;
+                //// msg= "#AddFriend: id ip"
+                //writer.WriteLine("#AddFriend: " + id + " " + ip);
+                string msg = "#AddFriend: " + id + " " + ip;
+                byte[] bytes = Encoding.ASCII.GetBytes(msg);
+                stream.Write(bytes, 0, bytes.Length);
             }
             catch (Exception ex)
-            {
-
-            }
+            {}
         }
         public void SendAcceptFriend(string ip)
         {
             try
             {
-                var writer = new StreamWriter(stream);
-                writer.AutoFlush = true;
-                //msg="#AcceptFriend: ip"
-                writer.WriteLine("#AcceptFriend: " + ip);
+                //var writer = new StreamWriter(stream);
+                //writer.AutoFlush = true;
+                ////msg="#AcceptFriend: ip"
+                //writer.WriteLine("#AcceptFriend: " + ip);
+                string msg = "#AcceptFriend: " + ip;
+                byte[] bytes = Encoding.ASCII.GetBytes(msg);
+                stream.Write(bytes, 0, bytes.Length);
             }
             catch (Exception ex)
-            {
-
-            }
+            {}
         }
         public void SendAcc(String user, String pass)
         {
             try
             {
-                var writer = new StreamWriter(stream);
-                writer.AutoFlush = true;
-                writer.WriteLine("#ChangePass: " + user + " " + pass);
+                //var writer = new StreamWriter(stream);
+                //writer.AutoFlush = true;
+                //writer.WriteLine("#ChangePass: " + user + " " + pass);
+                string msg = "#ChangePass: " + user + " " + pass;
+                byte[] bytes = Encoding.ASCII.GetBytes(msg);
+                stream.Write(bytes, 0, bytes.Length);
             }
             catch (Exception ex)
-            {
-
-            }
+            {}
         }
 
         public void SendSignUp(string user, string pass, string name, Boolean gender, DateTime date)
@@ -184,6 +184,26 @@ namespace PBL41.Client
             }
             catch (Exception ex) { }
         }
+
+        public void SendEndCall()
+        {
+            try
+            {
+                string ipgroup = CallClient.instance.ipgroup;
+                //Console.WriteLine("ipgroup:" + ipgroup);
+                //var writer = new StreamWriter(stream);
+                //writer.AutoFlush = true;               
+                //writer.WriteLine("#EndCall: "+ipgroup);
+                string msg = "#EndCall: " + ipgroup;
+                byte[] bytes = Encoding.ASCII.GetBytes(msg);
+                stream.Write(bytes, 0, bytes.Length);
+            }
+            catch (Exception ex) { }
+        }
+        /// <summary>
+        ///     RECEIVE MESSAGE
+        /// </summary>  
+       
         public object DeserializeData(byte[] theByteArray)
         {
             BinaryFormatter bf1 = new BinaryFormatter();
@@ -264,8 +284,12 @@ namespace PBL41.Client
         }
         public string ReceiveMsg()
         {
-            var reader = new StreamReader(stream);
-            string msg = reader.ReadLine();
+            //var reader = new StreamReader(stream);
+            //string msg = reader.ReadLine();
+            byte[] data = new byte[2048];
+            stream.Read(data, 0, 2048);
+            string msg = Encoding.ASCII.GetString(data);
+
             Console.WriteLine("msg:" + msg);
             if(msg.Contains("#UpdateIP"))
             {

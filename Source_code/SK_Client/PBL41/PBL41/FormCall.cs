@@ -39,6 +39,7 @@ namespace PBL41
 
         private void butCancel_Click(object sender, EventArgs e)
         {
+            ChatClient.instance.SendEndCall();
             this.Close();
         }
 
@@ -72,17 +73,17 @@ namespace PBL41
         {
             btnStartMicro.Visible = false;
             btnStopMicro.Visible = true;
-            waveIn.DataAvailable += waveIn_DataAvailable;
+            //waveIn.DataAvailable += waveIn_DataAvailable;
             waveIn.StartRecording();
         }
 
         private void FormCall_Load(object sender, EventArgs e)
         {
-            Thread.Sleep(5000);
+            //Thread.Sleep(5000);
             VideoCaptureDevices = new FilterInfoCollection(FilterCategory.VideoInputDevice);
             videoCaptureDevice = new VideoCaptureDevice(VideoCaptureDevices[0].MonikerString);
-            videoCaptureDevice.NewFrame += FinalVideo_NewFrame;
-            videoCaptureDevice.Start();
+            //videoCaptureDevice.NewFrame += FinalVideo_NewFrame;
+            //videoCaptureDevice.Start();
             //videoCaptureDevice.NewFrame += FinalVideo2_NewFrame;
             //videoCaptureDevice.Start();
 
@@ -91,37 +92,33 @@ namespace PBL41
             int channels = 1; // mono
             waveIn = new WaveIn(this.Handle);
             waveIn.BufferMilliseconds = 100;
-
             waveIn.WaveFormat = new WaveFormat(sampleRate, channels);
             waveIn.DataAvailable += waveIn_DataAvailable;
             waveIn.StartRecording();
 
-            bufferedWaveProvider = new BufferedWaveProvider(waveIn.WaveFormat);            
+            bufferedWaveProvider = new BufferedWaveProvider(waveIn.WaveFormat);
             waveOut.Init(bufferedWaveProvider);
             waveOut.Play();
-            Thread th1 = new Thread(() => {
+
+            Thread th1 = new Thread(() =>
+            {
                 while (true)
                 {
                     byte[] data = CallClient.instance.receiveData();
+
+                    //string msg = Encoding.ASCII.GetString(data);
+                    //Console.WriteLine(msg);
                     if (data != null)
                     {
                         bufferedWaveProvider.AddSamples(data, 0, data.Length);
                         if (bufferedWaveProvider.BufferedDuration.Milliseconds > 500)
-                            bufferedWaveProvider.ClearBuffer();                       
-                    }    
-                        
+                            bufferedWaveProvider.ClearBuffer();
+                    }
                     else continue;
                 }
             });
             th1.IsBackground = true;
             th1.Start();
-            //while (true)
-            //{
-            //    byte[] data=CallClient.instance.receiveData();
-            //    if (data != null)
-            //        bufferedWaveProvider.AddSamples(data, 0, data.Length);
-            //    else continue;
-            //}    
 
         }
         void waveIn_DataAvailable(object sender, WaveInEventArgs e)

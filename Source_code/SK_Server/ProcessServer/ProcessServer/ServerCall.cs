@@ -18,10 +18,12 @@ namespace ProcessServer
         private List<string> ListID = null;
         TcpListener server1;
         TcpListener server2;
+        public static List<string> ListIPGroup;
         public void startServer()
         {
             ListClient = new List<Socket>();
             ListID = new List<string>();
+            ListIPGroup = new List<string>();
             IPAddress IP = IPAddress.Parse("192.168.1.201");
             server1 = new TcpListener(IP, PORT1);
             server1.Start();
@@ -64,7 +66,7 @@ namespace ProcessServer
                     {
                         string msg = reader.ReadLine();
                         string ipsend = sk.RemoteEndPoint.ToString();
-                        Console.WriteLine(msg);
+                        //Console.WriteLine(msg);
                         if (msg != null && msg.Contains("#SendID"))
                         {
                             string []str = msg.Split(' ');
@@ -80,7 +82,11 @@ namespace ProcessServer
                             {
                                 if(ListID[i].Equals(str[1]))
                                 {
-                                    string msgSend = "#MakeCall: " + ID+ " "+sk.RemoteEndPoint.ToString();
+                                    string ipgroup = ID + ListID[i];
+                                    Console.WriteLine(ipgroup);
+                                    ListIPGroup.Add(ipgroup);
+
+                                    string msgSend = "#MakeCall: " + ID+ " "+sk.RemoteEndPoint.ToString()+" "+ ipgroup;
                                     Console.WriteLine("IPsend: " + sk.RemoteEndPoint.ToString() + " To:" + str[1]);
                                     var streamsend= new NetworkStream(ListClient[i]);
                                     var writersend = new StreamWriter(streamsend);
@@ -94,27 +100,33 @@ namespace ProcessServer
                         else if (msg != null && msg.Contains("#AcceptCall"))
                         {
                             string[] str = msg.Split(' ');
-                            
+                            Console.WriteLine(msg);
                             for (int i = 0; i < ListClient.Count; i++)
                             {
                                 if (ListClient[i].RemoteEndPoint.ToString().Equals(str[1]))
                                 {
-                                    Console.WriteLine("IPsend: " + sk.RemoteEndPoint.ToString() +" To:"+ str[1]);
-                                    string msgSend = "#AcceptCall: " + sk.RemoteEndPoint.ToString();
+                                    string ipgroup = str[2];
+                                    //Console.WriteLine("IPsend: " + sk.RemoteEndPoint.ToString() +" To:"+ str[1]);
+                                    string msgSend = "#AcceptCall: " + sk.RemoteEndPoint.ToString()+" "+ ipgroup;
                                     var streamsend = new NetworkStream(ListClient[i]);
 
                                     var writersend = new StreamWriter(streamsend);
                                     writersend.WriteLine(msgSend);
                                     Console.WriteLine(ListClient[i].RemoteEndPoint.ToString());
                                     writersend.AutoFlush = true;
-
                                     while (true)
                                     {
                                         try
                                         {
-                                            byte[] buffer = new byte[2024];
-                                            stream.Read(buffer, 0, 2024);
-                                            streamsend.Write(buffer, 0, 2024);
+                                            if (!ListIPGroup.Contains(ipgroup))
+                                                break;
+                                            else
+                                            {
+                                                byte[] buffer = new byte[2024];
+                                                stream.Read(buffer, 0, 2024);
+                                                streamsend.Write(buffer, 0, 2024);
+                                            }
+                                           
                                         }
                                         catch(Exception ex)
                                         {
@@ -126,24 +138,29 @@ namespace ProcessServer
                                 }
                             }
                         }
-                        //msg= #AcceptFinal: ip
+                        //msg= #AcceptFinal: ip ipgroup
                         else if (msg != null && msg.Contains("#AcceptFinal"))
                         {
                             string[] str = msg.Split(' ');
-
+                            Console.WriteLine(msg);
                             for (int i = 0; i < ListClient.Count; i++)
                             {
-                                if (ListClient[i].Equals(str[1]))
-                                {                                  
+                                if (ListClient[i].RemoteEndPoint.ToString().Equals(str[1]))
+                                {
                                     var streamsend = new NetworkStream(ListClient[i]);
-                                                                      
                                     while (true)
                                     {
                                         try
                                         {
-                                            byte[] buffer = new byte[2024];
-                                            stream.Read(buffer, 0, 2024);
-                                            streamsend.Write(buffer, 0, 2024);
+                                            if (!ListIPGroup.Contains(str[2]))
+                                                break;
+                                            else
+                                            {
+                                                byte[] buffer = new byte[2024];
+                                                stream.Read(buffer, 0, 2024);
+                                                streamsend.Write(buffer, 0, 2024);
+                                            }    
+                                            
                                         }
                                         catch (Exception ex)
                                         {

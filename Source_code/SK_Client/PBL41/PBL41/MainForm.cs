@@ -256,7 +256,7 @@ namespace PBL41
                     if (msg.Contains("MakeCall"))
                     {
                         string[] str = msg.Split(' ');
-                        CallClient.instance.sendAcceptCall(str[2]);
+                        CallClient.instance.sendAcceptCall(str[2],str[3]);
                         //MessageBox.Show("call oke");
                         Application.Run(new FormCall());                    
                     }

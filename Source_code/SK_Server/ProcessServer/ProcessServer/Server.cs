@@ -60,7 +60,11 @@ namespace ProcessServer
 
                     else
                     {
-                        string msg = reader.ReadLine();
+                        byte[] data = new byte[2048];
+                        stream.Read(data, 0, 2048);
+                        string msg= Encoding.ASCII.GetString(data);
+                        //string msg = reader.ReadLine();
+
                         string ipsend = sk.RemoteEndPoint.ToString();
                         Console.WriteLine(msg);
                         if (msg != null && msg.Contains("#Disconnect"))
@@ -83,6 +87,16 @@ namespace ProcessServer
 
                         else if (msg != null && msg.Contains("#SignUp"))
                             Console.WriteLine("OK");
+                        else if(msg != null && msg.Contains("#EndCall"))
+                        {
+                            string[] str = msg.Split(' ');
+                            foreach (string ipgroup in ServerCall.ListIPGroup)
+                                if (ipgroup.Equals(str[1]))
+                                {
+                                    ServerCall.ListIPGroup.Remove(ipgroup);
+                                    break;
+                                }                                       
+                        }    
                         else
                             continue;
                     }
@@ -109,8 +123,12 @@ namespace ProcessServer
                         Console.WriteLine("msg send to:"+ i.RemoteEndPoint.ToString()+" " + msg);
                         NetworkStream stream = new NetworkStream(i);
                         var writer = new StreamWriter(stream);
-                        writer.AutoFlush = true;
-                        writer.WriteLine(id + " #send: " + msg);
+                        //writer.AutoFlush = true;
+                        //writer.WriteLine(id + " #send: " + msg);
+                        string str = id + " #send: " + msg;
+                        byte[] bytes = Encoding.ASCII.GetBytes(s);
+                        stream.Write(bytes, 0, bytes.Length);
+
                         stream.Close();
                         break;
                     }
