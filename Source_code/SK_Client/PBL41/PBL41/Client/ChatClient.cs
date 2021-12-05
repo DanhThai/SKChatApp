@@ -72,9 +72,14 @@ namespace PBL41.Client
         {
             if (client != null)
             {
-                var writer = new StreamWriter(stream);
-                writer.AutoFlush = true;
-                writer.WriteLine("#Disconnect");
+                //var writer = new StreamWriter(stream);
+                //writer.AutoFlush = true;
+                //writer.WriteLine("#Disconnect");
+
+                string msg = "#Disconnect";
+                byte[] bytes = SerializeData(msg);
+                stream.Write(bytes, 0, bytes.Length);
+
                 stream.Close();
                 client.Close();
                 listFriend.Clear();
@@ -90,10 +95,13 @@ namespace PBL41.Client
         {
             try
             {
-                var writer = new StreamWriter(stream);
-                writer.AutoFlush = true;
-                //writer.WriteLine("#ip: " + ip + " #msg: " + msg);
-                writer.WriteLine(msg);
+                //var writer = new StreamWriter(stream);
+                //writer.AutoFlush = true;
+                ////writer.WriteLine("#ip: " + ip + " #msg: " + msg);
+                //writer.WriteLine(msg);
+                
+                byte[] bytes = SerializeData(msg);
+                stream.Write(bytes, 0, bytes.Length);
             }
             catch (Exception e)
             {
@@ -109,7 +117,7 @@ namespace PBL41.Client
                 //writer.AutoFlush = true;
                 //writer.WriteLine("#Login: " + user + " " + pass);
                 string msg = "#Login: " + user + " " + pass;
-                byte[] bytes = Encoding.ASCII.GetBytes(msg);
+                byte[] bytes = SerializeData(msg);
                 stream.Write(bytes, 0, bytes.Length);
             }
             catch (Exception ex)
@@ -123,7 +131,7 @@ namespace PBL41.Client
                 //writer.AutoFlush = true;
                 //writer.WriteLine("#Search: " + name);
                 string msg = "#Search: " + name;
-                byte[] bytes = Encoding.ASCII.GetBytes(msg);
+                byte[] bytes = SerializeData(msg);
                 stream.Write(bytes, 0, bytes.Length);
             }
             catch (Exception ex)
@@ -138,7 +146,7 @@ namespace PBL41.Client
                 //// msg= "#AddFriend: id ip"
                 //writer.WriteLine("#AddFriend: " + id + " " + ip);
                 string msg = "#AddFriend: " + id + " " + ip;
-                byte[] bytes = Encoding.ASCII.GetBytes(msg);
+                byte[] bytes = SerializeData(msg);
                 stream.Write(bytes, 0, bytes.Length);
             }
             catch (Exception ex)
@@ -153,7 +161,7 @@ namespace PBL41.Client
                 ////msg="#AcceptFriend: ip"
                 //writer.WriteLine("#AcceptFriend: " + ip);
                 string msg = "#AcceptFriend: " + ip;
-                byte[] bytes = Encoding.ASCII.GetBytes(msg);
+                byte[] bytes = SerializeData(msg);
                 stream.Write(bytes, 0, bytes.Length);
             }
             catch (Exception ex)
@@ -167,7 +175,7 @@ namespace PBL41.Client
                 //writer.AutoFlush = true;
                 //writer.WriteLine("#ChangePass: " + user + " " + pass);
                 string msg = "#ChangePass: " + user + " " + pass;
-                byte[] bytes = Encoding.ASCII.GetBytes(msg);
+                byte[] bytes = SerializeData(msg);
                 stream.Write(bytes, 0, bytes.Length);
             }
             catch (Exception ex)
@@ -195,7 +203,7 @@ namespace PBL41.Client
                 //writer.AutoFlush = true;               
                 //writer.WriteLine("#EndCall: "+ipgroup);
                 string msg = "#EndCall: " + ipgroup;
-                byte[] bytes = Encoding.ASCII.GetBytes(msg);
+                byte[] bytes = SerializeData(msg);
                 stream.Write(bytes, 0, bytes.Length);
             }
             catch (Exception ex) { }
@@ -211,16 +219,22 @@ namespace PBL41.Client
             ms.Position = 0;
             return bf1.Deserialize(ms);
         }
-        
-        
+        public byte[] SerializeData(object ob)
+        {
+            MemoryStream ms = new MemoryStream();
+            BinaryFormatter bf1 = new BinaryFormatter();
+            bf1.Serialize(ms, ob);
+            return ms.ToArray();
+        }
+
         public List<friend> ReceiveFriend()
         {
             List<friend> listFr = new List<friend>();
             listFr.Clear();
             while (true)
             {
-                byte[] str = new byte[2048];
-                int i = stream.Read(str, 0, 2048);
+                byte[] str = new byte[1024];
+                int i = stream.Read(str, 0, 1024);
                 string s = Encoding.ASCII.GetString(str);
                 Console.WriteLine(s);
                 if (i > 0)
@@ -286,9 +300,9 @@ namespace PBL41.Client
         {
             //var reader = new StreamReader(stream);
             //string msg = reader.ReadLine();
-            byte[] data = new byte[2048];
-            stream.Read(data, 0, 2048);
-            string msg = Encoding.ASCII.GetString(data);
+            byte[] data = new byte[1024];
+            stream.Read(data, 0, 1024);
+            string msg = (string)DeserializeData(data);
 
             Console.WriteLine("msg:" + msg);
             if(msg.Contains("#UpdateIP"))

@@ -16,6 +16,20 @@ namespace ProcessServer
         private const int PORT = 2001;
         private List<Socket> ListClient = null;
         TcpListener server;
+        public object DeserializeData(byte[] theByteArray)
+        {
+            BinaryFormatter bf1 = new BinaryFormatter();
+            MemoryStream ms = new MemoryStream(theByteArray);
+            ms.Position = 0;
+            return bf1.Deserialize(ms);
+        }
+        public byte[] SerializeData(object ob)
+        {
+            MemoryStream ms = new MemoryStream();
+            BinaryFormatter bf1 = new BinaryFormatter();
+            bf1.Serialize(ms, ob);
+            return ms.ToArray();
+        }
         public void startServer()
         {
             ListClient = new List<Socket>();
@@ -60,10 +74,12 @@ namespace ProcessServer
 
                     else
                     {
-                        byte[] data = new byte[2048];
-                        stream.Read(data, 0, 2048);
-                        string msg= Encoding.ASCII.GetString(data);
-                        //string msg = reader.ReadLine();
+                        
+                        byte[] data = new byte[1024];
+                        stream.Read(data, 0, 1024);
+                        string msg= (string)DeserializeData(data);
+                       
+                        
 
                         string ipsend = sk.RemoteEndPoint.ToString();
                         Console.WriteLine(msg);
@@ -126,7 +142,7 @@ namespace ProcessServer
                         //writer.AutoFlush = true;
                         //writer.WriteLine(id + " #send: " + msg);
                         string str = id + " #send: " + msg;
-                        byte[] bytes = Encoding.ASCII.GetBytes(s);
+                        byte[] bytes = SerializeData(str);
                         stream.Write(bytes, 0, bytes.Length);
 
                         stream.Close();
@@ -141,7 +157,7 @@ namespace ProcessServer
         }
         public void sendFriend(List<byte[]> data, NetworkStream stream)
         {
-            if (data.Count > 0)
+            if (data!=null)
             {
                 foreach (byte[] i in data)
                 {
@@ -152,13 +168,13 @@ namespace ProcessServer
                 }
                 Thread.Sleep(1);
                 string s = "#done";
-                byte[] bytes = Encoding.ASCII.GetBytes(s);
+                byte[] bytes = SerializeData(s);
                 stream.Write(bytes, 0, bytes.Length);
             }
             else
             {
                 string s = "#false";
-                byte[] bytes = Encoding.ASCII.GetBytes(s);
+                byte[] bytes = SerializeData(s);
                 stream.Write(bytes, 0, bytes.Length);
             }
         }
@@ -167,7 +183,7 @@ namespace ProcessServer
         {
             //msg="#Login: user pass"
             string[] str = msg.Split(' ');
-
+            Console.WriteLine(str[1]+str[2]);
             List<byte[]> data = Client.instance.checkLogin(str[1], str[2], ip);
             sendFriend(data, stream);
 
@@ -202,9 +218,13 @@ namespace ProcessServer
                 {
                     var stream = new NetworkStream(sender);
                     var writer = new StreamWriter(stream);
-                    writer.AutoFlush = true;
-                    //msg = "#UpdateIP: id ipnew"
-                    writer.WriteLine("#UpdateIP: " + check[1] + " " + ip);
+                    //writer.AutoFlush = true;
+                    ////msg = "#UpdateIP: id ipnew"
+                    //writer.WriteLine("#UpdateIP: " + check[1] + " " + ip);
+                    string data = "#UpdateIP: " + check[1] + " " + ip;
+                    byte[] bytes = SerializeData(data);
+                    stream.Write(bytes, 0, bytes.Length);
+
                     sendMsg(mess, ip, id);
                     
                 }
