@@ -244,9 +244,11 @@ namespace PBL41
 
         public void ReceiveCall()
         {
+            string name = InforUser.instance.Name;
+            string name_friend= dgvFriend.SelectedRows[0].Cells["Name"].Value.ToString();
             try
             {
-                FormCall formcal=new FormCall();
+                FormCall formcal=new FormCall(name, name_friend);
                 string msg = "";
                 while(true)
                 {

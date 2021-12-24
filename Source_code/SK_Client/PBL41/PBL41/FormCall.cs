@@ -26,9 +26,12 @@ namespace PBL41
         WaveIn waveIn;
         WaveOut waveOut;
         BufferedWaveProvider bufferedWaveProvider;
-
-        public FormCall()
+        public string name { get; set; }
+        public string name_friend { get; set; }
+        public FormCall(string _name, string _name_friend)
         {
+            name = _name;
+            name_friend = _name_friend;
             InitializeComponent();
             btnStartMicro.Visible = false;
         }
@@ -57,7 +60,8 @@ namespace PBL41
         private void FormCall_Load(object sender, EventArgs e)
         {
 
-
+            lbMe.Text = name;
+            lbYou.Text = name_friend;
             waveOut = new WaveOut();
             int sampleRate = 8000; // 8 kHz
             int channels = 1; // mono
