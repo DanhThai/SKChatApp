@@ -79,8 +79,15 @@ namespace PBL41
                 // msg="id #send: msg"
                 string[] str = msg.Split(new string[] { " #send: " }, StringSplitOptions.None);
                 //Console.WriteLine(str[0]);
-                string id = dgvFriend.SelectedRows[0].Cells["ID"].Value.ToString();
-                string name = dgvFriend.SelectedRows[0].Cells["Name"].Value.ToString();
+                string id = dgvFriend.SelectedRows[0].Cells["ID"].Value.ToString();              
+                string name = "";
+                for(int i=0; i< dgvFriend.Rows.Count; i++)
+                {
+                    if(str[0].Equals(dgvFriend.Rows[i].Cells["ID"].Value.ToString()))
+                    {
+                        name = dgvFriend.Rows[i].Cells["Name"].Value.ToString();
+                    }    
+                }    
                 if (id.Equals(str[0]))
                 {
                     LViewMessage.Items.Add(name + ": " + str[1]);
@@ -244,8 +251,13 @@ namespace PBL41
 
         public void ReceiveCall()
         {
-            string name = InforUser.instance.Name;
-            string name_friend= dgvFriend.SelectedRows[0].Cells["Name"].Value.ToString();
+            string name = "";
+            string name_friend = "";
+            if (dgvFriend.SelectedRows.Count ==1)
+            {
+                name = InforUser.instance.Name;
+                name_friend = dgvFriend.SelectedRows[0].Cells["Name"].Value.ToString();
+            }                 
             try
             {
                 FormCall formcal=new FormCall(name, name_friend);
@@ -277,18 +289,22 @@ namespace PBL41
 
         private void dgvFriend_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int id = (int)dgvFriend.SelectedRows[0].Cells["ID"].Value;
-            lbName.Text = dgvFriend.SelectedRows[0].Cells["Name"].Value.ToString();
-            LViewMessage.Items.Clear();
-            foreach (ListMessage i in ChatClient.instance.getListMessage())
+            if(dgvFriend.SelectedRows.Count>0)
             {
-                if (i.ID == id)
+                int id = (int)dgvFriend.SelectedRows[0].Cells["ID"].Value;
+                lbName.Text = dgvFriend.SelectedRows[0].Cells["Name"].Value.ToString();
+                LViewMessage.Items.Clear();
+                foreach (ListMessage i in ChatClient.instance.getListMessage())
                 {
-                    foreach (string j in i.getMessage())
-                        LViewMessage.Items.Add(j);
-                    break;
+                    if (i.ID == id)
+                    {
+                        foreach (string j in i.getMessage())
+                            LViewMessage.Items.Add(j);
+                        break;
+                    }
                 }
-            }
+            }    
+           
         }
         private void lbLogOut_Click(object sender, EventArgs e)
         {
