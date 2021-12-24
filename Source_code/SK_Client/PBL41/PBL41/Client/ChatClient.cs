@@ -186,9 +186,12 @@ namespace PBL41.Client
         {
             try
             {
-                var writer = new StreamWriter(stream);
-                writer.AutoFlush = true;
-                writer.WriteLine("#SignUp: " + user + " " + pass + " " + name + " " + gender + " " + date);
+                //var writer = new StreamWriter(stream);
+                //writer.AutoFlush = true;
+                //writer.WriteLine("#SignUp: " + user + " " + pass + " " + name + " " + gender + " " + date);
+                string msg = "#SignUp: " + user + " " + pass + " " + name + " " + gender + " " + date;
+                byte[] bytes = SerializeData(msg);
+                stream.Write(bytes, 0, bytes.Length);
             }
             catch (Exception ex) { }
         }

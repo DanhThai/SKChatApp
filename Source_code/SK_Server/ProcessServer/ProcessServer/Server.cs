@@ -107,11 +107,15 @@ namespace ProcessServer
                         {
                             string[] str = msg.Split(' ');
                             foreach (string ipgroup in ServerCall.ListIPGroup)
+                            {                               
                                 if (ipgroup.Equals(str[1]))
                                 {
                                     ServerCall.ListIPGroup.Remove(ipgroup);
                                     break;
-                                }                                       
+                                }
+                            }    
+
+                                                                 
                         }    
                         else
                             continue;
@@ -186,15 +190,17 @@ namespace ProcessServer
             Console.WriteLine(str[1]+str[2]);
             List<byte[]> data = Client.instance.checkLogin(str[1], str[2], ip);
             sendFriend(data, stream);
+            if (data!=null)
+            {                
+                //Thread.Sleep(3);
+                byte[] info = Client.instance.getInformation(ip);
 
-            //Thread.Sleep(3);
-            byte[] info = Client.instance.getInformation(ip);
+                string msgs = Encoding.ASCII.GetString(info);
+                Console.WriteLine(msgs);
 
-            string msgs = Encoding.ASCII.GetString(info);
-            Console.WriteLine(msgs);
-
-            stream.Write(info, 0, info.Length);
-            //Thread.Sleep(1);
+                stream.Write(info, 0, info.Length);
+                //Thread.Sleep(1);
+            }
         }
 
         // send massage to client 
@@ -217,7 +223,7 @@ namespace ProcessServer
                 if (ip != null)
                 {
                     var stream = new NetworkStream(sender);
-                    var writer = new StreamWriter(stream);
+                    //var writer = new StreamWriter(stream);
                     //writer.AutoFlush = true;
                     ////msg = "#UpdateIP: id ipnew"
                     //writer.WriteLine("#UpdateIP: " + check[1] + " " + ip);
@@ -240,9 +246,13 @@ namespace ProcessServer
         public void processSearch(string msg, NetworkStream stream)
         {
             //msg= #Search: name
-            var writer = new StreamWriter(stream);
-            writer.AutoFlush = true;
-            writer.WriteLine("#Search");
+            //var writer = new StreamWriter(stream);
+            //writer.AutoFlush = true;
+            //writer.WriteLine("#Search");
+            string text = "#Search: " ;
+            byte[] bytes = SerializeData(text);
+            stream.Write(bytes, 0, bytes.Length);
+
             string[] str = msg.Split(new string[] { "#Search: " }, StringSplitOptions.None);
             List<byte[]> data = Client.instance.searchFriend(str[1]);
             Console.WriteLine(str[1]);
@@ -263,10 +273,14 @@ namespace ProcessServer
                     if (ip.Equals(i.RemoteEndPoint.ToString()))
                     {
                         var stream = new NetworkStream(i);
-                        var writer = new StreamWriter(stream);
-                        writer.AutoFlush = true;
-                        // msg= "#MakeFriend: id ip"
-                        writer.WriteLine("#MakeFriend:");
+                        //var writer = new StreamWriter(stream);
+                        //writer.AutoFlush = true;
+                        //// msg= "#MakeFriend: id ip"
+                        //writer.WriteLine("#MakeFriend:");
+                        string text = "#MakeFriend: ";
+                        byte[] bytes = SerializeData(text);
+                        stream.Write(bytes, 0, bytes.Length);
+
                         Thread.Sleep(2);
                         stream.Write(datasender, 0, datasender.Length);
                         stream.Close();
@@ -290,10 +304,13 @@ namespace ProcessServer
                 if (str[1].Equals(i.RemoteEndPoint.ToString()))
                 {
                     var stream = new NetworkStream(i);
-                    var writer = new StreamWriter(stream);
-                    writer.AutoFlush = true;
-                    // msg= "#AcceptFriend:"
-                    writer.WriteLine("#AcceptFriend:");
+                    //var writer = new StreamWriter(stream);
+                    //writer.AutoFlush = true;
+                    //// msg= "#AcceptFriend:"
+                    //writer.WriteLine("#AcceptFriend:");
+                    string text = "#AcceptFriend: ";
+                    byte[] bytes = SerializeData(text);
+                    stream.Write(bytes, 0, bytes.Length);
                     Thread.Sleep(2);
                     stream.Write(datasender, 0, datasender.Length);
                     stream.Close();

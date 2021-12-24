@@ -83,7 +83,7 @@ namespace ProcessServer
                                 if(ListID[i].Equals(str[1]))
                                 {
                                     string ipgroup = ID + ListID[i];
-                                    Console.WriteLine(ipgroup);
+                                    
                                     ListIPGroup.Add(ipgroup);
 
                                     string msgSend = "#MakeCall: " + ID+ " "+sk.RemoteEndPoint.ToString()+" "+ ipgroup;
@@ -106,6 +106,7 @@ namespace ProcessServer
                                 if (ListClient[i].RemoteEndPoint.ToString().Equals(str[1]))
                                 {
                                     string ipgroup = str[2];
+
                                     //Console.WriteLine("IPsend: " + sk.RemoteEndPoint.ToString() +" To:"+ str[1]);
                                     string msgSend = "#AcceptCall: " + sk.RemoteEndPoint.ToString()+" "+ ipgroup;
                                     var streamsend = new NetworkStream(ListClient[i]);
@@ -119,14 +120,19 @@ namespace ProcessServer
                                         try
                                         {
                                             if (!ListIPGroup.Contains(ipgroup))
+                                            {
+                                                string end = "#EndCall" ;
+                                                writer.WriteLine(end);
+                                                Console.WriteLine("#AcceptCall");
                                                 break;
+                                            }    
+                                                
                                             else
                                             {
                                                 byte[] buffer = new byte[2024];
                                                 stream.Read(buffer, 0, 2024);
                                                 streamsend.Write(buffer, 0, 2024);
-                                            }
-                                           
+                                            }                                           
                                         }
                                         catch(Exception ex)
                                         {
@@ -143,6 +149,8 @@ namespace ProcessServer
                         {
                             string[] str = msg.Split(' ');
                             Console.WriteLine(msg);
+                            string ipgroup = str[2];
+                            
                             for (int i = 0; i < ListClient.Count; i++)
                             {
                                 if (ListClient[i].RemoteEndPoint.ToString().Equals(str[1]))
@@ -152,8 +160,13 @@ namespace ProcessServer
                                     {
                                         try
                                         {
-                                            if (!ListIPGroup.Contains(str[2]))
+                                            if (!ListIPGroup.Contains(ipgroup))
+                                            {
+                                                string end = "#EndCall";
+                                                writer.WriteLine(end);
+                                                Console.WriteLine("#AcceptFinal");
                                                 break;
+                                            }                                                  
                                             else
                                             {
                                                 byte[] buffer = new byte[2024];

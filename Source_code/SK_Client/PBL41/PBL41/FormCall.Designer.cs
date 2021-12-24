@@ -28,11 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCall));
             this.lbMe = new System.Windows.Forms.Label();
             this.lbYou = new System.Windows.Forms.Label();
-            this.btnStartCam = new CustomButton.VBButton();
-            this.btnStopCam = new CustomButton.VBButton();
             this.btnStopMicro = new CustomButton.VBButton();
             this.btnStartMicro = new CustomButton.VBButton();
             this.butCancel = new CustomButton.VBButton();
@@ -64,48 +61,6 @@
             this.lbYou.TabIndex = 2;
             this.lbYou.Text = "NameYou";
             // 
-            // btnStartCam
-            // 
-            this.btnStartCam.BackColor = System.Drawing.Color.Gainsboro;
-            this.btnStartCam.BackgroundColor = System.Drawing.Color.Gainsboro;
-            this.btnStartCam.BackgroundImage = global::PBL41.Properties.Resources.camera;
-            this.btnStartCam.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnStartCam.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.btnStartCam.BorderRadius = 10;
-            this.btnStartCam.BorderSize = 0;
-            this.btnStartCam.FlatAppearance.BorderSize = 0;
-            this.btnStartCam.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStartCam.ForeColor = System.Drawing.Color.White;
-            this.btnStartCam.Location = new System.Drawing.Point(380, 534);
-            this.btnStartCam.Margin = new System.Windows.Forms.Padding(25);
-            this.btnStartCam.Name = "btnStartCam";
-            this.btnStartCam.Size = new System.Drawing.Size(64, 65);
-            this.btnStartCam.TabIndex = 1;
-            this.btnStartCam.TextColor = System.Drawing.Color.White;
-            this.btnStartCam.UseVisualStyleBackColor = false;
-            this.btnStartCam.Click += new System.EventHandler(this.btnStartCam_Click);
-            // 
-            // btnStopCam
-            // 
-            this.btnStopCam.BackColor = System.Drawing.Color.Gainsboro;
-            this.btnStopCam.BackgroundColor = System.Drawing.Color.Gainsboro;
-            this.btnStopCam.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnStopCam.BackgroundImage")));
-            this.btnStopCam.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnStopCam.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.btnStopCam.BorderRadius = 10;
-            this.btnStopCam.BorderSize = 0;
-            this.btnStopCam.FlatAppearance.BorderSize = 0;
-            this.btnStopCam.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStopCam.ForeColor = System.Drawing.Color.White;
-            this.btnStopCam.Location = new System.Drawing.Point(380, 534);
-            this.btnStopCam.Margin = new System.Windows.Forms.Padding(25);
-            this.btnStopCam.Name = "btnStopCam";
-            this.btnStopCam.Size = new System.Drawing.Size(64, 65);
-            this.btnStopCam.TabIndex = 1;
-            this.btnStopCam.TextColor = System.Drawing.Color.White;
-            this.btnStopCam.UseVisualStyleBackColor = false;
-            this.btnStopCam.Click += new System.EventHandler(this.btnStopCam_Click);
-            // 
             // btnStopMicro
             // 
             this.btnStopMicro.BackColor = System.Drawing.Color.Gainsboro;
@@ -118,7 +73,7 @@
             this.btnStopMicro.FlatAppearance.BorderSize = 0;
             this.btnStopMicro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStopMicro.ForeColor = System.Drawing.Color.White;
-            this.btnStopMicro.Location = new System.Drawing.Point(483, 534);
+            this.btnStopMicro.Location = new System.Drawing.Point(421, 521);
             this.btnStopMicro.Margin = new System.Windows.Forms.Padding(25);
             this.btnStopMicro.Name = "btnStopMicro";
             this.btnStopMicro.Size = new System.Drawing.Size(64, 65);
@@ -139,7 +94,7 @@
             this.btnStartMicro.FlatAppearance.BorderSize = 0;
             this.btnStartMicro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStartMicro.ForeColor = System.Drawing.Color.White;
-            this.btnStartMicro.Location = new System.Drawing.Point(483, 534);
+            this.btnStartMicro.Location = new System.Drawing.Point(421, 521);
             this.btnStartMicro.Margin = new System.Windows.Forms.Padding(25);
             this.btnStartMicro.Name = "btnStartMicro";
             this.btnStartMicro.Size = new System.Drawing.Size(64, 65);
@@ -160,7 +115,7 @@
             this.butCancel.FlatAppearance.BorderSize = 0;
             this.butCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.butCancel.ForeColor = System.Drawing.Color.White;
-            this.butCancel.Location = new System.Drawing.Point(597, 534);
+            this.butCancel.Location = new System.Drawing.Point(535, 521);
             this.butCancel.Margin = new System.Windows.Forms.Padding(25);
             this.butCancel.Name = "butCancel";
             this.butCancel.Size = new System.Drawing.Size(64, 65);
@@ -197,8 +152,6 @@
             this.ClientSize = new System.Drawing.Size(1030, 625);
             this.Controls.Add(this.lbYou);
             this.Controls.Add(this.lbMe);
-            this.Controls.Add(this.btnStartCam);
-            this.Controls.Add(this.btnStopCam);
             this.Controls.Add(this.btnStopMicro);
             this.Controls.Add(this.btnStartMicro);
             this.Controls.Add(this.butCancel);
@@ -224,8 +177,6 @@
         private System.Windows.Forms.Label lbMe;
         private System.Windows.Forms.Label lbYou;
         private CustomButton.VBButton btnStartMicro;
-        private CustomButton.VBButton btnStopCam;
-        private CustomButton.VBButton btnStartCam;
         private CustomButton.VBButton btnStopMicro;
     }
 }

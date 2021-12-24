@@ -220,8 +220,7 @@ namespace PBL41
                         DialogResult rs = MessageBox.Show("Make Friend", fr.Name + " want to make friend", MessageBoxButtons.YesNo);
                         if (rs == DialogResult.Yes)
                         {
-                            ChatClient.instance.addFriend(fr);
-                           
+                            ChatClient.instance.addFriend(fr);                          
                             ChatClient.instance.SendAcceptFriend(fr.IP);
                             //setDgv();
                         }
@@ -229,7 +228,7 @@ namespace PBL41
                     else if (msg.Contains("#AcceptFriend"))
                     {
                         friend fr = ChatClient.instance.makeFriend();
-                        //MessageBox.Show("Accept Friend", fr.Name + " accepted friend", MessageBoxButtons.OK);
+                        MessageBox.Show("Accept Friend", fr.Name + " accepted friend", MessageBoxButtons.OK);
                         ChatClient.instance.addFriend(fr);
                         //setDgv();
                     }
@@ -247,7 +246,7 @@ namespace PBL41
         {
             try
             {
-                //FormCall f = new FormCall();
+                FormCall formcal=new FormCall();
                 string msg = "";
                 while(true)
                 {
@@ -257,14 +256,12 @@ namespace PBL41
                     {
                         string[] str = msg.Split(' ');
                         CallClient.instance.sendAcceptCall(str[2],str[3]);
-                        //MessageBox.Show("call oke");
-                        Application.Run(new FormCall());                    
+                        Application.Run(formcal);                    
                     }
+                        
                     else
-                    {
-                        //FormCall f = new FormCall();
-                        //MessageBox.Show("call oke");
-                        Application.Run(new FormCall());
+                    {                      
+                        Application.Run(formcal);
                     }   
                 }    
             }
@@ -273,9 +270,7 @@ namespace PBL41
         private void butVideo_Click(object sender, EventArgs e)
         {
             string id = dgvFriend.SelectedRows[0].Cells["ID"].Value.ToString();
-            CallClient.instance.sendCallToID(id);
-            //FormCall f = new FormCall();
-            //f.Show();
+            CallClient.instance.sendCallToID(id);           
         }
 
         private void dgvFriend_CellClick(object sender, DataGridViewCellEventArgs e)
