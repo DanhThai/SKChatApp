@@ -198,5 +198,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\StopCam.png" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\tron.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

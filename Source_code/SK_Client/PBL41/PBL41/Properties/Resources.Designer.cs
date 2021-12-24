@@ -203,6 +203,16 @@ namespace PBL41.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap tron {
+            get {
+                object obj = ResourceManager.GetObject("tron", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Uchiha_Sasuke1 {
             get {
                 object obj = ResourceManager.GetObject("Uchiha Sasuke1", resourceCulture);
